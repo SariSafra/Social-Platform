@@ -1,7 +1,5 @@
 import { useState, createContext, useContext, useRef} from "react";
-import { current_page_context } from "./CurrentPageContext";
-import { Form, Link, useNavigate ,useParams} from "react-router-dom";
-import Home from './Home'
+import {  BrowserRouter as Router, Route, Routes ,Form, Link, useNavigate ,useParams} from "react-router-dom";
 
 const Login=({setCurrentPage})=>{
   const { action } = useParams();
@@ -43,16 +41,7 @@ const handleUsernameChange=()=>
 
 }
 
-//const changePage=()=>setCurrentPage(action ?"home" : 'home');
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const usernameValue = usernameRef.current.value;
-    const passwordValue = passwordRef.current.value;
-    PasswordValidation(passwordValue);
-    UserNameValidation(usernameValue);
-    if(passwordError!=""||userNameError!="")
-        return;
+const isUserExist=(usernameValue, passwordValue)=>{
   fetch(`http://localhost:3000/users?username=${usernameValue}`)
    .then(response => {
     if (!response.ok) {
@@ -67,7 +56,9 @@ const handleUsernameChange=()=>
          if(data[0].website===passwordValue){
         {       
           localStorage.setItem(data[0].username, JSON.stringify(data[0]));
-         setCurrentPage(action?'home':"home");
+          setCurrentPage(action?'home':"home");
+          // const history = useHistory();
+          // history.push('/home');
         }
       }  else
           setErrorDisplay("wrong username or password.")
@@ -77,6 +68,14 @@ const handleUsernameChange=()=>
     console.error(error);
     setErrorDisplay("Server error. try again later.")      
   });
+}
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const usernameValue = usernameRef.current.value;
+    const passwordValue = passwordRef.current.value;
+    if(passwordError=="" && userNameError == "")
+      isUserExist(usernameValue, passwordValue);
   };
 
   return(
