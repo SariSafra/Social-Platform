@@ -1,9 +1,10 @@
 import { useState, createContext, useContext, useRef} from "react";
 import { current_page_context } from "./CurrentPageContext";
-import { Form, Link, useNavigate } from "react-router-dom";
+import { Form, Link, useNavigate ,useParams} from "react-router-dom";
 import Home from './Home'
 
-const Login=(props)=>{
+const Login=({setCurrentPage})=>{
+  const { action } = useParams();
   const usernameRef = useRef(null);
   const passwordRef = useRef(null);
   const [passwordError, setPasswordError] = useState('');
@@ -41,6 +42,9 @@ const handleUsernameChange=()=>
     UserNameValidation(usernameValue);
 
 }
+
+//const changePage=()=>setCurrentPage(action ?"home" : 'home');
+
   const handleSubmit = (e) => {
     e.preventDefault();
     const usernameValue = usernameRef.current.value;
@@ -63,7 +67,7 @@ const handleUsernameChange=()=>
          if(data[0].website===passwordValue){
         {       
           localStorage.setItem(data[0].username, JSON.stringify(data[0]));
-          props.setCurrentPage("home");
+         setCurrentPage(action?'home':"home");
         }
       }  else
           setErrorDisplay("wrong username or password.")
