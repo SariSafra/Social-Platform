@@ -7,13 +7,13 @@ import Login from "./Login"
 
 
 const Site=()=>{
-    // const [current_page, set_current_page] = useState("/login");
-  //  const navigate = useNavigate();
-   
-    // useEffect(()=>{
-    //     <Link to={current_page}>page</Link>
-    //     //  navigate('/login');
-    // },[current_page])
+    const [currentPage, setCurrentPage] = useState("/login");
+    const navigate = useNavigate(); 
+
+    useEffect(()=>{
+       navigate(currentPage);
+    },[currentPage, navigate]);
+
     return( <>
 
         {/* <current_page_context.Provider value={{current_page, set_current_page}}>  */}
@@ -22,11 +22,10 @@ const Site=()=>{
         <BrowserRouter>
         {/* <Link to={current_page}>page</Link> */}
          <Routes> 
-            <Route index element={<Login/>} ></Route>
-            <Route path="register" element={<Register/>} />
-            <Route path="home" element={<Home />} />
-            <Route path="login" element={<Login/>} ></Route>
-
+            {/* <Route index element={<Login setCurrentPage={setCurrentPage}/>} ></Route> */}
+            <Route path="register" element={<Register setCurrentPage={setCurrentPage}/>} />
+            <Route path="home" element={<Home setCurrentPage={setCurrentPage}/>} />
+            <Route path="login" element={<Login setCurrentPage={setCurrentPage}/>} ></Route>
         </Routes>
         </BrowserRouter>
         {/* </current_page_context.Provider> */}
