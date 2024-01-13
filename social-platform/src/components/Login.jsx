@@ -30,15 +30,16 @@ const UserNameValidation=(userValue)=>{
 }
 
 const handlePasswordChange=()=>{
+    setErrorDisplay("");
     const passwordValue = passwordRef.current.value;
     PasswordValidation(passwordValue);
 }
 
 const handleUsernameChange=()=>
 {
+    setErrorDisplay("");
     const usernameValue = usernameRef.current.value;
     UserNameValidation(usernameValue);
-
 }
 
 const isUserExist=(usernameValue, passwordValue)=>{
@@ -74,7 +75,7 @@ const isUserExist=(usernameValue, passwordValue)=>{
     e.preventDefault();
     const usernameValue = usernameRef.current.value;
     const passwordValue = passwordRef.current.value;
-    if(passwordError=="" && userNameError == "")
+    if(passwordError =="" && userNameError == "")
       isUserExist(usernameValue, passwordValue);
   };
 
