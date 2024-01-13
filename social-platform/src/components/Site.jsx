@@ -14,7 +14,7 @@ const Site=()=>{
         <h1>Site</h1>
         <BrowserRouter>
          <Routes > 
-            {/* <Route element={ <Navigate to={currentPage}/>} ></Route>  */}
+            <Route element={ <Navigate to={currentPage}/>} ></Route> 
             <Route path="register" element={<Register setCurrentPage={setCurrentPage}/>} />
             <Route path="home" element={<Home setCurrentPage={setCurrentPage}/>} />
             <Route path="login" element={<Login setCurrentPage={setCurrentPage}/>} ></Route>
