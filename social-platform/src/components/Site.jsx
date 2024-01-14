@@ -5,7 +5,7 @@ import Home from "./Home"
 import Login from "./Login"
 
 const Site=()=>{
-    const [currentPage, setCurrentPage] = useState("login");
+    const [currentPage, setCurrentPage] = useState(localStorage.getItem("currentUser")?"home" : "login");
     
    // const history = useHistory();
     // useEffect(()=>{
@@ -17,10 +17,10 @@ const Site=()=>{
         <h1>Site</h1>
         <BrowserRouter>
          <Routes > 
-            <Route element={ <Navigate to={currentPage}/>} ></Route> 
+            <Route path="/" element={ <Navigate to={currentPage}/>} ></Route> 
             <Route path="register" element={<Register setCurrentPage={setCurrentPage}/>} />
             <Route path="home" element={<Home setCurrentPage={setCurrentPage}/>} />
-            <Route path="login" element={<Login setCurrentPage={setCurrentPage}/>} ></Route>
+            <Route path="login" element={<Login currentPage={currentPage} setCurrentPage={setCurrentPage}/>} ></Route>
         </Routes>
         </BrowserRouter>
     </>  )

@@ -1,7 +1,8 @@
 import { useState, createContext, useContext, useRef} from "react";
-import {  BrowserRouter as Router, Route, Routes ,Form, Link, useNavigate ,useParams} from "react-router-dom";
+import { BrowserRouter, Routes, Route, useNavigate, Link, Navigate, useParams} from "react-router-dom";
+import ContinueRegistration from "./ContinueRegistration";
 
-const Register=({setCurrentPage})=>{
+const Register=({currentPage, setCurrentPage})=>{
   const { action } = useParams();
   const usernameRef = useRef(null);
   const passwordRef = useRef(null);
@@ -10,6 +11,8 @@ const Register=({setCurrentPage})=>{
   const [confirmPasswordError, setConfirmPasswordError] = useState('');
   const [userNameError, setUserNameError] = useState('');
   const [errorDisplay, setErrorDisplay] = useState('');
+
+  const [continueRegistation,setContinueRegistation] = useState(false);
 
 const PasswordValidation=(passwordValue, errorArea)=>{
     const passwordRegex = /^[a-z]*[a-z]\.[a-z]+$/;
@@ -60,7 +63,7 @@ const handleUsernameChange=()=>
  })
  .then(data => {
    if (Object.keys(data).length === 0) {
-      //מילוי פרטים נוספים
+    setContinueRegistation(true);
     } 
     else {
     setErrorDisplay("Username already exists. Please choose a different username.")
@@ -86,10 +89,16 @@ const handleUsernameChange=()=>
       isUsernameExist(usernameValue);
     }  
   };
-
-  return(
+ // const x=()=> {return <ContinueRegistration/>}
+  
+  
+  return(<>
+    {continueRegistation ? (
+       <ContinueRegistration/>
+    // <Link onClick={x} to="/register/fillingDetails">Click to continue registration.</Link>
+    ) : (
     <>
-    <h1>Login</h1>
+    <h1>Register</h1>
     <form onSubmit={handleSubmit}>
       <div>
         <label htmlFor="username">Username:</label>
@@ -110,7 +119,9 @@ const handleUsernameChange=()=>
     </form>
      <Link to="/login">login</Link>
      {errorDisplay && <p style={{ color: 'red' }}>{errorDisplay}</p>}
-      </>
-    )
-}
+    </>
+    )}
+</>
+  )
+ }
 export default Register;

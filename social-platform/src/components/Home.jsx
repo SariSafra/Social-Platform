@@ -1,9 +1,16 @@
 import { useState, createContext, useContext } from "react";
-const Home=()=>{
-    const {current_page, set_current_page} = useContext(current_page_context)
+import { BrowserRouter, Routes, Route, useNavigate, Link, Navigate, useParams} from "react-router-dom";
+
+const Home=({currentPage, setCurrentPage})=>{
+   const { action } = useParams();
+   const [currentUser, setCurrentUser] = useState(localStorage.getItem("currentUser"));
     return(
        <>
-               <h1>Home</h1>
+       {currentUser==null ? 
+       (setCurrentPage(action?'login':"login")):
+       (
+        <h1>Home</h1>
+       )}
 
        </>
     )
