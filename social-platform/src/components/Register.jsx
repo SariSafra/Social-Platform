@@ -1,9 +1,8 @@
-import { useState, createContext, useContext, useRef} from "react";
+import { useState, createContext, useContext, useRef, useEffect} from "react";
 import { BrowserRouter, Routes, Route, useNavigate, Link, Navigate, useParams} from "react-router-dom";
 import ContinueRegistration from "./ContinueRegistration";
 
-const Register=({currentPage, setCurrentPage})=>{
-  const { action } = useParams();
+const Register=()=>{
   const usernameRef = useRef(null);
   const passwordRef = useRef(null);
   const confirmPasswordRef = useRef(null);
@@ -12,7 +11,12 @@ const Register=({currentPage, setCurrentPage})=>{
   const [userNameError, setUserNameError] = useState('');
   const [errorDisplay, setErrorDisplay] = useState('');
 
-  const [continueRegistation,setContinueRegistation] = useState(false);
+  const [continueRegistation, setContinueRegistation] = useState(false);
+
+  useEffect(()=>{
+     
+  },[errorDisplay])
+
 
 const PasswordValidation=(passwordValue, errorArea)=>{
     const passwordRegex = /^[a-z]*[a-z]\.[a-z]+$/;
@@ -80,22 +84,18 @@ const handleUsernameChange=()=>
     const usernameValue = usernameRef.current.value;
     const passwordValue = passwordRef.current.value;
     const confirmPasswordValue = confirmPasswordRef.current.value;
-    let isConfirmationSucceeded = true;
+   let isConfirmationSucceeded = true;
     if(confirmPasswordValue!=passwordValue){
       isConfirmationSucceeded = false;
-      setErrorDisplay("Password confirmation failed. try again.");
+     setErrorDisplay("Password confirmation failed. try again.");
     }
     if(passwordError==""&&confirmPasswordError=="" && userNameError==""&& errorDisplay=="" && isConfirmationSucceeded==true){
-      isUsernameExist(usernameValue);
-    }  
+      isUsernameExist(usernameValue);}
   };
- // const x=()=> {return <ContinueRegistration/>}
-  
-  
+ 
   return(<>
     {continueRegistation ? (
-       <ContinueRegistration/>
-    // <Link onClick={x} to="/register/fillingDetails">Click to continue registration.</Link>
+       <ContinueRegistration username={usernameRef.current.value} password= {passwordRef.current.value} />
     ) : (
     <>
     <h1>Register</h1>

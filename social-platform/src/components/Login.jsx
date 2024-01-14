@@ -1,11 +1,11 @@
 import { useState, createContext, useContext, useRef} from "react";
 import { BrowserRouter, Routes, Route, useNavigate, Link, Navigate, useParams} from "react-router-dom";
 
-const Login=({currentPage, setCurrentPage})=>{
-  const { action } = useParams();
+const Login=()=>{
   const usernameRef = useRef(null);
   const passwordRef = useRef(null);
   const [errorDisplay, setErrorDisplay] = useState('');
+  const navigate = useNavigate();
 
 const isUserExist=(usernameValue, passwordValue)=>{
   fetch(`http://localhost:3000/users?username=${usernameValue}`)
@@ -23,9 +23,7 @@ const isUserExist=(usernameValue, passwordValue)=>{
         {       
           localStorage.clear();
           localStorage.setItem("currentUser", JSON.stringify(data[0]));
-          setCurrentPage(action?'home':"home");
-          <Link to="/home"/>
-          //
+          navigate('/home');
         }
       }  else
           setErrorDisplay("wrong username or password.")

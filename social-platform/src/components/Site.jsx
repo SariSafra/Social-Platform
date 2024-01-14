@@ -3,24 +3,20 @@ import { useState, createContext, useContext, useEffect,useHistory } from "react
 import Register from "./Register";
 import Home from "./Home"
 import Login from "./Login"
+import UserInfo from "./UserInfo";
 
 const Site=()=>{
-    const [currentPage, setCurrentPage] = useState(localStorage.getItem("currentUser")?"home" : "login");
-    
-   // const history = useHistory();
-    // useEffect(()=>{
-    //     console.log(currentPage);
-    //      history.push(currentPage);
-    // },[currentPage]);
+    const [currentPage, setCurrentPage] = useState(localStorage.getItem("currentUser") ? "home" : "login");
 
     return( <>
         <h1>Site</h1>
         <BrowserRouter>
          <Routes > 
             <Route path="/" element={ <Navigate to={currentPage}/>} ></Route> 
-            <Route path="register" element={<Register setCurrentPage={setCurrentPage}/>} />
-            <Route path="home" element={<Home setCurrentPage={setCurrentPage}/>} />
-            <Route path="login" element={<Login currentPage={currentPage} setCurrentPage={setCurrentPage}/>} ></Route>
+            <Route path="register" element={<Register />} />
+            <Route path="home" element={<Home/>} />
+            <Route path="login" element={<Login  />} ></Route>
+            <Route path="info" element={<UserInfo />} ></Route>
         </Routes>
         </BrowserRouter>
     </>  )
