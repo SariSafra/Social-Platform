@@ -21,7 +21,7 @@ const isUserExist=(usernameValue, passwordValue)=>{
     } else {
          if(data[0].website===passwordValue){
         {       
-          localStorage.clear();
+          delete data[0].website;
           localStorage.setItem("currentUser", JSON.stringify(data[0]));
           navigate('/home');
         }
