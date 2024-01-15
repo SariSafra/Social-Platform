@@ -85,6 +85,27 @@ const Todos = ({ displayObject }) => {
         }
     }
 
+    const updateCompletedTodo = (key, newValue, index) => {
+        const updatedTodo = { ...todos[index], [key]: newValue };
+        const userId = JSON.parse(localStorage.getItem("currentUser")).id;
+        fetch(`http://localhost:3000/todos/${todos[index].id}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({"userId": userId,...updatedTodo}),
+        })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`Request failed with status: ${response.status}`);
+                }
+                setTodos(todos.map(todo => todo.id === todos[index].id ? updatedTodo : todo));
+            }).catch(error => {
+                console.error(error);
+                setCommentArea("Server error. try again later.")
+            });
+    };
+    
     return (<>
         <h1>Todos</h1>
         <label htmlFor="sortedSelector">Choose a sorted option:</label>
@@ -113,9 +134,9 @@ const Todos = ({ displayObject }) => {
         <TodosCRUD todos={todos} setTodos={setTodos} setCommentArea={setCommentArea}/>
         {<p style={{ color: 'red' }}>{commentArea}</p>}<br />
         <ul>
-            {todos.map(todo => (
-                <li key={todo.id} style={{ listStyle: 'none', margin: '3rem' }}>
-                    {isFiltered(todo) ? displayObject(todo) : <span />}
+            {todos.map((todo,index) => (
+                <li key={index} style={{ listStyle: 'none', margin: '3rem' }}>
+                    {isFiltered(todo) ? displayObject(todo, updateCompletedTodo, index) : <span />}
                 </li>
             ))}
         </ul>

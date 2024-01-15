@@ -42,6 +42,7 @@ const TodosCRUD = ({ todos, setTodos, setCommentArea }) => {
         e.preventDefault();
         setInUpdate(false);
         const foundTodo = todos.find(todo => todo.id === idToUpdate);
+        const userId = JSON.parse(localStorage.getItem("currentUser")).id;
         if (!foundTodo) {
             setCommentArea("You may not update this task.");
             return;
@@ -54,7 +55,7 @@ const TodosCRUD = ({ todos, setTodos, setCommentArea }) => {
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify(updatedTodo),
+            body: JSON.stringify({"userId": userId,...updatedTodo}),
         })
             .then(response => {
                 if (!response.ok) {
