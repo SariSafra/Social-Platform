@@ -1,6 +1,6 @@
 import { useState, createContext, useContext, useRef, useEffect } from "react";
 import { BrowserRouter, Routes, Route, useNavigate, Link, Navigate, useParams } from "react-router-dom";
-
+import { runId } from "./Tools";
 const ContinueRegistration = ({ username, password }) => {
 
   const fields = {
@@ -35,10 +35,11 @@ const ContinueRegistration = ({ username, password }) => {
 
   useEffect(() => {
     const findId = async () => {
-      const newId = await findMaxId;
+      const newId = await runId("users");
       setUserDetails({ ...userDetails, "id": newId, "username": username, "website": password });
     };
     findId();
+
   }, []);
   useEffect(() => {
     setGlobalError("");
@@ -112,25 +113,7 @@ const ContinueRegistration = ({ username, password }) => {
     return true;
   };
 
-  const findMaxId = fetch(`http://localhost:3000/users`)
-    .then(response => {
-      if (!response.ok) {
-        throw new Error(`Request failed with status: ${response.status}`);
-      }
-      return response.json();
-    })
-    .then(data => {
-      if (Array.isArray(data) && data.length > 0) {
-        const numericIds = data.map(item => Number(item.id)).filter(id => !isNaN(id));
-        return (Math.max(...numericIds) + 1).toString();
-      }
-      else return "1";
-    })
-    .catch(error => {
-      console.error(error);
-      setGlobalError("Server error. try again later.")
-    });
-
+  
   const postRequest = () => {
     fetch('http://localhost:3000/users', {
       method: 'POST',
