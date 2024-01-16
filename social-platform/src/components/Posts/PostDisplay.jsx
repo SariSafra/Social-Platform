@@ -42,8 +42,8 @@ const PostDisplay = ({ postToDisplay, setPosts, posts }) => {
             {inUpdate &&
                 <PostUpdate setInUpdate={setInUpdate} postToUpdate={postToDisplay} setCommentArea={setCommentArea}
                     setPosts={setPosts} posts={posts} updatedTitle={updatedTitle} updatedBody={updatedBody}/>}
-            <PostRemove postToRemove={postToDisplay} setCommentArea={setCommentArea} setPosts={setPosts} posts={posts} /><br/>
-            {showMore &&<button onClick={()=>setShowComments((prev)=>!prev)}>Comments</button>}
+            <PostRemove postToRemove={postToDisplay} setCommentArea={setCommentArea} setPosts={setPosts} posts={posts} /><br/><br/>
+            {showMore &&<button style={{backgroundColor: showComments && 'gray'}} onClick={()=>setShowComments((prev)=>!prev)}>Show Comments</button>}
             {showComments && showMore && <Comments postId={postToDisplay.id}/>}
         </div>
         <p style={{ color: 'red' }}>{commentArea}</p>

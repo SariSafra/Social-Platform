@@ -1,6 +1,8 @@
 import { BrowserRouter, Routes, Route, useNavigate, Link, Navigate } from "react-router-dom";
 import { useState, createContext, useContext, useEffect, useHistory } from "react";
 import CommentDisplay from './CommentDisplay';
+import CommentAdd from "./CommentAdd";
+
 const Comments = ({postId}) => {
     const userId = (JSON.parse(localStorage.getItem("currentUser"))).id;
     //const { userId } = useParams();
@@ -34,8 +36,8 @@ const Comments = ({postId}) => {
     }
 
     return (<>
-        <h5>Comments:</h5>
-        {/* <PostAdd setPosts={setPosts} posts={posts} /> */}
+        <h5>_____________________________________________________</h5>
+        <CommentAdd comments={comments} setComments={setComments} postId={postId}/>
         <ul>
             {comments.map((comment) => (
                 <li key={comment.id} style={{ listStyle: 'none', margin: '3rem' }}>
