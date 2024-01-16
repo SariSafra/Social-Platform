@@ -3,10 +3,9 @@ import PostRemove from './PostRemove';
 import PostUpdate from './PostUpdate';
 import Comments from './Comments/Comments';
 
-const PostDisplay = ({ postToDisplay, setPosts, posts }) => {
+const PostDisplay = ({ postToDisplay, setPosts, posts, setCommentArea}) => {
     const [showMore, setShowMore] = useState(false);
     const [showComments, setShowComments] = useState(false);
-    const [commentArea, setCommentArea] = useState("")
     const [updatedTitle, setUpdatedTitle] = useState(postToDisplay.title);
     const [updatedBody, setUpdatedBody] = useState(postToDisplay.body);
     const [inUpdate, setInUpdate] = useState(false);
@@ -46,7 +45,6 @@ const PostDisplay = ({ postToDisplay, setPosts, posts }) => {
             {showMore &&<button style={{backgroundColor: showComments && 'gray'}} onClick={()=>setShowComments((prev)=>!prev)}>Show Comments</button>}
             {showComments && showMore && <Comments postId={postToDisplay.id}/>}
         </div>
-        <p style={{ color: 'red' }}>{commentArea}</p>
     </>
     );
 };

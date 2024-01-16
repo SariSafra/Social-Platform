@@ -7,6 +7,7 @@ const PostsDisplay=({posts, setPosts })=>{
     const [selectedTitle, setSelectedTitle] = useState("");
     const [selectedBody, setSelectedBody] = useState("");
     const [filterOption, setFilterOption] = useState("All");
+    const [commentArea, setCommentArea] = useState("")
 
     useEffect(() => {
         setSelectedId("0");
@@ -48,10 +49,11 @@ const PostsDisplay=({posts, setPosts })=>{
             <><label htmlFor="bodyInput">Enter Body:</label>
                 <input type="text" id="bodyInput" value={selectedBody} onChange={(event)=>{setSelectedBody(event.target.value)}} /></>
         )}
+         <p style={{ color: 'red' }}>{commentArea}</p>
         <ul>
             {posts.map((post) => (
                 <li key={post.id} style={{ listStyle: 'none', margin: '3rem' }}>
-                    {isFiltered(post) ? <PostDisplay postToDisplay={post} setPosts={setPosts} posts={posts}/> : <span />}
+                    {isFiltered(post) ? <PostDisplay postToDisplay={post} setPosts={setPosts} posts={posts} setCommentArea={setCommentArea}/> : <span />}
                 </li>
             ))}
     </ul>

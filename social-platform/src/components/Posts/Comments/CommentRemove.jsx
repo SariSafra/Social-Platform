@@ -22,6 +22,7 @@ const CommentRemove=({commentToRemove,setCommentArea,setComments,comments})=>{
             setCommentArea("Server error. try again later.")
         });
     }
+
     return( <>
         <button onClick={() =>removeComment() }>🗑️</button>
     </>)
