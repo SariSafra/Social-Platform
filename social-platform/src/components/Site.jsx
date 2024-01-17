@@ -8,7 +8,7 @@ import Todos from "./Todos/Todos";
 import Posts from "./Posts/Posts";
 import Albums from "./Albums/Albums";
 import NotFound from "./NotFound";
-import Photos from "./Photos";
+import Photos from "./Albums/Photos/Photos"
 
 const Site = () => {
     const currentUser = JSON.parse(localStorage.getItem("currentUser"));

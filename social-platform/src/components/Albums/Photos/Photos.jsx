@@ -1,16 +1,16 @@
-import { BrowserRouter, Routes, Route, useNavigate, Link, Navigate } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useNavigate, Link, Navigate, useParams } from "react-router-dom";
 import { useState, createContext, useContext, useEffect, useHistory } from "react";
 import InfiniteScroll from 'react-infinite-scroll-component';
 // import PhotosAdd from './PhotosAdd';
 import PhotoDisplay from './PhotoDisplay'
 
-const Photos = ({ albumId = '2' }) => {
+const Photos = () => {
 
     const [photos, setPhotos] = useState([]);
     const [hasMore, setHasMore] = useState(true);
     const [page, setPage] = useState(1);
     const [commentArea, setCommentArea] = useState("")
-
+    const {albumId}=useParams()
     useEffect(() => {
         requestPostsPhotos();
     }, [])
@@ -26,6 +26,7 @@ const Photos = ({ albumId = '2' }) => {
             .then(newPhotos => {
                 if (newPhotos.length === 0) {
                     setHasMore(false);
+                    setCommentArea("This Album has no Photos.")
                     return;
                 } else {
                     setPhotos((prevPhotos) => [...prevPhotos, ...newPhotos]);
@@ -41,6 +42,7 @@ const Photos = ({ albumId = '2' }) => {
     return (
         <div>
             <h5>Photos of Album number {albumId}</h5>
+            <p style={{ color: 'red' }}>{commentArea}</p>
             <InfiniteScroll
                 dataLength={photos.length}
                 next={requestPostsPhotos}
