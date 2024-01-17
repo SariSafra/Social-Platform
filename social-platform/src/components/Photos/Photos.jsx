@@ -26,7 +26,6 @@ const Photos = ({ albumId }) => {
             .then(newPhotos => {
                 if (newPhotos.length === 0) {
                     setHasMore(false);
-                    setCommentArea("This Album has no Photos.")
                     return;
                 } else {
                     setPhotos((prevPhotos) => [...prevPhotos, ...newPhotos]);
