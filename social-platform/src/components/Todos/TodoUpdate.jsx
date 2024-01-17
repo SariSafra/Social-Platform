@@ -39,7 +39,6 @@ const TodoUpdate = ({ todos, setTodos, setCommentArea, todo }) => {
                 setCommentArea("Server error. try again later.")
             });}
 
-
         return (<> 
          <strong>completed:</strong>
          <input type="checkbox" checked={todo.completed} onChange={() => updateTodoRequest("completed", !todo.completed)} /><br/>
@@ -50,9 +49,7 @@ const TodoUpdate = ({ todos, setTodos, setCommentArea, todo }) => {
                     <input type="text" id="title" value={updatedTitle} onChange={(event) => { setUpdatedTitle(event.target.value) }} required />
                     <button type="submit">✔️</button>
                 </form>
-
             )}
-          
         </>)
     }
 

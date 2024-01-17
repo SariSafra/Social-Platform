@@ -37,7 +37,7 @@ const TodoAdd=({todos,setTodos,setCommentArea})=>{
     }
 
     return( <>
-        <button onClick={() => {setInAddition((prev)=>!prev)}}>Add todo</button>
+        <button onClick={() => {setInAddition((prev)=>!prev)}}>New todo</button>
         {inAddition && (
             <form onSubmit={AddTodo}>
                 <label htmlFor="title">Title:</label>
