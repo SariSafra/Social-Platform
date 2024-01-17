@@ -4,7 +4,7 @@ import { useState, createContext, useContext, useEffect,useHistory } from "react
 
 const CommentRemove=({commentToRemove,setCommentArea,setComments,comments})=>{
     // const userId = (JSON.parse(localStorage.getItem("currentUser"))).id;
-    const { userId } = useParams();
+    // const { userId } = useParams();
     const removeComment = ()=> {
         const idToDelete = commentToRemove.id;
         fetch(`http://localhost:3000/comments/${idToDelete}`, {
