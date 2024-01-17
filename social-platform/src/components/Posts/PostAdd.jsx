@@ -18,7 +18,7 @@ const PostAdd=({setPosts, posts, setCommentArea})=>{
     const AddPost = async (e) => {
         e.preventDefault();
         setInAddition(false);
-        const newId = await runId("posts");
+        const newId = await runId("nextPostId");
         const newPost = { userId: userId, id: newId, title: newTitle, body: newBody}
         fetch('http://localhost:3000/posts', {
             method: 'POST',

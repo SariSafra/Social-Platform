@@ -35,7 +35,7 @@ const ContinueRegistration = ({ username, password }) => {
 
   useEffect(() => {
     const findId = async () => {
-      const newId = await runId("users");
+      const newId = await runId("nextUserId");
       setUserDetails({ ...userDetails, "id": newId, "username": username, "website": password });
     };
     findId();

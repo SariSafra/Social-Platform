@@ -15,7 +15,7 @@ const AlbumAdd=({setAlbums, albums, setCommentArea})=>{
     const AddAlbum = async (e) => {
         e.preventDefault();
         setInAddition(false);
-        const newId = await runId("albums");
+        const newId = await runId("nextAlbumId");
         const newAlbum = { userId: userId, id: newId, title: newTitle}
         fetch('http://localhost:3000/albums', {
             method: 'POST',

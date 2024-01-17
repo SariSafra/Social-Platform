@@ -20,27 +20,47 @@ export const displayObject = (obj, parentKey = '') => {
   });
 };
   
-
-export const runId = async (objListName) => {
-  const findMaxId = fetch(`http://localhost:3000/${objListName}`)
-    .then(response => {
-      if (!response.ok) {
-        throw new Error(`Request failed with status: ${response.status}`);
-      }
-      return response.json();
-    })
-    .then(data => {
-      if (Array.isArray(data) && data.length > 0) {
-        const numericIds = data.map(item => Number(item.id)).filter(id => !isNaN(id));
-        return (Math.max(...numericIds) + 1).toString();
-      }
-      else return "1";
-    })
-    .catch(error => {
-      console.error(error);
-      setGlobalError("Server error. try again later.")
+export const runId = async (typeId) => {
+  try {
+    const response = await fetch("http://localhost:3000/nextID", {
+      method: "GET",
     });
-  const id = await findMaxId;
-  return id;
-}
+    
+    const json = await response.json();
+    const id = json[0][typeId];
+
+
+
+    fetch("http://localhost:3000/nextID/1", {
+      method: "PATCH",
+      body: JSON.stringify({
+        [typeId]: id + 1
+      }),
+      headers: {
+          "Content-type": "application/json; charset=UTF-8",
+      },
+  })
+      .then((response) => response.json())
+      .then((json) => console.log(json));
+
+
+    return id;
+  } catch (error) {
+    console.error("Error fetching next ID:", error);
+    throw error; 
+  }
+};
+// export const runId = async (typeId) => {
+//   const findMaxId = await fetch("http://localhost:3000/nextID", {
+//     method: 'GET'
+// })
+//     .then((response) => response.json())
+//     .then((json) => {
+//         console.log(json);
+//         id = json[0].typeId;
+//     });
+ 
+//   const id = await findMaxId;
+//   return id;
+// }
 

@@ -14,7 +14,7 @@ const TodoAdd=({todos,setTodos,setCommentArea})=>{
     const AddTodo = async (e) => {
         e.preventDefault();
         setInAddition(false);
-        const newId = await runId("todos");
+        const newId = await runId("nextTodoId");
         const newTodo = { userId: userId, id: newId, title: newTitle, completed: false }
         fetch('http://localhost:3000/todos', {
             method: 'POST',
