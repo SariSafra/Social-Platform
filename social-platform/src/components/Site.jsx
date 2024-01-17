@@ -6,7 +6,7 @@ import Login from "./Login"
 import UserInfo from "./UserInfo";
 import Todos from "./Todos/Todos";
 import Posts from "./Posts/Posts";
-import Albums from "./Albums";
+import Albums from "./Albums/Albums";
 import NotFound from "./NotFound";
 
 const Site = () => {
@@ -24,7 +24,7 @@ const Site = () => {
                     <Route path="info" element={<UserInfo />} />
                     <Route path="todos" element={<Todos />} />
                     <Route path="posts" element={<Posts />} />
-                    <Route path="albums" index element={<Albums />} >
+                    <Route exact path="albums" index element={<Albums />} >
                         {/* <Route path=":albumId/photos" element={<Posts />} /> */}
                     </Route>
                 </Route>

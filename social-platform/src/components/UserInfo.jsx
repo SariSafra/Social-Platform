@@ -5,14 +5,7 @@ import  {displayObject} from "./Tools"
 const UserInfo=()=>{
   const currentUser = JSON.parse(localStorage.getItem("currentUser"));
 
-    //const navigate = useNavigate();  
-  //  const location=useLocation();
-  //  const {currentLocation}=useParams()
-  
-    // useEffect(()=>{
-    //     navigate("/home/users/"+userDetails.id+"/info")
 
-    //     },[])
  
     console.log(currentUser);
       return (
