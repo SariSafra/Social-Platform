@@ -42,7 +42,7 @@ const CommentAdd=({ comments, setComments, postId })=>{
         <button onClick={() => {setInAddition((prev)=>!prev)}}>New Comment</button>
         {inAddition && (
             <form onSubmit={AddPost}>
-                <label htmlFor="name">Title:</label>
+                <label htmlFor="name">Name:</label>
                 <input type="text" id="name" value={newName} onChange={(event) => { setNewName(event.target.value) }} required />
                 <label htmlFor="body">body:</label>
                 <input type="text" id="body" value={newBody} onChange={(event) => { setNewBody(event.target.value) }} required />

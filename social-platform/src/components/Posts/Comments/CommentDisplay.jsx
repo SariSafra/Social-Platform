@@ -31,10 +31,8 @@ const CommentDisplay=({comment,comments,setComments})=>{
       ))} 
       {comment.email===userEmail &&
       <><CommentRemove commentToRemove={comment} comments={comments} setComments={setComments} setCommentArea={setCommentArea}/> 
-      <button onClick={() => setInUpdate(true)}>🖊️</button>
-      {inUpdate &&
-          <CommentUpdate setInUpdate={setInUpdate} commentToUpdate={comment} setCommentArea={setCommentArea}
-          comments={comments} setComments={setComments} updatedName={updatedName} updatedBody={updatedBody}/>}
+        <CommentUpdate inUpdate={inUpdate} setInUpdate={setInUpdate} commentToUpdate={comment} setCommentArea={setCommentArea}
+          comments={comments} setComments={setComments} updatedName={updatedName} updatedBody={updatedBody}/>
       </>}
     </ul>
     <p style={{ color: 'red' }}>{commentArea}</p>

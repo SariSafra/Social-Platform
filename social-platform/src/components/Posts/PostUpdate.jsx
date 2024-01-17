@@ -1,7 +1,7 @@
 import { BrowserRouter, Routes, Route, useNavigate, Link, Navigate } from "react-router-dom";
 import { useState, createContext, useContext, useEffect, useHistory } from "react";
 
-const PostUpdate = ({postToUpdate,setCommentArea,setPosts,posts,updatedTitle,updatedBody,setInUpdate}) => {
+const PostUpdate = ({postToUpdate,setCommentArea,setPosts,posts,updatedTitle,updatedBody,setInUpdate,inUpdate}) => {
 
     const updatePost = () => {
         setInUpdate(false);
@@ -28,7 +28,8 @@ const PostUpdate = ({postToUpdate,setCommentArea,setPosts,posts,updatedTitle,upd
     }
 
     return (<>
-       <button onClick={() =>updatePost() }>✔️</button>
+       <button onClick={() => setInUpdate(true)}>🖊️</button>
+       {inUpdate && <button onClick={() =>updatePost() }>✔️</button>}
     </>)
 }
 export default PostUpdate;
