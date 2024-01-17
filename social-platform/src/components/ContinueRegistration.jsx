@@ -126,7 +126,7 @@ const ContinueRegistration = ({ username, password }) => {
         throw new Error(`Request failed with status: ${response.status}`);
       }
       else {
-        navigate(`user/:${userDetails.id}/home`);
+        navigate(`/users/${userDetails.id}/home`);
       }
     }).catch(error => {
       console.error(error);

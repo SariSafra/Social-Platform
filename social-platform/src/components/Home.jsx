@@ -1,11 +1,11 @@
 import { useState, createContext, useContext, useEffect } from "react";
-import { BrowserRouter, Routes, Route, useNavigate, Link, Navigate, useParams, useLocation } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useNavigate, Link, Navigate, useParams, useLocation, Outlet, NavLink } from "react-router-dom";
 import UserInfo from "./UserInfo";
 import Albums from "./Albums";
 import Posts from "./Posts/Posts";
 import Todos from "./Todos/Todos";
 
-const Home = () => {
+export default function Home() {
   const [currentUser, setCurrentUser] = useState(JSON.parse(localStorage.getItem("currentUser")));
   const [page, setPage] = useState(""); 
  const navigate = useNavigate();
@@ -40,13 +40,12 @@ const Home = () => {
         (page == "albums" && <Albums />) ||
         (page == "posts" && <Posts />)} */}
 
-      <Link onClick={() => { logout() }}>Logout</Link><br />
-      <Link to={`${location.pathname}/info`}>Info</Link><br />
-      <Link onClick={() => { setPage("todos") }}>Todos</Link><br />
+      {/* <Link onClick={() => { logout() }}>Logout</Link><br /> */}
+      <NavLink to={`info`}>Info</NavLink><br />
+      {/* <Link onClick={() => { setPage("todos") }}>Todos</Link><br />
       <Link onClick={() => { setPage("albums") }}>Albums</Link><br />
-      <Link onClick={() => { setPage("posts") }}>Posts</Link>
-
+      <Link onClick={() => { setPage("posts") }}>Posts</Link> */}
+<Outlet/>
     </>
   )
 }
-export default Home;
