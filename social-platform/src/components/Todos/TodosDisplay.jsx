@@ -7,7 +7,6 @@ const TodosDisplay=({ todos, setTodos, setCommentArea })=>{
 
     const [sortedOption, setSortedOption] = useState("Serial");
     const [filterOption, setFilterOption] = useState("All");
-
     const [selectedId, setSelectedId] = useState("0");
     const [selectedTitle, setSelectedTitle] = useState("");
     const userId = (JSON.parse(localStorage.getItem("currentUser"))).id;
