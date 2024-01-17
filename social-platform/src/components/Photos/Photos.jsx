@@ -4,7 +4,7 @@ import InfiniteScroll from 'react-infinite-scroll-component';
 // import PhotosAdd from './PhotosAdd';
 import PhotoDisplay from './PhotoDisplay'
 
-const Photos = ({ albumId = '2' }) => {
+const Photos = ({ albumId }) => {
 
     const [photos, setPhotos] = useState([]);
     const [hasMore, setHasMore] = useState(true);
@@ -26,6 +26,7 @@ const Photos = ({ albumId = '2' }) => {
             .then(newPhotos => {
                 if (newPhotos.length === 0) {
                     setHasMore(false);
+                    setCommentArea("This Album has no Photos.")
                     return;
                 } else {
                     setPhotos((prevPhotos) => [...prevPhotos, ...newPhotos]);

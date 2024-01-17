@@ -22,7 +22,7 @@ const AlbumDisplay=({album})=>{
 
       return (
         <div>
-          <ul style={linkStyle}> <Link to={`${album.id}/photos`} style={linkContent}>{displayObject(albumDislplay)}📷</Link></ul>
+          <ul style={linkStyle}><Link to={`${album.id}/photos`} style={linkContent}>{displayObject(albumDislplay)}📷</Link></ul>
         </div>
       );
     }
