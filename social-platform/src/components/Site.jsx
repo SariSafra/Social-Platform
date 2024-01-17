@@ -1,24 +1,39 @@
-import { BrowserRouter, Routes, Route, useNavigate, Link, Navigate} from "react-router-dom";
-import { useState, createContext, useContext, useEffect,useHistory } from "react";
+import { BrowserRouter, Routes, Route, useNavigate, Link, Navigate, Outlet } from "react-router-dom";
+import { useState, createContext, useContext, useEffect, useHistory } from "react";
 import Register from "./Register";
 import Home from "./Home"
 import Login from "./Login"
 import UserInfo from "./UserInfo";
+import Todos from "./Todos/Todos";
+import Posts from "./Posts/Posts";
+import Albums from "./Albums";
+import NotFound from "./NotFound";
+import LayoutHome from"./LayoutHome"
 
-const Site=()=>{
-    const [currentPage, setCurrentPage] = useState(localStorage.getItem("currentUser") ? "home" : "login");
+const Site = () => {
+    //const [currentPage, setCurrentPage] = useState(localStorage.getItem("currentUser") ? "home" : "login");
 
-    return( <>
+    return (<>
         <h1>Site</h1>
         <BrowserRouter>
-         <Routes > 
-            <Route path="/" element={ <Navigate to={currentPage}/>} ></Route> 
-            <Route path="register" element={<Register />} />
-            <Route path="home/*" element={<Home/>} />
-            <Route path="login" element={<Login  />} ></Route>
-            <Route path="info" element={<UserInfo />} ></Route>
-        </Routes>
+            <Routes>
+                <Route path="/" element={<Navigate to="/login" />} ></Route>
+                <Route path="login" element={<Login />} />
+                <Route path="register" element={<Register />} />
+                <Route path="user/:id" element={<Outlet />} >
+                    <Route path="home" element={<LayoutHome />}>
+                        <Route index element={<Home />} />
+                        <Route path="info" element={<UserInfo />} />
+                        <Route path="todos" element={<Todos />} />
+                        <Route path="posts" element={<Posts />} />
+                        <Route path="albums" index element={<Albums />} >
+                            {/* <Route path=":albumId/photos" element={<Posts />} /> */}
+                        </Route>
+                    </Route>
+                </Route>
+                <Route path="*" element={<NotFound />} />
+            </Routes>
         </BrowserRouter>
-    </>  )
+    </>)
 }
 export default Site;

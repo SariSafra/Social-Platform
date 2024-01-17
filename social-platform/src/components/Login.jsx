@@ -23,7 +23,7 @@ const isUserExist=(usernameValue, passwordValue)=>{
         {       
           delete data[0].website;
           localStorage.setItem("currentUser", JSON.stringify(data[0]));
-          navigate('/home');
+          navigate(`/user/${data[0].id}/home`);
         }
       }  else
           setErrorDisplay("wrong username or password.")

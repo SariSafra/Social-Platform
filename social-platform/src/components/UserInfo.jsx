@@ -6,10 +6,11 @@ const UserInfo=({userDetails})=>{
     const navigate = useNavigate();  
   //  const location=useLocation();
   //  const {currentLocation}=useParams()
-    useEffect(()=>{
-        navigate("/home/users/"+userDetails.id+"/info")
+  
+    // useEffect(()=>{
+    //     navigate("/home/users/"+userDetails.id+"/info")
 
-        },[])
+    //     },[])
  
     
       return (
