@@ -19,7 +19,7 @@ const PostRemove=({postToRemove,setCommentArea,setPosts,posts})=>{
         })
         .then(data => {
             if (Object.keys(data).length === 0) {
-               return;
+                removePost();
             } else {
                 removePostsComments(data);
             }
