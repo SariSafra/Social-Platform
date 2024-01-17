@@ -8,10 +8,11 @@ import Todos from "./Todos/Todos";
 import Posts from "./Posts/Posts";
 import Albums from "./Albums/Albums";
 import NotFound from "./NotFound";
+import Photos from "./Photos";
 
 const Site = () => {
     const currentUser = JSON.parse(localStorage.getItem("currentUser"));
-    const currentPage= currentUser ? `/users/${currentUser.id}/home` : "/login";
+    const currentPage = currentUser ? `/users/${currentUser.id}/home` : "/login";
 
     return (<>
         <h1>Site</h1>
@@ -24,8 +25,9 @@ const Site = () => {
                     <Route path="info" element={<UserInfo />} />
                     <Route path="todos" element={<Todos />} />
                     <Route path="posts" element={<Posts />} />
-                    <Route exact path="albums" index element={<Albums />} >
-                        {/* <Route path=":albumId/photos" element={<Posts />} /> */}
+                    <Route exact path="albums" element={<Outlet />} >
+                        <Route index element={<Albums />} />
+                        <Route path=":albumId/photos" element={<Photos />} />
                     </Route>
                 </Route>
                 <Route path="*" element={<NotFound />} />
