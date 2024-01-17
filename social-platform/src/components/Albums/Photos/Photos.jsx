@@ -1,7 +1,7 @@
 import { BrowserRouter, Routes, Route, useNavigate, Link, Navigate,useParams } from "react-router-dom";
 import { useState, createContext, useContext, useEffect, useHistory } from "react";
 import InfiniteScroll from 'react-infinite-scroll-component';
-// import PhotosAdd from './PhotosAdd';
+import PhotosAdd from './PhotosAdd';
 import PhotoDisplay from './PhotoDisplay'
 
 const Photos = () => {
@@ -10,11 +10,19 @@ const Photos = () => {
     const [hasMore, setHasMore] = useState(true);
     const [page, setPage] = useState(1);
     const [commentArea, setCommentArea] = useState("")
+
     const {albumId}=useParams()
 
     useEffect(() => {
-        requestPostsPhotos();
-    }, [])
+        const delayedRequest = setTimeout(() => {
+            requestPostsPhotos();
+        }, 1500);
+        return () => clearTimeout(delayedRequest);
+    }, [hasMore]); 
+
+    // useEffect(() => {
+    //     requestPostsPhotos();
+    // }, [])
 
     const requestPostsPhotos = async () => {
         fetch(`http://localhost:3000/photos?_page=${page}&_limit=8&albumId=${albumId}`)
@@ -42,8 +50,9 @@ const Photos = () => {
 
     return (
         <div>
-            <h5>Photos of Album number {albumId}</h5>
+            <h2>Photos of Album number: {albumId}</h2>
             <p style={{ color: 'red' }}>{commentArea}</p>
+            <PhotosAdd setCommentArea={setCommentArea}/>
             <InfiniteScroll
                 dataLength={photos.length}
                 next={requestPostsPhotos}

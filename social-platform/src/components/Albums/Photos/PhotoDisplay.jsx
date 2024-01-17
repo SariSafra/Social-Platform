@@ -1,11 +1,16 @@
-import React from 'react';
+import { useState, createContext, useContext, useRef, useEffect} from "react";
+import PhotoRemove from './PhotoRemove';
 
 const PhotoDisplay = ({ photo, photos, setPhotos }) => {
+  const [commentArea,setCommentArea]=useState("");
+
   return (
     <>
-      <h5>{photo.title}</h5>
-      <p>ID: {photo.id}</p>
+      <h4>{photo.title}</h4>
+      <pre>ID: {photo.id}</pre>
+      <PhotoRemove photo={photo} setCommentArea={setCommentArea} setPhotos={setPhotos} photos={photos}/><br/>
       <img src={photo.thumbnailUrl} alt={photo.title} style={{ maxWidth: '100%' }} />
+      <p style={{ color: 'red' }}>{commentArea}</p>
     </>
   );
 };
