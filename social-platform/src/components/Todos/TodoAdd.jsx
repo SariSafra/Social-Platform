@@ -1,12 +1,11 @@
-import { BrowserRouter, Routes, Route, useNavigate, Link, Navigate} from "react-router-dom";
+import { BrowserRouter, Routes, Route, useNavigate, Link, Navigate,useParams} from "react-router-dom";
 import { useState, createContext, useContext, useEffect,useHistory } from "react";
 import { runId } from "../Tools";
 
 const TodoAdd=({todos,setTodos,setCommentArea})=>{
     const [inAddition, setInAddition] = useState(false);
     const [newTitle, setNewTitle] = useState("");
-    const userId = (JSON.parse(localStorage.getItem("currentUser"))).id;
-    //const { userId } = useParams();
+    const { userId } = useParams();
    
     useEffect(() => {
         setNewTitle("");

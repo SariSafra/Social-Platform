@@ -4,9 +4,7 @@ import CommentDisplay from './CommentDisplay';
 import CommentAdd from "./CommentAdd";
 
 const Comments = ({postId}) => {
-    const userId = (JSON.parse(localStorage.getItem("currentUser"))).id;
-    //const { userId } = useParams();
-
+    
     const [comments, setComments] = useState([]);
     const [commentArea, setCommentArea] = useState("")
 
@@ -37,7 +35,7 @@ const Comments = ({postId}) => {
 
     return (<>
         <h5>_____________________________________________________</h5>
-        <CommentAdd comments={comments} setComments={setComments} postId={postId}/>
+        <CommentAdd comments={comments} setComments={setComments} postId={postId} setCommentArea={setCommentArea}/>
         <ul>
             {comments.map((comment) => (
                 <li key={comment.id} style={{ listStyle: 'none', margin: '3rem' }}>

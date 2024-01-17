@@ -1,19 +1,15 @@
-import { BrowserRouter, Routes, Route, useNavigate, Link, Navigate } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useNavigate, Link, Navigate,useParams } from "react-router-dom";
 import { useState, createContext, useContext, useEffect, useHistory } from "react";
 import PostDisplay from "./PostDisplay";
 import PostAdd from "./PostAdd";
 import PostsDisplay from "./PostsDisplay";
 
 const Posts = () => {
-    const userId = (JSON.parse(localStorage.getItem("currentUser"))).id;
-    //const { userId } = useParams();
-
-    const navigate = useNavigate();
+    const { userId } = useParams();
     const [posts, setPosts] = useState([]);
     const [commentArea, setCommentArea] = useState("")
 
     useEffect(() => {
-        navigate("/home/users/" + userId + "/posts");
         requestUserPosts();
     }, [])
 
@@ -40,7 +36,7 @@ const Posts = () => {
 
     return (<>
         <h1>Posts</h1>
-        <PostAdd setPosts={setPosts} posts={posts} />
+        <PostAdd setPosts={setPosts} posts={posts} setCommentArea={setCommentArea}/><br/>
         <PostsDisplay setPosts={setPosts} posts={posts}/>
         <p style={{ color: 'red' }}>{commentArea}</p>
     </>)

@@ -10,12 +10,9 @@ const Register=()=>{
   const [confirmPasswordError, setConfirmPasswordError] = useState('');
   const [userNameError, setUserNameError] = useState('');
   const [errorDisplay, setErrorDisplay] = useState('');
-
   const [continueRegistation, setContinueRegistation] = useState(false);
 
-  useEffect(()=>{
-     
-  },[errorDisplay])
+
 
 
 const PasswordValidation=(passwordValue, errorArea)=>{

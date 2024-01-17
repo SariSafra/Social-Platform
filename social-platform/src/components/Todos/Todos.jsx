@@ -4,14 +4,12 @@ import TodoAdd from "./TodoAdd";
 import TodosDisplay from "./TodosDisplay";
 
 const Todos = () => {
-    const userId = (JSON.parse(localStorage.getItem("currentUser"))).id;
-    //const { userId } = useParams();
+    const { userId } = useParams();
     const navigate = useNavigate();
     const [todos, setTodos] = useState([]);
     const [commentArea, setCommentArea] = useState("")
 
     useEffect(() => {
-        navigate("/home/users/"+ userId+"/todos");
         requestUserTodos();
     }, [])
 
@@ -39,8 +37,10 @@ const Todos = () => {
     
     return (<>
         <h1>Todos</h1>
+
         <TodoAdd setTodos={setTodos} todos={todos} setCommentArea={setCommentArea} /><br/>
-        <TodosDisplay todos={todos} setTodos={setTodos} setCommentArea={setCommentArea}/>
+        <p style={{ color: 'red' }}>{commentArea}</p>
+        <TodosDisplay todos={todos} setTodos={setTodos}/>
     </>)
 }
 export default Todos;

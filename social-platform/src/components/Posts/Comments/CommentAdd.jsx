@@ -2,11 +2,10 @@ import { BrowserRouter, Routes, Route, useNavigate, Link, Navigate} from "react-
 import { useState, createContext, useContext, useEffect,useHistory } from "react";
 import { runId } from '../../Tools';
 
-const CommentAdd=({ comments, setComments, postId })=>{
+const CommentAdd=({ comments, setComments, postId,setCommentArea })=>{
     const [inAddition, setInAddition] = useState(false);
     const [newName, setNewName] = useState("");
     const [newBody, setNewBody] = useState("");
-    const [commentArea, setCommentArea] = useState("")
     const userEmail = (JSON.parse(localStorage.getItem("currentUser"))).email;
 
      useEffect(() => {
@@ -49,7 +48,6 @@ const CommentAdd=({ comments, setComments, postId })=>{
                 <button type="submit">Add</button>
             </form>
         )}
-         <p style={{ color: 'red' }}>{commentArea}</p>
     </>  )
 }
 export default CommentAdd;
