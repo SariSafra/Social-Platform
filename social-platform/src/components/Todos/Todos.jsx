@@ -3,7 +3,7 @@ import { useState, createContext, useContext, useEffect, useHistory, useRef } fr
 import TodoAdd from "./TodoAdd";
 import TodoUpdate from "./TodoUpdate";
 import TodoRemove from "./TodoRemove";
-import TodoDisplay from "./TodoDisplay";
+import TodosDisplay from "./TodosDisplay";
 
 const Todos = () => {
     const userId = (JSON.parse(localStorage.getItem("currentUser"))).id;
@@ -41,11 +41,8 @@ const Todos = () => {
     
     return (<>
         <h1>Todos</h1>
-        <TodoAdd setTodos={setTodos} todos={todos} setCommentArea={setCommentArea} />
-        <TodoUpdate  setTodos={setTodos} todos={todos} setCommentArea={setCommentArea} />
-        <TodoRemove  setTodos={setTodos} todos={todos} setCommentArea={setCommentArea} />
-        {<p style={{ color: 'red' }}>{commentArea}</p>}<br />
-        <TodoDisplay todos={todos} setTodos={setTodos} setCommentArea={setCommentArea}/>
+        <TodoAdd setTodos={setTodos} todos={todos} setCommentArea={setCommentArea} /><br/>
+        <TodosDisplay todos={todos} setTodos={setTodos} setCommentArea={setCommentArea}/>
     </>)
 }
 export default Todos;
