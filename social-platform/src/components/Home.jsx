@@ -1,5 +1,6 @@
 import { useState, createContext, useContext, useEffect } from "react";
 import { BrowserRouter, Routes, Route, useNavigate, Link, Navigate, useParams, useLocation, Outlet, NavLink } from "react-router-dom";
+import Photos from "./Photos/Photos";
 
 
 export default function Home() {
@@ -29,6 +30,7 @@ export default function Home() {
       <NavLink to="albums">Albums</NavLink><br />
       <NavLink to="posts">Posts</NavLink>
       <Outlet />
+      <Photos/>
     </>
   )
 }
