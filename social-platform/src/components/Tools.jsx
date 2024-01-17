@@ -3,24 +3,22 @@ export const displayObject = (obj, parentKey = '') => {
     const currentKey = parentKey ? `${parentKey}.${key}` : key;
     if (typeof value === 'object' && value !== null) {
       return (
-        <li key={currentKey} style={{ listStyle: 'none' }}>
+        <li key={currentKey} style={{listStyle: 'none'}}>
           <strong>{key}:</strong>
           <ul>{displayObject(value, currentKey)}</ul>
         </li>
       );
     } else {
-
-      if (typeof value !== 'boolean') {
-        return (<li key={currentKey} style={{ listStyle: 'none' }}>
-          <strong>{key}:</strong>
-          {value}
-        </li>)
+      if(typeof value !== 'boolean'){
+        return (
+          <li key={currentKey} style={{listStyle: 'none'}}>
+            <strong>{key}: </strong>{value}
+          </li>
+        );
       }
-      else
-        return (<></>)
     }
-  })
-    }
+  });
+};
   
 
 export const runId = async (objListName) => {

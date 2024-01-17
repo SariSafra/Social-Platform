@@ -3,7 +3,7 @@ import { BrowserRouter, Routes, Route, useNavigate, Link, Navigate, useParams,us
 import  {displayObject} from "./Tools"
 
 const UserInfo=()=>{
-  const currentUser = useState(JSON.parse(localStorage.getItem("currentUser")));
+  const currentUser = JSON.parse(localStorage.getItem("currentUser"));
 
     //const navigate = useNavigate();  
   //  const location=useLocation();

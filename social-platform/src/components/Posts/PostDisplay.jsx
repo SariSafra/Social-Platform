@@ -30,11 +30,11 @@ const PostDisplay = ({ postToDisplay, setPosts, posts, setCommentArea}) => {
                 ))}
             </ul>
             {showMore && (
-                <div>
+                <li>
                     <strong>body:</strong> {inUpdate ?
                         <textarea type="text" value={updatedBody} onChange={(event) => { setUpdatedBody(event.target.value) }} required  style={{width: "350px", height:"70px"} }/> :
                         postToDisplay.body}
-                </div>
+                </li>
             )}
             <strong><button onClick={()=>setShowMore(!showMore)}>{showMore ? '-' : '+'}</button></strong>
             <PostUpdate inUpdate={inUpdate} setInUpdate={setInUpdate} postToUpdate={postToDisplay} setCommentArea={setCommentArea}

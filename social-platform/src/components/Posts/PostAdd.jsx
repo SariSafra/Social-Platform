@@ -1,14 +1,13 @@
-import { BrowserRouter, Routes, Route, useNavigate, Link, Navigate} from "react-router-dom";
+import { BrowserRouter, Routes, Route, useNavigate, Link, Navigate, useParams} from "react-router-dom";
 import { useState, createContext, useContext, useEffect,useHistory } from "react";
 import { runId } from "../Tools";
 
-const PostAdd=({setPosts, posts})=>{
+const PostAdd=({setPosts, posts, setCommentArea})=>{
     const [inAddition, setInAddition] = useState(false);
     const [newTitle, setNewTitle] = useState("");
     const [newBody, setNewBody] = useState("");
-    const [commentArea, setCommentArea] = useState("")
-    const userId = (JSON.parse(localStorage.getItem("currentUser"))).id;
-    //const { userId } = useParams();]
+    //const [commentArea, setCommentArea] = useState("")
+    const { userId } = useParams();
 
      useEffect(() => {
         setNewBody("");
@@ -50,7 +49,6 @@ const PostAdd=({setPosts, posts})=>{
                 <button type="submit">Add</button>
             </form>
         )}
-         <p style={{ color: 'red' }}>{commentArea}</p>
     </>  )
 }
 export default PostAdd;
