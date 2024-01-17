@@ -2,17 +2,13 @@ import { useState, createContext, useContext, useRef, useEffect} from "react";
 import { BrowserRouter, Routes, Route, useNavigate, Link, Navigate, useParams,useLocation} from "react-router-dom";
 import  {displayObject} from "./Tools"
 
-const UserInfo=()=>{
-  const currentUser = JSON.parse(localStorage.getItem("currentUser"));
-
-
+const Photos=()=>{
  
-    console.log(currentUser);
       return (
         <div>
-          <h2>{currentUser.name} Details:</h2>
-          <ul>{displayObject(currentUser)}</ul>
+          <h2>photos</h2>
+   
         </div>
       );
     }
-export default UserInfo;
+export default Photos;
