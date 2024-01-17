@@ -2,9 +2,6 @@ import { BrowserRouter, Routes, Route, useNavigate, Link, Navigate } from "react
 import { useState, createContext, useContext, useEffect, useHistory,useRef } from "react";
 
 const TodoRemove = ({ todos, setTodos, setCommentArea,todo }) => {
-    //const [inRemoval, setInRemoval] = useState(false);
-    //const idToDeleteRef = useRef(null);
-   // const userId = (JSON.parse(localStorage.getItem("currentUser"))).id;
 
     //const { userId } = useParams();
 
