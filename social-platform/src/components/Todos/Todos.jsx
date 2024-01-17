@@ -1,8 +1,6 @@
 import { BrowserRouter, Routes, Route, useNavigate, Link, Navigate, useLocation, useParams } from "react-router-dom";
 import { useState, createContext, useContext, useEffect, useHistory, useRef } from "react";
 import TodoAdd from "./TodoAdd";
-import TodoUpdate from "./TodoUpdate";
-import TodoRemove from "./TodoRemove";
 import TodosDisplay from "./TodosDisplay";
 
 const Todos = () => {
