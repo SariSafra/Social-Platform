@@ -13,19 +13,19 @@ const Photos = () => {
 
     const {albumId}=useParams()
 
-    useEffect(() => {
-        const delayedRequest = setTimeout(() => {
-            requestPostsPhotos();
-        }, 1500);
-        return () => clearTimeout(delayedRequest);
-    }, [hasMore]); 
-
     // useEffect(() => {
-    //     requestPostsPhotos();
-    // }, [])
+    //     const delayedRequest = setTimeout(() => {
+    //         requestPostsPhotos();
+    //     }, 1500);
+    //     return () => clearTimeout(delayedRequest);
+    // }, [hasMore]); 
+
+    useEffect(() => {
+        requestPostsPhotos();
+    }, [])
 
     const requestPostsPhotos = async () => {
-        fetch(`http://localhost:3000/photos?_page=${page}&_limit=8&albumId=${albumId}`)
+        fetch(`http://localhost:3000/photos?_page=${page}&_limit=8&albumId=${albumId}&`)
             .then(response => {
                 if (!response.ok) {
                     throw new Error(`Request failed with status: ${response.status}`);
@@ -35,7 +35,7 @@ const Photos = () => {
             .then(newPhotos => {
                 if (newPhotos.length === 0) {
                     setHasMore(false);
-                    setCommentArea("This Album has no Photos.")
+                    setCommentArea("This Album has no more Photos.")
                     return;
                 } else {
                     setPhotos((prevPhotos) => [...prevPhotos, ...newPhotos]);
