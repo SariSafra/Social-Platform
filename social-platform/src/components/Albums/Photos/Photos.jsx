@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route, useNavigate, Link, Navigate, useParams } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useNavigate, Link, Navigate,useParams } from "react-router-dom";
 import { useState, createContext, useContext, useEffect, useHistory } from "react";
 import InfiniteScroll from 'react-infinite-scroll-component';
 // import PhotosAdd from './PhotosAdd';
@@ -11,6 +11,7 @@ const Photos = () => {
     const [page, setPage] = useState(1);
     const [commentArea, setCommentArea] = useState("")
     const {albumId}=useParams()
+
     useEffect(() => {
         requestPostsPhotos();
     }, [])
