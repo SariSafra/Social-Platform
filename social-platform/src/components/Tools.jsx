@@ -5,7 +5,7 @@ export const displayObject = (obj, parentKey = '') => {
       return (
         <li key={currentKey} style={{ listStyle: 'none' }}>
           <strong>{key}:</strong>
-          <ul>{displayObject(value, currentKey, updateValue)}</ul>
+          <ul>{displayObject(value, currentKey)}</ul>
         </li>
       );
     } else {
