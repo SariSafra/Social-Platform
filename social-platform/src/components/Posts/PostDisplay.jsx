@@ -37,10 +37,8 @@ const PostDisplay = ({ postToDisplay, setPosts, posts, setCommentArea}) => {
                 </div>
             )}
             <strong><button onClick={()=>setShowMore(!showMore)}>{showMore ? '-' : '+'}</button></strong>
-            <button onClick={() => setInUpdate(true)}>🖊️</button>
-            {inUpdate &&
-                <PostUpdate setInUpdate={setInUpdate} postToUpdate={postToDisplay} setCommentArea={setCommentArea}
-                    setPosts={setPosts} posts={posts} updatedTitle={updatedTitle} updatedBody={updatedBody}/>}
+            <PostUpdate inUpdate={inUpdate} setInUpdate={setInUpdate} postToUpdate={postToDisplay} setCommentArea={setCommentArea}
+                    setPosts={setPosts} posts={posts} updatedTitle={updatedTitle} updatedBody={updatedBody}/>
             <PostRemove postToRemove={postToDisplay} setCommentArea={setCommentArea} setPosts={setPosts} posts={posts} /><br/><br/>
             {showMore &&<button style={{backgroundColor: showComments && 'gray'}} onClick={()=>setShowComments((prev)=>!prev)}>Show Comments</button>}
             {showComments && showMore && <Comments postId={postToDisplay.id}/>}
