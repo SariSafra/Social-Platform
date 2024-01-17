@@ -2,21 +2,13 @@ import { BrowserRouter, Routes, Route, useNavigate, Link, Navigate } from "react
 import { useState, createContext, useContext, useEffect, useHistory,useRef } from "react";
 
 const TodoRemove = ({ todos, setTodos, setCommentArea,todo }) => {
-    //const [inRemoval, setInRemoval] = useState(false);
-    //const idToDeleteRef = useRef(null);
-   // const userId = (JSON.parse(localStorage.getItem("currentUser"))).id;
 
     //const { userId } = useParams();
 
     const removeTodo = (e) => {
         e.preventDefault();
-       // setInRemoval(false);
         const idToDelete = todo.id;
-        // const exists = todos.some(todo => todo.id === idToDelete);
-        // if (!exists) {
-        //     setCommentArea("You may not delete this task.");
-        //     return;
-        // }
+
         fetch(`http://localhost:3000/todos/${idToDelete}`, {
             method: 'DELETE',
             headers: {
@@ -35,13 +27,7 @@ const TodoRemove = ({ todos, setTodos, setCommentArea,todo }) => {
     }
 
     return (<>
-        {/* <button onClick={() => { setInRemoval((prev)=>!prev) }}>Remove todo</button> */}
-        {/* {inRemoval && ( */}
-                 {/* <label htmlFor="id">Enter Id:</label>
-                <input type="number" id="id" ref={idToDeleteRef} /> */}
-                <button onClick={removeTodo}>🗑️</button>
-            {/* </form> */}
-        
+                <button onClick={removeTodo}>🗑️</button>        
     </>)
 }
 export default TodoRemove;
