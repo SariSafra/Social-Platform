@@ -8,33 +8,36 @@ import PhotoDisplay from './PhotoDisplay';
 const Photos = () => {
     const [photos, setPhotos] = useState([]);
     const [hasMore, setHasMore] = useState(true);
+    const [page, setPage] = useState(1);
+    const [commentArea, setCommentArea] = useState("")
     const [start, setStart] = useState(0);
-    const [commentArea, setCommentArea] = useState('');
     const [limit, setLimit] = useState(4);
     const [lastFetchedPhotoId, setLastFetchedPhotoId] = useState(null);
     const { albumId } = useParams();
     const { userId } = useParams();
 
     useEffect(()=>{  fetch(`http://localhost:3000/photos?albumId=${albumId}&_sort=id&_order=desc&_limit=1`)
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error(`Request failed with status: ${response.status}`);
-                }
-                return response.json();
-            })
-            .then(data => {
-                const maxPhoto = data[0];
-                setLastFetchedPhotoId(maxPhoto ? maxPhoto.id : null);
-            })
-            .catch(error => {
-                console.error(error);
-                setCommentArea('Error fetching max photo ID. Try again later.');
-            });
+    .then(response => {
+        if (!response.ok) {
+            throw new Error(`Request failed with status: ${response.status}`);
+        }
+        return response.json();
+    })
+    .then(data => {
+        const maxPhoto = data[0];
+        setLastFetchedPhotoId(maxPhoto ? maxPhoto.id : null);
+    })
+    .catch(error => {
+        console.error(error);
+        setCommentArea('Error fetching max photo ID. Try again later.');
+    });
 },[])
-    useEffect(() => {
-              requestPostsPhotos();
-    }, [hasMore]);
 
+useEffect(() => {
+      requestPostsPhotos();
+}, [hasMore]);
+
+  
     const requestPostsPhotos = async () => {
         try {
             const response = await fetch(`http://localhost:3000/photos?albumId=${albumId}&_start=${start}&_limit=${limit}`);
