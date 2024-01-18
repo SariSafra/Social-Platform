@@ -19,7 +19,7 @@ const PhotoAdd=({ setCommentArea })=>{
     const AddPhoto = async (e) => {
         e.preventDefault();
         setInAddition(false);
-        const newId = await runId("photos");
+        const newId = await runId("nextPhotoId");
         const newPhoto = { albumId: albumId, id: newId, title: newTitle, url: url, thumbnailUrl: thumbnailUrl}
         fetch('http://localhost:3000/photos', {
             method: 'POST',
