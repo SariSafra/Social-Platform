@@ -29,8 +29,6 @@ export const runId = async (typeId) => {
     const json = await response.json();
     const id = json[0][typeId];
 
-
-
     fetch("http://localhost:3000/nextID/1", {
       method: "PATCH",
       body: JSON.stringify({
@@ -42,9 +40,7 @@ export const runId = async (typeId) => {
   })
       .then((response) => response.json())
       .then((json) => console.log(json));
-
-
-    return id;
+    return `${id}`;
   } catch (error) {
     console.error("Error fetching next ID:", error);
     throw error; 
@@ -63,4 +59,3 @@ export const runId = async (typeId) => {
 //   const id = await findMaxId;
 //   return id;
 // }
-
