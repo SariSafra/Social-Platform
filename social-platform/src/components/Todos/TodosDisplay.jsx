@@ -7,13 +7,13 @@ const TodosDisplay=({ todos, setTodos })=>{
 
     const [sortedOption, setSortedOption] = useState("Serial");
     const [filterOption, setFilterOption] = useState("All");
-    const [selectedId, setSelectedId] = useState("0");
-    const [selectedTitle, setSelectedTitle] = useState("");
+    const [selectedId, setSelectedId] = useState(null);
+    const [selectedTitle, setSelectedTitle] = useState(null);
     
 
     useEffect(() => {
-        setSelectedId("0");
-        setSelectedTitle("");
+        setSelectedId(null);
+        setSelectedTitle(null);
     }, [filterOption]);
 
     useEffect(() => {
@@ -49,9 +49,9 @@ const TodosDisplay=({ todos, setTodos })=>{
             case "Not Completed":
                 return !todo.completed
             case "Id":
-             return todo.id === selectedId;
+             return todo.id.includes(selectedId);
              case "Title":
-                return todo.title == selectedTitle;
+                return todo.title.includes(selectedTitle);
         }
     }
     

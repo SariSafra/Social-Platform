@@ -20,18 +20,19 @@ const TodoUpdate = ({ todos, setTodos, setCommentArea, todo }) => {
     }
 
     const updateTodoRequest = (key, newValue) => {
-        const updatedTodo = { ...todo, [key]: newValue };
+        const updatedField = { key: newValue };
         fetch(`http://localhost:3000/todos/${todo.id}`, {
-            method: 'PUT',
+            method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ "userId": userId, ...updatedTodo }),
+            body: JSON.stringify(updatedField),
         })
             .then(response => {
                 if (!response.ok) {
                     throw new Error(`Request failed with status: ${response.status}`);
                 }
+                const updatedTodo = { ...todo, [key]: newValue };
                 setTodos(todos.map(todo => todo.id === todo.id ? updatedTodo : todo));
             }).catch(error => {
                 console.error(error);
@@ -46,7 +47,7 @@ const TodoUpdate = ({ todos, setTodos, setCommentArea, todo }) => {
         {inUpdate && (
             <form onSubmit={updateTodo}>
                 <label htmlFor="title">Title:</label>
-                <input type="text" id="title" value={updatedTitle} onChange={(event) => { setUpdatedTitle(event.target.value) }} required />
+                <input type="text" id="title" value={updatedTitle} onChange={(event) => { setUpdatedTitle(event.target.value) }} style={{width: "350px"}} required />
                 <button type="submit">✔️</button>
             </form>
         )}

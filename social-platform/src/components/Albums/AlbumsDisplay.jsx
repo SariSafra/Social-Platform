@@ -3,13 +3,13 @@ import { BrowserRouter, Routes, Route, useNavigate, Link, Navigate, useParams,us
 import AlbumDisplay from "./AlbumDisplay";
 
 const AlbumsDisplay=({albums})=>{
-const [selectedId, setSelectedId] = useState("0");
-const [selectedTitle, setSelectedTitle] = useState("");
+const [selectedId, setSelectedId] = useState(null);
+const [selectedTitle, setSelectedTitle] = useState(null);
 const [filterOption, setFilterOption] = useState("All");
 
 useEffect(() => {
-    setSelectedId("0");
-    setSelectedTitle("");
+    setSelectedId(null);
+    setSelectedTitle(null);
 }, [filterOption]);
 
 const isFiltered = (album) => {
@@ -17,9 +17,9 @@ const isFiltered = (album) => {
         case "All":
             return true;
         case "Id":
-            return album.id === selectedId;
+            return album.id.includes(selectedId);
         case "Title":
-            return album.title == selectedTitle;
+            return album.title.includes(selectedTitle);
     }
 }
 

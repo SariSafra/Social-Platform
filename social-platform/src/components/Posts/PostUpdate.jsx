@@ -7,18 +7,19 @@ const PostUpdate = ({postToUpdate,setCommentArea,setPosts,posts,updatedTitle,upd
         setInUpdate(false);
         if (postToUpdate.title === updatedTitle && postToUpdate.body===updatedBody)
             return;
-        const updatedPost = { ...postToUpdate, ["title"]: updatedTitle, ["body"]: updatedBody};
+        const updatedFields = { title: updatedTitle, body: updatedBody };
         fetch(`http://localhost:3000/posts/${postToUpdate.id}`, {
-            method: 'PUT',
+            method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify(updatedPost),
+            body: JSON.stringify(updatedFields),
         })
             .then(response => {
                 if (!response.ok) {
                     throw new Error(`Request failed with status: ${response.status}`);
                 }
+                const updatedPost = { ...postToUpdate, ["title"]: updatedTitle, ["body"]: updatedBody};
                 setPosts(posts.map(post => post.id === postToUpdate.id ? updatedPost : post));
                 setCommentArea("");
             }).catch(error => {

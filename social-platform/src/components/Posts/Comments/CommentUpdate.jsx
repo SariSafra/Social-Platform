@@ -1,25 +1,26 @@
 import { BrowserRouter, Routes, Route, useNavigate, Link, Navigate } from "react-router-dom";
 import { useState, createContext, useContext, useEffect, useHistory } from "react";
 
-const CommentUpdate = ({setInUpdate,commentToUpdate,setCommentArea,setComments,comments,updatedName,updatedBody, inUpdate}) => {
+const CommentUpdate = ({ setInUpdate, commentToUpdate, setCommentArea, setComments, comments, updatedName, updatedBody, inUpdate }) => {
 
     const updateComment = () => {
         setInUpdate(false);
-        if (commentToUpdate.name === updatedName && commentToUpdate.body===updatedBody)
+        if (commentToUpdate.name === updatedName && commentToUpdate.body === updatedBody)
             return;
-        const updatedComments = { ...commentToUpdate, ["Name"]: updatedName, ["body"]: updatedBody};
+            const updatedFields = { name: updatedName, body: updatedBody };
         fetch(`http://localhost:3000/comments/${commentToUpdate.id}`, {
-            method: 'PUT',
+            method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify(updatedComments),
+            body: JSON.stringify(updatedFields),
         })
             .then(response => {
                 if (!response.ok) {
                     throw new Error(`Request failed with status: ${response.status}`);
                 }
-                setComments(comments.map(comment => comment.id === commentToUpdate.id ? updatedComments : comment));
+                const updatedComment = { ...commentToUpdate, ["name"]: updatedName, ["body"]: updatedBody };
+                setComments(comments.map(comment => comment.id === commentToUpdate.id ? updatedComment : comment));
                 setCommentArea("");
             }).catch(error => {
                 console.error(error);
@@ -29,7 +30,7 @@ const CommentUpdate = ({setInUpdate,commentToUpdate,setCommentArea,setComments,c
 
     return (<>
         <button onClick={() => setInUpdate(true)}>🖊️</button>
-       {inUpdate && <button onClick={() =>updateComment() }>✔️</button>}
+        {inUpdate && <button onClick={() => updateComment()}>✔️</button>}
     </>)
 }
 export default CommentUpdate;
