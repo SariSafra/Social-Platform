@@ -11,25 +11,31 @@ export default function Home() {
   useEffect(() => {
     {
       (currentUser === null || currentUser.id !== userId) &&
-      navigate("/");
+        navigate("/");
     };
   }, [currentUser])
 
-  const logout = () =>{
+  const logout = () => {
     setCurrentUser(null);
     navigate("/");
     localStorage.clear();
   }
 
+  const styles = {
+    color: 'black',
+    fontSize: '20px',
+    marginRight: '10px',
+    textDecoration: 'none'
+  };
+
   return (
     <>
-      <h1>Home</h1>
-      <NavLink onClick={() => { logout() }}>Logout</NavLink><br />
-      <NavLink to="info">Info</NavLink><br />
-      <NavLink to="todos">Todos</NavLink><br />
-      <NavLink to="albums">Albums</NavLink><br />
-      <NavLink to="posts">Posts</NavLink>
+      <NavLink style={styles} onClick={() => { logout() }}>Logout</NavLink>
+      <NavLink style={styles} to="info">Info</NavLink>
+      <NavLink style={styles} to="todos">Todos</NavLink>
+      <NavLink style={styles} to="albums">Albums</NavLink>
+      <NavLink style={styles} to="posts">Posts</NavLink>
       <Outlet />
     </>
-  )
+  );
 }
