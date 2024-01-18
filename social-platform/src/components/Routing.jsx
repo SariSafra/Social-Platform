@@ -10,12 +10,11 @@ import Albums from "./Albums/Albums";
 import NotFound from "./NotFound";
 import Photos from "./Albums/Photos/Photos"
 
-const Site = () => {
+const Routing = () => {
     const currentUser = JSON.parse(localStorage.getItem("currentUser"));
     const currentPage = currentUser ? `/users/${currentUser.id}/home` : "/login";
 
     return (<>
-        <h1>Site</h1>
         <BrowserRouter>
             <Routes>
                 <Route path="/" element={<Navigate to={currentPage} />} />
@@ -35,4 +34,4 @@ const Site = () => {
         </BrowserRouter>
     </>)
 }
-export default Site;
+export default Routing;
