@@ -16,26 +16,45 @@ export default function Home() {
   }, [currentUser])
 
   const logout = () => {
-    setCurrentUser(null);
     navigate("/");
+    setCurrentUser(null);
     localStorage.clear();
   }
 
   const styles = {
-    color: 'black',
-    fontSize: '20px',
-    marginRight: '10px',
-    textDecoration: 'none'
+    navbar: {
+      position: 'fixed',
+      top: 0,
+      left: 0,
+      width: '100%',
+      backgroundColor: 'white', 
+      zIndex: 1000, 
+      padding: '10px', 
+    },
+    link: {
+      color: 'black',
+      fontSize: '16px',
+      marginRight: '10px',
+      textDecoration: 'none',
+    },
+    content: {
+      paddingTop: '60px',
+    }
   };
-
+  
   return (
     <>
-      <NavLink style={styles} onClick={() => { logout() }}>Logout</NavLink>
-      <NavLink style={styles} to="info">Info</NavLink>
-      <NavLink style={styles} to="todos">Todos</NavLink>
-      <NavLink style={styles} to="albums">Albums</NavLink>
-      <NavLink style={styles} to="posts">Posts</NavLink>
-      <Outlet />
+      <div style={styles.navbar}>
+        <h3>{currentUser && currentUser.name}</h3>
+        <NavLink style={styles.link} onClick={() => { logout() }}>Logout</NavLink>
+        <NavLink style={styles.link} to="info">Info</NavLink>
+        <NavLink style={styles.link} to="todos">Todos</NavLink>
+        <NavLink style={styles.link} to="albums">Albums</NavLink>
+        <NavLink style={styles.link} to="posts">Posts</NavLink>
+      </div>
+      <div style={styles.content}>
+        <Outlet />
+      </div>
     </>
   );
 }

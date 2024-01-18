@@ -9,7 +9,7 @@ const TodoDisplay=({ todo, todos, setTodos,index})=>{
 
     return( <>
           {displayObject(todo)} 
-         <TodoUpdate  setTodos={setTodos} todos={todos} setCommentArea={setCommentArea} todo={todo}/>
+         <TodoUpdate  setTodos={setTodos} todos={todos} setCommentArea={setCommentArea} todoToUpdate={todo}/>
          <TodoRemove  setTodos={setTodos} todos={todos} setCommentArea={setCommentArea} todo={todo}/>
         {<p style={{ color: 'red' }}>{commentArea}</p>}<br/>
     </>  )

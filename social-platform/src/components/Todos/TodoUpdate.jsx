@@ -1,9 +1,9 @@
 import { BrowserRouter, Routes, Route, useNavigate, Link, Navigate, useParams } from "react-router-dom";
 import { useState, createContext, useContext, useEffect, useHistory } from "react";
 
-const TodoUpdate = ({ todos, setTodos, setCommentArea, todo }) => {
+const TodoUpdate = ({ todos, setTodos, setCommentArea, todoToUpdate }) => {
     const [inUpdate, setInUpdate] = useState(false);
-    const [updatedTitle, setUpdatedTitle] = useState(todo.title);
+    const [updatedTitle, setUpdatedTitle] = useState(todoToUpdate.title);
     const { userId } = useParams();
 
     useEffect(() => {
@@ -14,14 +14,14 @@ const TodoUpdate = ({ todos, setTodos, setCommentArea, todo }) => {
         e.preventDefault();
         setInUpdate(false);
 
-        if (todo.title === updatedTitle)
+        if (todoToUpdate.title === updatedTitle)
             return;
         updateTodoRequest("title", updatedTitle)
     }
 
     const updateTodoRequest = (key, newValue) => {
         const updatedField = { key: newValue };
-        fetch(`http://localhost:3000/todos/${todo.id}`, {
+        fetch(`http://localhost:3000/todos/${todoToUpdate.id}`, {
             method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json',
@@ -32,8 +32,8 @@ const TodoUpdate = ({ todos, setTodos, setCommentArea, todo }) => {
                 if (!response.ok) {
                     throw new Error(`Request failed with status: ${response.status}`);
                 }
-                const updatedTodo = { ...todo, [key]: newValue };
-                setTodos(todos.map(todo => todo.id === todo.id ? updatedTodo : todo));
+                const updatedTodo = { ...todoToUpdate, [key]: newValue };
+                setTodos(todos.map(todo => todo.id === todoToUpdate.id ? updatedTodo : todo));
             }).catch(error => {
                 console.error(error);
                 setCommentArea("Server error. try again later.")
@@ -42,7 +42,7 @@ const TodoUpdate = ({ todos, setTodos, setCommentArea, todo }) => {
 
     return (<>
         <strong>completed:</strong>
-        <input type="checkbox" checked={todo.completed} onChange={() => updateTodoRequest("completed", !todo.completed)} /><br />
+        <input type="checkbox" checked={todoToUpdate.completed} onChange={() => updateTodoRequest("completed", !todoToUpdate.completed)} /><br />
         <button onClick={() => { setInUpdate((prev) => !prev) }}>🖊️</button>
         {inUpdate && (
             <form onSubmit={updateTodo}>

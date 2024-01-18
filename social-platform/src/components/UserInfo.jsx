@@ -10,7 +10,7 @@ const UserInfo=()=>{
     console.log(currentUser);
       return (
         <div>
-          <h2>{currentUser.name} Details:</h2>
+          <h3>Personal Information:</h3>
           <ul>{displayObject(currentUser)}</ul>
         </div>
       );
