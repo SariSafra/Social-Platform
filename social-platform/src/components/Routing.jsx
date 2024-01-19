@@ -1,7 +1,7 @@
 import { BrowserRouter, Routes, Route, useNavigate, Link, Navigate, Outlet } from "react-router-dom";
 import { useState, createContext, useContext, useEffect, useHistory } from "react";
 import Register from "./Register";
-import Home from "./Home"
+import Home from "./Home/Home"
 import Login from "./Login"
 import UserInfo from "./UserInfo";
 import Todos from "./Todos/Todos";

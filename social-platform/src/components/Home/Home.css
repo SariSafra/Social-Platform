@@ -1,0 +1,29 @@
+body {
+    margin: 0;
+}
+
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: white;
+    z-index: 1000;
+    padding: 10px;
+}
+
+.link {
+    color: black;
+    font-size: 16px;
+    margin-right: 10px;
+    text-decoration: none;
+}
+
+.paragraph {
+    font-family: Cursive, sans-serif;
+    color: gray;
+    font-size: 22px;
+    line-height: 1.8;
+    font-style: italic;
+    transform: skew(-10deg);
+}
