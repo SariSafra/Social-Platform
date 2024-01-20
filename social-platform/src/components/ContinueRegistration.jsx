@@ -1,5 +1,5 @@
-import { useState, createContext, useContext, useRef, useEffect } from "react";
-import { BrowserRouter, Routes, Route, useNavigate, Link, Navigate, useParams } from "react-router-dom";
+import { useState,  useEffect } from "react";
+import {  useNavigate} from "react-router-dom";
 import { runId } from "./Tools";
 const ContinueRegistration = ({ username, password }) => {
 

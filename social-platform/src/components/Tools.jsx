@@ -46,16 +46,3 @@ export const runId = async (typeId) => {
     throw error; 
   }
 };
-// export const runId = async (typeId) => {
-//   const findMaxId = await fetch("http://localhost:3000/nextID", {
-//     method: 'GET'
-// })
-//     .then((response) => response.json())
-//     .then((json) => {
-//         console.log(json);
-//         id = json[0].typeId;
-//     });
- 
-//   const id = await findMaxId;
-//   return id;
-// }

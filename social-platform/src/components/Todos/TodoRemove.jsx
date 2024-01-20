@@ -1,5 +1,5 @@
-import { BrowserRouter, Routes, Route, useNavigate, Link, Navigate } from "react-router-dom";
-import { useState, createContext, useContext, useEffect, useHistory,useRef } from "react";
+import { Route} from "react-router-dom";
+import { react } from "react";
 
 const TodoRemove = ({ todos, setTodos, setCommentArea,todo }) => {
     const removeTodo = (e) => {

@@ -1,5 +1,5 @@
-import { useState, createContext, useContext, useRef, useEffect} from "react";
-import { BrowserRouter, Routes, Route, useNavigate, Link, Navigate, useParams} from "react-router-dom";
+import { useState, useRef} from "react";
+import { Link} from "react-router-dom";
 import ContinueRegistration from "./ContinueRegistration";
 
 const Register=()=>{

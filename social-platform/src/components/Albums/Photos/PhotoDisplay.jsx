@@ -1,4 +1,4 @@
-import { useState, createContext, useContext, useRef, useEffect } from "react";
+import { useState, useEffect } from "react";
 import PhotoRemove from './PhotoRemove';
 import CommentUpdate from './PhotoUpdate'
 

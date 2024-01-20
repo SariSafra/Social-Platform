@@ -1,12 +1,11 @@
-import { BrowserRouter, Routes, Route, useNavigate, Link, Navigate, useParams} from "react-router-dom";
-import { useState, createContext, useContext, useEffect,useHistory } from "react";
+import { useParams} from "react-router-dom";
+import { useState, useEffect } from "react";
 import { runId } from "../Tools";
 
 const PostAdd=({setPosts, posts, setCommentArea})=>{
     const [inAddition, setInAddition] = useState(false);
     const [newTitle, setNewTitle] = useState("");
     const [newBody, setNewBody] = useState("");
-    //const [commentArea, setCommentArea] = useState("")
     const { userId } = useParams();
 
      useEffect(() => {

@@ -1,5 +1,5 @@
-import { BrowserRouter, Routes, Route, useNavigate, Link, Navigate, Outlet } from "react-router-dom";
-import { useState, createContext, useContext, useEffect, useHistory } from "react";
+import { BrowserRouter, Routes, Route, Navigate, Outlet } from "react-router-dom";
+import{ react } from "react";
 import Register from "./Register";
 import Home from "./Home/Home"
 import Login from "./Login"

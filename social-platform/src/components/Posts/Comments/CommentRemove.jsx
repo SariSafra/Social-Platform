@@ -1,10 +1,9 @@
-import { BrowserRouter, Routes, Route, useNavigate, Link, Navigate,useParams} from "react-router-dom";
-import { useState, createContext, useContext, useEffect,useHistory } from "react";
+import {  Route} from "react-router-dom";
+import { react } from "react";
 
 
 const CommentRemove=({commentToRemove,setCommentArea,setComments,comments})=>{
-    // const userId = (JSON.parse(localStorage.getItem("currentUser"))).id;
-    // const { userId } = useParams();
+
     const removeComment = ()=> {
         const idToDelete = commentToRemove.id;
         fetch(`http://localhost:3000/comments/${idToDelete}`, {

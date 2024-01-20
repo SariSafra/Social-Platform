@@ -1,4 +1,4 @@
-import { useState, createContext, useContext, useEffect,useHistory } from "react";
+import react from "react";
 
 const PhotoRemove=({ photo, setCommentArea, setPhotos, photos })=>{
     const removePhoto = ()=> {
