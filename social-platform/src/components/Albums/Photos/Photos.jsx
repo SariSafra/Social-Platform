@@ -13,13 +13,10 @@ const Photos = () => {
     const limit=8;
     const [lastFetchedPhotoId, setLastFetchedPhotoId] = useState(null);
     const { albumId } = useParams();
+    
 
-
-    useEffect(()=>{ 
-        getMaxPhotoId();
-},[])
     useEffect(() => {
-       
+        //getMaxPhotoId();
         requestPostsPhotos();
     }, [hasMore]);
 
@@ -79,7 +76,7 @@ const Photos = () => {
         <div>
             <h2>Photos of Album number: {albumId}</h2>
             <p style={{ color: 'red' }}>{commentArea}</p>
-            <PhotosAdd setCommentArea={setCommentArea} />
+            <PhotosAdd setCommentArea={setCommentArea} setPhotos={setPhotos}/>
             <InfiniteScroll
                 dataLength={photos.length}
                 next={requestPostsPhotos}
@@ -95,3 +92,5 @@ const Photos = () => {
 };
 
 export default Photos;
+
+
