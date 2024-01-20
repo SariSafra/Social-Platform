@@ -33,17 +33,19 @@ const Comments = ({postId}) => {
             });
     }
 
-    return (<>
-        <h5>_____________________________________________________</h5>
+    return (
+    <div>
+        <br/>
+        <h2 className="title">Comments</h2>
         <CommentAdd comments={comments} setComments={setComments} postId={postId} setCommentArea={setCommentArea}/>
         <ul>
             {comments.map((comment) => (
-                <li key={comment.id} style={{ listStyle: 'none', margin: '3rem' }}>
+                <li key={comment.id} className="list">
                      <CommentDisplay comment={comment} comments={comments} setComments={setComments}/> 
                 </li>
             ))}
       </ul>
         <p style={{ color: 'red' }}>{commentArea}</p>
-    </>)
+    </div>)
 }
 export default Comments;

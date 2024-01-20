@@ -29,8 +29,8 @@ const PostUpdate = ({postToUpdate,setCommentArea,setPosts,posts,updatedTitle,upd
     }
 
     return (<>
-       <button onClick={() => setInUpdate(true)}>🖊️</button>
-       {inUpdate && <button onClick={() =>updatePost() }>✔️</button>}
+       <button className="actionButton" onClick={() => setInUpdate(true)}>🖊️</button>
+       {inUpdate && <button className="actionButton" onClick={() =>updatePost() }>✔️</button>}
     </>)
 }
 export default PostUpdate;

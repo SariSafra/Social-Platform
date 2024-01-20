@@ -38,14 +38,14 @@ const PostAdd=({setPosts, posts, setCommentArea})=>{
     }
 
     return( <>
-        <button onClick={() => {setInAddition((prev)=>!prev)}}>New Post</button>
+        <button className="addButton" onClick={() => {setInAddition((prev)=>!prev)}}>New Post</button>
         {inAddition && (
             <form onSubmit={AddPost}>
                 <label htmlFor="title">Name:</label>
                 <input type="text" id="title" value={newTitle} onChange={(event) => { setNewTitle(event.target.value) }} required />
                 <label htmlFor="body">body:</label>
                 <input type="text" id="body" value={newBody} onChange={(event) => { setNewBody(event.target.value) }} required />
-                <button type="submit">Add</button>
+                <button className="actionButton" type="submit">Add</button>
             </form>
         )}
     </>  )

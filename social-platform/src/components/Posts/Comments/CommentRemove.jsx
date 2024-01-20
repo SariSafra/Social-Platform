@@ -23,7 +23,7 @@ const CommentRemove=({commentToRemove,setCommentArea,setComments,comments})=>{
     }
 
     return( <>
-        <button onClick={() =>removeComment() }>🗑️</button>
+        <button className="actionButton" onClick={() =>removeComment() }>🗑️</button>
     </>)
 }
 export default CommentRemove;

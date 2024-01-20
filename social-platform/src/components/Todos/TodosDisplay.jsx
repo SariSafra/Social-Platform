@@ -1,7 +1,6 @@
 import { Route} from "react-router-dom";
 import { useState, useEffect } from "react";
 import TodoDisplay from "./TodoDisplay";
-import "./Todos.css"; 
 
 const TodosDisplay=({ todos, setTodos })=>{
 
@@ -56,15 +55,15 @@ const TodosDisplay=({ todos, setTodos })=>{
     }
     
     return( <>    
-      <label htmlFor="sortedSelector">Choose a sorted option:</label>
-        <select id="sortedSelector" value={sortedOption} onChange={(event)=>{setSortedOption(event.target.value)}}>
+      <label className="selectorLabel" htmlFor="sortedSelector">Choose a sorted option: </label>
+        <select className="selector" id="sortedSelector" value={sortedOption} onChange={(event)=>{setSortedOption(event.target.value)}}>
             <option value="Random">Random</option>
             <option value="Serial">Serial</option>
             <option value="Alphabetical">Alphabetical</option>
             <option value="Completed/Not Completed">Completed/Not Completed</option>
       </select><br/>  
-      <label htmlFor="filterSelector">Choose a filter option:</label>
-        <select id="filterSelector" value={filterOption} onChange={(event)=>{setFilterOption(event.target.value)}}>
+      <label className="selectorLabel" htmlFor="filterSelector">Choose a filter option: </label>
+        <select className="selector" id="filterSelector" value={filterOption} onChange={(event)=>{setFilterOption(event.target.value)}}>
             <option value="All">All</option>
             <option value="Id">Id</option>
             <option value="Title">Title</option>
@@ -79,10 +78,10 @@ const TodosDisplay=({ todos, setTodos })=>{
             <><label htmlFor="titleInput">Enter Title:</label>
                 <input type="text" id="titleInput" value={selectedTitle} onChange={(event)=>{setSelectedTitle(event.target.value)}} /></>
         )}
-        <ul>
+        <ul className="showAllItems">
             {todos.map((todo,index) => (
                 <li key={index} className="list">
-                    {isFiltered(todo) && <div className="todoDisplay"><TodoDisplay todo={todo} todos={todos} setTodos={setTodos} index={index}/></div>}
+                    {isFiltered(todo) && <div className="showItem"><TodoDisplay todo={todo} todos={todos} setTodos={setTodos} index={index}/></div>}
                 </li>
             ))}
         </ul>

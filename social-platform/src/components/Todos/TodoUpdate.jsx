@@ -1,6 +1,5 @@
 import { BrowserRouter, Routes, Route, useNavigate, Link, Navigate, useParams } from "react-router-dom";
 import { useState, createContext, useContext, useEffect, useHistory } from "react";
-import "./Todos.css"; 
 
 const TodoUpdate = ({ todos, setTodos, setCommentArea, todoToUpdate }) => {
     const [inUpdate, setInUpdate] = useState(false);
@@ -21,7 +20,7 @@ const TodoUpdate = ({ todos, setTodos, setCommentArea, todoToUpdate }) => {
     }
 
     const updateTodoRequest = (key, newValue) => {
-        const updatedField = { key: newValue };
+        const updatedField = { [key]: newValue };
         fetch(`http://localhost:3000/todos/${todoToUpdate.id}`, {
             method: 'PATCH',
             headers: {

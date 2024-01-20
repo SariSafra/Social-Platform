@@ -36,7 +36,7 @@ const AlbumAdd=({setAlbums, albums, setCommentArea})=>{
     }
 
     return( <>
-        <button onClick={() => {setInAddition((prev)=>!prev)}}>New Album</button>
+        <button className="addButton" onClick={() => {setInAddition((prev)=>!prev)}}>New Album</button>
         {inAddition && (
             <form onSubmit={AddAlbum}>
                 <label htmlFor="title">title</label>

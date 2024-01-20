@@ -1,7 +1,6 @@
 import { Route} from "react-router-dom";
 import {react } from "react";
 
-
 const PostRemove=({postToRemove,setCommentArea,setPosts,posts})=>{
     const idToDelete = postToRemove.id;
 
@@ -67,7 +66,7 @@ const PostRemove=({postToRemove,setCommentArea,setPosts,posts})=>{
     }
 
     return( <>
-        <button onClick={() =>removePostAndPostsComments() }>🗑️</button>
+        <button className="actionButton" onClick={() =>removePostAndPostsComments() }>🗑️</button>
     </>)
 }
 export default PostRemove;

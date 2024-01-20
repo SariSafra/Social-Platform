@@ -29,8 +29,8 @@ const CommentUpdate = ({ setInUpdate, commentToUpdate, setCommentArea, setCommen
     }
 
     return (<>
-        <button onClick={() => setInUpdate(true)}>🖊️</button>
-        {inUpdate && <button onClick={() => updateComment()}>✔️</button>}
+        <button className="actionButton" onClick={() => setInUpdate(true)}>🖊️</button>
+        {inUpdate && <button className="actionButton" onClick={() => updateComment()}>✔️</button>}
     </>)
 }
 export default CommentUpdate;

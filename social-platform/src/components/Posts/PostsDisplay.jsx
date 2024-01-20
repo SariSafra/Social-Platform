@@ -3,18 +3,18 @@ import { useState,useEffect } from "react";
 import PostDisplay from "./PostDisplay";
 
 const PostsDisplay = ({ posts, setPosts, personalOrOtherPosts }) => {
-    const [selectedUserId, setSelectedUserId] = useState(null);
-    const [selectedId, setSelectedId] = useState(null);
-    const [selectedTitle, setSelectedTitle] = useState(null);
-    const [selectedBody, setSelectedBody] = useState(null);
+    const [selectedUserId, setSelectedUserId] = useState("");
+    const [selectedId, setSelectedId] = useState("");
+    const [selectedTitle, setSelectedTitle] = useState("");
+    const [selectedBody, setSelectedBody] = useState("");
     const [filterOption, setFilterOption] = useState("All");
     const [commentArea, setCommentArea] = useState("")
 
     useEffect(() => {
-        setSelectedUserId(null);
-        setSelectedId(null);
-        setSelectedTitle(null);
-        setSelectedBody(null);
+        setSelectedUserId("");
+        setSelectedId("");
+        setSelectedTitle("");
+        setSelectedBody("");
     }, [filterOption]);
 
     const isFiltered = (post) => {
@@ -33,8 +33,8 @@ const PostsDisplay = ({ posts, setPosts, personalOrOtherPosts }) => {
     }
 
     return (<>
-        <label htmlFor="filterSelector">Choose a filter option:</label>
-        <select id="filterSelector" value={filterOption} onChange={(event) => { setFilterOption(event.target.value) }}>
+        <label className="selectorLabel" htmlFor="filterSelector">Choose a filter option: </label>
+        <select className="selector" id="filterSelector" value={filterOption} onChange={(event) => { setFilterOption(event.target.value) }}>
             <option value="All">All</option>
             {personalOrOtherPosts === "other" && <option value="User Id">User Id</option>}
             <option value="Id">Id</option>
@@ -58,10 +58,10 @@ const PostsDisplay = ({ posts, setPosts, personalOrOtherPosts }) => {
                 <input type="text" id="bodyInput" value={selectedBody} onChange={(event) => { setSelectedBody(event.target.value) }} /></>
         )}
         <p style={{ color: 'red' }}>{commentArea}</p>
-        <ul>
+        <ul className="showAllItems">
             {posts.map((post) => (
-                <li key={post.id} style={{ listStyle: 'none', margin: '3rem' }}>
-                    {isFiltered(post) ? <PostDisplay postToDisplay={post} setPosts={setPosts} posts={posts} setCommentArea={setCommentArea} personalOrOtherPosts={personalOrOtherPosts}/> : <span />}
+                <li key={post.id} className="list">
+                    {isFiltered(post) && <div className="showItem"><PostDisplay postToDisplay={post} setPosts={setPosts} posts={posts} setCommentArea={setCommentArea} personalOrOtherPosts={personalOrOtherPosts}/></div>}
                 </li>
             ))}
         </ul>

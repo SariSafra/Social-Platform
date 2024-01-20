@@ -58,16 +58,14 @@ const Posts = () => {
     }
 
     return (<>
-        <h1>Posts</h1>
+        <h2 className="title">{personalOrOtherPosts==="personal" ? "My Posts" : "Posts"}</h2>
         {personalOrOtherPosts ==="personal" ? 
-        <><button onClick={()=>{setPersonalOrOtherPosts("other")}} style={{borderColor: 'gray'}}>Posts by others</button>
-        <h3>My Posts</h3>
+        <><button onClick={()=>{setPersonalOrOtherPosts("other")}}>Posts by others</button><br/><br/>
         <PostAdd setPosts={setPersonalPosts} posts={personalPosts} setCommentArea={setCommentArea}/><br/>
         <PostsDisplay setPosts={setPersonalPosts} posts={personalPosts} personalOrOtherPosts={personalOrOtherPosts}/>
         <p style={{ color: 'red' }}>{commentArea}</p></>
         :
-        <><button onClick={()=>{setPersonalOrOtherPosts("personal")}} style={{borderColor: "gray"}}>My Posts</button>
-        <h3>Posts by others</h3>
+        <><button onClick={()=>{setPersonalOrOtherPosts("personal")}}>My Posts</button>
         <PostsDisplay setPosts={setOthersPosts} posts={othersPosts} personalOrOtherPosts={personalOrOtherPosts}/>
         <p style={{ color: 'red' }}>{commentArea}</p></>
         }

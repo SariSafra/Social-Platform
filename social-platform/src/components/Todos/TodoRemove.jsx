@@ -1,6 +1,3 @@
-import { BrowserRouter, Routes, Route, useNavigate, Link, Navigate } from "react-router-dom";
-import { useState, createContext, useContext, useEffect, useHistory, useRef } from "react";
-import "./Todos.css"; 
 
 const TodoRemove = ({ todos, setTodos, setCommentArea, todo }) => {
     

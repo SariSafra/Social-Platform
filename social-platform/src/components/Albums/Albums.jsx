@@ -34,10 +34,9 @@ const Albums=()=>{
             });
     }
     return( <>
-        <h1>Albums</h1>
+        <h2 className="title">Albums</h2>
         <AlbumAdd albums={albums} setAlbums={setAlbums} setCommentArea={setCommentArea} /><br/>
         <AlbumsDisplay albums={albums} setAlbums={setAlbums}/>
-       
        <p style={{ color: 'red' }}>{commentArea}</p>
     </>  )
 }

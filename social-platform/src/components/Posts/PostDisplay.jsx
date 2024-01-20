@@ -16,11 +16,9 @@ const PostDisplay = ({ postToDisplay, setPosts, posts, setCommentArea, personalO
         inUpdate && setShowMore(true);
     }, [inUpdate]);
 
-    const filteredKeys = Object.keys(postToDisplay).filter(key => key !== 'body' && key !== 'userId');
-
     return (<>
-        <div style={showMore ? { background: "#dcdcdc", borderRadius: 20, padding: "1rem" } : { background: "white" }}>
-            <ul style={{ listStyle: 'none' }}>
+        <div>
+            <ul className='list'>
                 {personalOrOtherPosts === "other" &&
                     <li>
                         <strong>User Id:</strong> {postToDisplay.userId}
@@ -42,12 +40,12 @@ const PostDisplay = ({ postToDisplay, setPosts, posts, setCommentArea, personalO
                     </li>
                 )}
             </ul>
-            <strong><button onClick={() => setShowMore(!showMore)}>{showMore ? '-' : '+'}</button></strong>
+            <strong><button className="actionButton" onClick={() => setShowMore(!showMore)}>{showMore ? '-' : '+'}</button></strong>
             {personalOrOtherPosts === "personal" &&
                 <><PostUpdate inUpdate={inUpdate} setInUpdate={setInUpdate} postToUpdate={postToDisplay} setCommentArea={setCommentArea}
                     setPosts={setPosts} posts={posts} updatedTitle={updatedTitle} updatedBody={updatedBody} />
                     <PostRemove postToRemove={postToDisplay} setCommentArea={setCommentArea} setPosts={setPosts} posts={posts} /><br /><br /></>}
-            {showMore && <button style={{ backgroundColor: showComments && 'gray' }} onClick={() => setShowComments((prev) => !prev)}>Show Comments</button>}
+            {showMore && <button className="actionButton" onClick={() => setShowComments((prev) => !prev)}>{showComments ? 'hide comments' : 'Show Comments'}</button>}
             {showComments && showMore && <Comments postId={postToDisplay.id} />}
         </div>
     </>

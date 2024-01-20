@@ -3,13 +3,13 @@ import {  Route} from "react-router-dom";
 import AlbumDisplay from "./AlbumDisplay";
 
 const AlbumsDisplay=({albums})=>{
-const [selectedId, setSelectedId] = useState(null);
-const [selectedTitle, setSelectedTitle] = useState(null);
+const [selectedId, setSelectedId] = useState("");
+const [selectedTitle, setSelectedTitle] = useState("");
 const [filterOption, setFilterOption] = useState("All");
 
 useEffect(() => {
-    setSelectedId(null);
-    setSelectedTitle(null);
+    setSelectedId("");
+    setSelectedTitle("");
 }, [filterOption]);
 
 const isFiltered = (album) => {
@@ -24,8 +24,8 @@ const isFiltered = (album) => {
 }
 
       return (<>
-        <label htmlFor="filterSelector">Choose a filter option:</label>
-        <select id="filterSelector" value={filterOption} onChange={(event)=>{setFilterOption(event.target.value)}}>
+        <label className="selectorLabel" htmlFor="filterSelector">Choose a filter option: </label>
+        <select className="selector" id="filterSelector" value={filterOption} onChange={(event)=>{setFilterOption(event.target.value)}}>
             <option value="All">All</option>
             <option value="Id">Id</option>
             <option value="Title">Title</option>
@@ -39,10 +39,10 @@ const isFiltered = (album) => {
                 <input type="text" id="titleInput" value={selectedTitle} onChange={(event)=>{setSelectedTitle(event.target.value)}} /></>
         )}
         <div>
-          <ul>
+          <ul className="showAllItems">
             {albums.map((album) => (
-                <li key={album.id} style={{ listStyle: 'none', margin: '3rem' }}>
-                    {isFiltered(album) ? <AlbumDisplay album={album}/> : <span />}
+                <li key={album.id} className="list">
+                    {isFiltered(album) && <div className="showItem"><AlbumDisplay album={album}/></div>}
                 </li>
             ))}
     </ul>

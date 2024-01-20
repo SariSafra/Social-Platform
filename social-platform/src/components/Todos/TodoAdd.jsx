@@ -1,7 +1,6 @@
 import { useParams} from "react-router-dom";
 import { useState,  useEffect } from "react";
 import { runId } from "../Tools";
-import "./Todos.css"; 
 
 const TodoAdd=({todos,setTodos,setCommentArea})=>{
     const [inAddition, setInAddition] = useState(false);
@@ -42,7 +41,7 @@ const TodoAdd=({todos,setTodos,setCommentArea})=>{
             <form onSubmit={AddTodo}>
                 <label htmlFor="title">Title:</label>
                 <input type="text" id="title" value={newTitle} onChange={(event) => { setNewTitle(event.target.value) }} required />
-                <button type="submit">Add</button>
+                <button className="actionButton" type="submit">Add</button>
             </form>
         )}
     </>  )
