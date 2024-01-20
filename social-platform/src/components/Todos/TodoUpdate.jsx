@@ -4,7 +4,6 @@ import { useState, useEffect } from "react";
 const TodoUpdate = ({ todos, setTodos, setCommentArea, todoToUpdate }) => {
     const [inUpdate, setInUpdate] = useState(false);
     const [updatedTitle, setUpdatedTitle] = useState(todoToUpdate.title);
-    const { userId } = useParams();
 
     useEffect(() => {
         setUpdatedTitle(updatedTitle);
