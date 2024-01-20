@@ -1,6 +1,5 @@
-import { BrowserRouter, Routes, Route, useNavigate, Link, Navigate,useParams } from "react-router-dom";
-import { useState, createContext, useContext, useEffect, useHistory } from "react";
-import PostDisplay from "./PostDisplay";
+import { useParams } from "react-router-dom";
+import { useState,useEffect } from "react";
 import PostAdd from "./PostAdd";
 import PostsDisplay from "./PostsDisplay";
 

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate, Outlet, NavLink, useLocation} from "react-router-dom";
+import { useNavigate, Outlet, NavLink} from "react-router-dom";
 import "./Home.css"; 
 
 export default function Home() {

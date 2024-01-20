@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import InfiniteScroll from 'react-infinite-scroll-component';
 
 import PhotosAdd from './PhotosAdd';
@@ -10,19 +10,14 @@ const Photos = () => {
     const [hasMore, setHasMore] = useState(true);
     const [start, setStart] = useState(0);
     const [commentArea, setCommentArea] = useState('');
-    const limit=8;
+    const limit = 8;
     const [lastFetchedPhotoId, setLastFetchedPhotoId] = useState(null);
     const { albumId } = useParams();
-    
+    const { userId } = useParams();
+    const navigate = useNavigate();
 
     useEffect(() => {
-        //getMaxPhotoId();
-        requestPostsPhotos();
-    }, [hasMore]);
-
-
-    const getMaxPhotoId=()=>{
-         fetch(`http://localhost:3000/photos?albumId=${albumId}&_sort=id&_order=desc&_limit=1`)
+        fetch(`http://localhost:3000/albums/${albumId}`)
             .then(response => {
                 if (!response.ok) {
                     throw new Error(`Request failed with status: ${response.status}`);
@@ -30,15 +25,41 @@ const Photos = () => {
                 return response.json();
             })
             .then(data => {
-                const maxPhoto = data[0];
-                setLastFetchedPhotoId(maxPhoto ? maxPhoto.id : null);  
+                console.log(data);
+                if (data.userId !== userId) {
+                    navigate('/');
+                }
             })
             .catch(error => {
                 console.error(error);
                 setCommentArea('Error fetching max photo ID. Try again later.');
             });
 
-    }
+    }, [])
+    useEffect(() => {
+        //getMaxPhotoId();
+        requestPostsPhotos();
+    }, [hasMore]);
+
+
+    // const getMaxPhotoId=()=>{
+    //      fetch(`http://localhost:3000/photos?albumId=${albumId}&_sort=id&_order=desc&_limit=1`)
+    //         .then(response => {
+    //             if (!response.ok) {
+    //                 throw new Error(`Request failed with status: ${response.status}`);
+    //             }
+    //             return response.json();
+    //         })
+    //         .then(data => {
+    //             const maxPhoto = data[0];
+    //             setLastFetchedPhotoId(maxPhoto ? maxPhoto.id : null);  
+    //         })
+    //         .catch(error => {
+    //             console.error(error);
+    //             setCommentArea('Error fetching max photo ID. Try again later.');
+    //         });
+
+    // }
     const requestPostsPhotos = async () => {
         try {
             const response = await fetch(`http://localhost:3000/photos?albumId=${albumId}&_start=${start}&_limit=${limit}`);
@@ -76,7 +97,7 @@ const Photos = () => {
         <div>
             <h2>Photos of Album number: {albumId}</h2>
             <p style={{ color: 'red' }}>{commentArea}</p>
-            <PhotosAdd setCommentArea={setCommentArea} setPhotos={setPhotos}/>
+            <PhotosAdd setCommentArea={setCommentArea} setPhotos={setPhotos} />
             <InfiniteScroll
                 dataLength={photos.length}
                 next={requestPostsPhotos}

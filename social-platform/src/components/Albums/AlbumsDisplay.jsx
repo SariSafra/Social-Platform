@@ -1,5 +1,5 @@
-import { useState, createContext, useContext, useRef, useEffect} from "react";
-import { BrowserRouter, Routes, Route, useNavigate, Link, Navigate, useParams,useLocation} from "react-router-dom";
+import { useState, useEffect} from "react";
+import {  Route} from "react-router-dom";
 import AlbumDisplay from "./AlbumDisplay";
 
 const AlbumsDisplay=({albums})=>{

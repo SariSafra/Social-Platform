@@ -1,5 +1,5 @@
-import { BrowserRouter, Routes, Route, useNavigate, Link, Navigate } from "react-router-dom";
-import { useState, createContext, useContext, useEffect, useHistory } from "react";
+import { Route } from "react-router-dom";
+import { react} from "react";
 
 const PhotoUpdate = ({ setInUpdate, photoToUpdate, setCommentArea, setPhotos, photos, updatedTitle, inUpdate }) => {
 
