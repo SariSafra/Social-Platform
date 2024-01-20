@@ -21,7 +21,7 @@ const PhotoDisplay = ({ photo, photos, setPhotos }) => {
           value={updatedTitle}
           onChange={(event) => { setUpdatedTitle(event.target.value) }}
           required
-          style={{ width: "200px"}} /> :
+          style={{ width: "250px"}} /> :
         photo.title}</h4>
 
       <PhotoRemove photo={photo} setCommentArea={setCommentArea} setPhotos={setPhotos} photos={photos} />
