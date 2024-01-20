@@ -15,7 +15,7 @@ const PhotoDisplay = ({ photo, photos, setPhotos }) => {
   return (
     <>
       <pre>ID: {photo.id}</pre>
-      <img src={photo.thumbnailUrl} alt={photo.title} style={{ maxWidth: '100%' }} /><br/>
+      <img src={photo.thumbnailUrl} alt={photo.title} style={{ maxWidth: '100%' }}/><br/>
       <h4>{inUpdate ?
         <textarea type="text"
           value={updatedTitle}
