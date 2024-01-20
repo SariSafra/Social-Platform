@@ -1,30 +1,15 @@
-import { react} from "react";
-import { Link} from "react-router-dom";
+import {react} from "react";
+import {Link} from "react-router-dom";
 import  {displayObject} from "../Tools"
+import "./Albums.css"
 
 const AlbumDisplay=({album})=>{
-    const linkStyle = {
-        listStyle: "none",
-        padding: 1,
-        color:"black"
-      };
-      
-      const linkContent = {
-        alignItems: "center",
-        textDecoration: "none",
-        color: "black",
-        padding: "10px",
-        margin: "5px",
-        transition: "background-color 0.3s ease-in-out",
-      };
-
+  
     let albumDislplay = { ...album };
     delete albumDislplay["userId"];
 
       return (
-        <div>
-          <ul style={linkStyle}> <Link to={`${album.id}/photos`} style={linkContent}>{displayObject(albumDislplay)}📷</Link></ul>
-        </div>
+          <div className='linkStyle'><Link to={`${album.id}/photos`} className='linkContent'>{displayObject(albumDislplay)}📷</Link></div>
       );
-    }
+}
 export default AlbumDisplay;

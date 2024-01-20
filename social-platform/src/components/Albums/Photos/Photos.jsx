@@ -95,7 +95,7 @@ const Photos = () => {
 
     return (
         <div>
-            <h2>Photos of Album number: {albumId}</h2>
+            <h2 className="title">Photos of Album number {albumId}</h2>
             <p style={{ color: 'red' }}>{commentArea}</p>
             <PhotosAdd setCommentArea={setCommentArea} setPhotos={setPhotos} />
             <InfiniteScroll
@@ -104,9 +104,11 @@ const Photos = () => {
                 hasMore={hasMore}
                 loader={<h4>Loading...</h4>}
             >
+                <ul className="showAllPhotos">
                 {photos.map((photo) => (
-                    <PhotoDisplay key={photo.id} photo={photo} photos={photos} setPhotos={setPhotos} />
+                    <div className="showPhoto"><PhotoDisplay key={photo.id} photo={photo} photos={photos} setPhotos={setPhotos} /></div>
                 ))}
+                </ul>
             </InfiniteScroll>
         </div>
     );

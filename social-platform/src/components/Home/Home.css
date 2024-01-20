@@ -69,6 +69,7 @@ body {
     margin-left: 5px;
     margin-top: 5px;
     border: 1px solid rgb(115, 185, 197);
+    border-radius: 20px;
 }
 
 .selector{
@@ -83,7 +84,7 @@ body {
 .addButton{
     margin-bottom: 20px;
     background-color: rgb(115, 185, 197);
-    border-radius: 20px;
+    border-radius: 18px;
 }
 
 .showItem{
@@ -98,4 +99,9 @@ body {
     background-color: rgb(249, 249, 250);
     margin-top: 25px;
     border-radius: 20px;
+}
+
+button:hover{
+
+    border: 1px solid black;
 }
