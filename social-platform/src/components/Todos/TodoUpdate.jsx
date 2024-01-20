@@ -1,12 +1,13 @@
-import {  useParams } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { BrowserRouter, Routes, Route, useNavigate, Link, Navigate, useParams } from "react-router-dom";
+import { useState, createContext, useContext, useEffect, useHistory } from "react";
+import "./Todos.css"; 
 
 const TodoUpdate = ({ todos, setTodos, setCommentArea, todoToUpdate }) => {
     const [inUpdate, setInUpdate] = useState(false);
     const [updatedTitle, setUpdatedTitle] = useState(todoToUpdate.title);
 
     useEffect(() => {
-        setUpdatedTitle(updatedTitle);
+        setUpdatedTitle(todoToUpdate.title);
     }, [inUpdate]);
 
     const updateTodo = (e) => {
@@ -42,12 +43,12 @@ const TodoUpdate = ({ todos, setTodos, setCommentArea, todoToUpdate }) => {
     return (<>
         <strong>completed:</strong>
         <input type="checkbox" checked={todoToUpdate.completed} onChange={() => updateTodoRequest("completed", !todoToUpdate.completed)} /><br />
-        <button onClick={() => { setInUpdate((prev) => !prev) }}>🖊️</button>
+        <button className="actionButton" onClick={() => { setInUpdate((prev) => !prev) }}>🖊️</button>
         {inUpdate && (
             <form onSubmit={updateTodo}>
                 <label htmlFor="title">Title:</label>
                 <input type="text" id="title" value={updatedTitle} onChange={(event) => { setUpdatedTitle(event.target.value) }} style={{width: "350px"}} required />
-                <button type="submit">✔️</button>
+                <button className="actionButton" type="submit">✔️</button>
             </form>
         )}
     </>)

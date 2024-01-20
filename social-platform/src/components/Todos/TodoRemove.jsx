@@ -1,7 +1,9 @@
-import { Route} from "react-router-dom";
-import { react } from "react";
+import { BrowserRouter, Routes, Route, useNavigate, Link, Navigate } from "react-router-dom";
+import { useState, createContext, useContext, useEffect, useHistory, useRef } from "react";
+import "./Todos.css"; 
 
-const TodoRemove = ({ todos, setTodos, setCommentArea,todo }) => {
+const TodoRemove = ({ todos, setTodos, setCommentArea, todo }) => {
+    
     const removeTodo = (e) => {
         e.preventDefault();
         const idToDelete = todo.id;
@@ -24,7 +26,7 @@ const TodoRemove = ({ todos, setTodos, setCommentArea,todo }) => {
     }
 
     return (<>
-                <button onClick={removeTodo}>🗑️</button>        
+        <button className="actionButton" onClick={removeTodo}>🗑️</button>
     </>)
 }
 export default TodoRemove;
