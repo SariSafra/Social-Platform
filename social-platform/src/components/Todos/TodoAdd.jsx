@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route, useNavigate, Link, Navigate,useParams} from "react-router-dom";
 import { useState, createContext, useContext, useEffect,useHistory } from "react";
 import { runId } from "../Tools";
+import "./Todos.css"; 
 
 const TodoAdd=({todos,setTodos,setCommentArea})=>{
     const [inAddition, setInAddition] = useState(false);
@@ -36,7 +37,7 @@ const TodoAdd=({todos,setTodos,setCommentArea})=>{
     }
 
     return( <>
-        <button onClick={() => {setInAddition((prev)=>!prev)}}>New todo</button>
+        <button className="addButton" onClick={() => {setInAddition((prev)=>!prev)}}>New todo</button>
         {inAddition && (
             <form onSubmit={AddTodo}>
                 <label htmlFor="title">Title:</label>

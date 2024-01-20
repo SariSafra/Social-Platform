@@ -7,13 +7,13 @@ const TodosDisplay=({ todos, setTodos })=>{
 
     const [sortedOption, setSortedOption] = useState("Serial");
     const [filterOption, setFilterOption] = useState("All");
-    const [selectedId, setSelectedId] = useState(null);
-    const [selectedTitle, setSelectedTitle] = useState(null);
+    const [selectedId, setSelectedId] = useState("");
+    const [selectedTitle, setSelectedTitle] = useState("");
     
 
     useEffect(() => {
-        setSelectedId(null);
-        setSelectedTitle(null);
+        setSelectedId("");
+        setSelectedTitle("");
     }, [filterOption]);
 
     useEffect(() => {
@@ -81,8 +81,8 @@ const TodosDisplay=({ todos, setTodos })=>{
         )}
         <ul>
             {todos.map((todo,index) => (
-                <li key={index} className="todoDisplay">
-                    {isFiltered(todo) && <TodoDisplay todo={todo} todos={todos} setTodos={setTodos} index={index}/>}
+                <li key={index} className="list">
+                    {isFiltered(todo) && <div className="todoDisplay"><TodoDisplay todo={todo} todos={todos} setTodos={setTodos} index={index}/></div>}
                 </li>
             ))}
         </ul>

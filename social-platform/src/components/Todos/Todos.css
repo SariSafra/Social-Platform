@@ -1,16 +1,27 @@
 .title{
     font-family: Cursive, sans-serif;
-    color: rgb(91, 83, 83);
     line-height: 2;
     font-style: italic;
     transform: skew(-10deg);
 }
 
 .todoDisplay{
-    list-style: none;
     margin-top: 20px;
-    border: 2px solid rgb(91, 83, 83);
-    border-radius: 20px;
-    padding-top: 10px;
-    padding-bottom: -20px;
+    padding: 7px;
+    border-radius: 10px;
+    background-color: rgb(195, 212, 212);
+}
+
+.list{
+    list-style: none;
+}
+
+.addButton{
+    margin-bottom: 20px;
+    background-color: rgb(115, 185, 197);
+}
+
+.actionButton{
+    margin-left: 5px;
+    margin-top: 5px;
 }
