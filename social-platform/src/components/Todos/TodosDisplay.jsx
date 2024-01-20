@@ -1,7 +1,7 @@
 import { BrowserRouter, Routes, Route, useNavigate, Link, Navigate} from "react-router-dom";
 import { useState, createContext, useContext, useEffect,useHistory } from "react";
 import TodoDisplay from "./TodoDisplay";
-
+import "./Todos.css"; 
 
 const TodosDisplay=({ todos, setTodos })=>{
 
@@ -81,8 +81,8 @@ const TodosDisplay=({ todos, setTodos })=>{
         )}
         <ul>
             {todos.map((todo,index) => (
-                <li key={index} style={{ listStyle: 'none', margin: '3rem' }}>
-                    {isFiltered(todo) ? <TodoDisplay todo={todo} todos={todos} setTodos={setTodos} index={index}/> : <span />}
+                <li key={index} className="todoDisplay">
+                    {isFiltered(todo) && <TodoDisplay todo={todo} todos={todos} setTodos={setTodos} index={index}/>}
                 </li>
             ))}
         </ul>

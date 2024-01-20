@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route, useNavigate, Link, Navigate, useLocation,
 import { useState, createContext, useContext, useEffect, useHistory, useRef } from "react";
 import TodoAdd from "./TodoAdd";
 import TodosDisplay from "./TodosDisplay";
+import "./Todos.css"; 
 
 const Todos = () => {
     const { userId } = useParams();
@@ -36,8 +37,7 @@ const Todos = () => {
     }
     
     return (<>
-        <h1>Todos</h1>
-
+        <h1 className="title">Todos</h1>
         <TodoAdd setTodos={setTodos} todos={todos} setCommentArea={setCommentArea} /><br/>
         <p style={{ color: 'red' }}>{commentArea}</p>
         <TodosDisplay todos={todos} setTodos={setTodos}/>
