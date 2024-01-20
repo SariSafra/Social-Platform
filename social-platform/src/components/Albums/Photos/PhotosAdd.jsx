@@ -2,7 +2,7 @@ import { BrowserRouter, Routes, Route, useNavigate, Link, Navigate, useParams} f
 import { useState, createContext, useContext, useEffect,useHistory } from "react";
 import { runId } from '../../Tools';
 
-const PhotoAdd=({ setCommentArea })=>{
+const PhotoAdd=({ setCommentArea,setPhotos })=>{
     const [inAddition, setInAddition] = useState(false);
     const [newTitle, setNewTitle] = useState("");
     const [url, setUrl] = useState("");
@@ -32,6 +32,7 @@ const PhotoAdd=({ setCommentArea })=>{
                 throw new Error(`Request failed with status: ${response.status}`);
             }
             setCommentArea("");
+            setPhotos((prev)=>[...prev,newPhoto]);
         }).catch(error => {
             console.error(error);
             setCommentArea("Server error. try again later.")
