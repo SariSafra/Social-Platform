@@ -19,12 +19,12 @@ export default function Home() {
     if (currentUser === null) {
       navigate("/");
     }
-  }, [currentUser, navigate]);
+  }, [currentUser]);
 
   const logout = () => {
     navigate("/");
-    setCurrentUser(null);
     localStorage.clear();
+    setCurrentUser(null);
   };
 
   return (

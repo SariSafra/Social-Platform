@@ -6,12 +6,12 @@ import CommentUpdate from "./CommentUpdate";
 
 const CommentDisplay = ({ comment, comments, setComments }) => {
 
-  const userEmail = (JSON.parse(localStorage.getItem("currentUser"))).email;
   const [updatedName, setUpdatedName] = useState(comment.name);
   const [updatedBody, setUpdatedBody] = useState(comment.body);
   const [inUpdate, setInUpdate] = useState(false);
   const [commentArea, setCommentArea] = useState("");
-
+  const currentUser = (JSON.parse(localStorage.getItem("currentUser")));
+  const userEmail = currentUser ? currentUser.email : null;
   useEffect(() => {
     setUpdatedBody(comment.body);
     setUpdatedName(comment.name);
