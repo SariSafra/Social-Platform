@@ -1,124 +1,117 @@
-import { useState, useRef} from "react";
-import { Link} from "react-router-dom";
+import { useState } from "react";
+import { Link } from "react-router-dom";
 import ContinueRegistration from "./ContinueRegistration";
 
-const Register=()=>{
-  const usernameRef = useRef(null);
-  const passwordRef = useRef(null);
-  const confirmPasswordRef = useRef(null);
-  const [passwordError, setPasswordError] = useState('');
-  const [confirmPasswordError, setConfirmPasswordError] = useState('');
-  const [userNameError, setUserNameError] = useState('');
-  const [errorDisplay, setErrorDisplay] = useState('');
+const Register = () => {
+
+  const fields = {
+    username: '',
+    password: '',
+    confirmPassword: ''
+  }
+
+  const [userDetails, setUserDetails] = useState(fields);
+  const [errorDisplay, setErrorDisplay] = useState(fields);
+  const [globalError, setGlobalError] = useState('');
   const [continueRegistation, setContinueRegistation] = useState(false);
 
+  const isUsernameExist = (usernameValue) => {
+    fetch(`http://localhost:3000/users?username=${usernameValue}`)
+      .then(response => {
+        if (!response.ok) {
+          throw new Error(`Request failed with status: ${response.status}`);
+        }
+        return response.json();
+      })
+      .then(data => {
+        if (Object.keys(data).length === 0) {
+          setContinueRegistation(true);
+        }
+        else {
+          setGlobalError("Username already exists. Please choose a different username.")
+        }
+      })
+      .catch(error => {
+        console.error(error);
+        setGlobalError("Server error. try again later.")
+      });
+  }
 
-
-
-const PasswordValidation=(passwordValue, errorArea)=>{
-    const passwordRegex = /^[a-z]*[a-z]\.[a-z]+$/;
-    if (!passwordRegex.test(passwordValue)) {
-      errorArea('Password must contain at least 3 characters, including dot.');
-    } 
-    else {
-      errorArea('');
+  const isObjectEmpty = (obj) => {
+    for (const key in obj) {
+       if (obj[key] !== '' && obj[key] !== 0 && obj[key] !== "0") {
+        return false;
+      }
     }
-}
-
-const UserNameValidation=(userValue)=>{
-    const userNameRegex =/^[a-zA-Z0-9]+$/;
-    if (!userNameRegex.test(userValue)) {
-        setUserNameError('User name may contain only english letters or numbers');
-    } 
-    else {
-        setUserNameError('');
-    }
-}
-
-const handlePasswordChange=()=>{
-    setErrorDisplay("");
-    const passwordValue = passwordRef.current.value;
-    PasswordValidation(passwordValue, setPasswordError);
-}
-
-const handleConfirmPasswordChange=()=>{
-  setErrorDisplay("");
-  const passwordValue = confirmPasswordRef.current.value;
-  PasswordValidation(passwordValue, setConfirmPasswordError);
-}
-
-const handleUsernameChange=()=>
-{
-    setErrorDisplay("");
-    const usernameValue = usernameRef.current.value;
-    UserNameValidation(usernameValue);
-}
-
- const isUsernameExist=(usernameValue)=>{
-  fetch(`http://localhost:3000/users?username=${usernameValue}`)
-  .then(response => {
-   if (!response.ok) {
-     throw new Error(`Request failed with status: ${response.status}`);
-   }
-   return response.json();
- })
- .then(data => {
-   if (Object.keys(data).length === 0) {
-    setContinueRegistation(true);
-    } 
-    else {
-    setErrorDisplay("Username already exists. Please choose a different username.")
-   }
- })
- .catch(error => {
-   console.error(error);
-   setErrorDisplay("Server error. try again later.")      
- });
- }
+    return true;
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const usernameValue = usernameRef.current.value;
-    const passwordValue = passwordRef.current.value;
-    const confirmPasswordValue = confirmPasswordRef.current.value;
-   let isConfirmationSucceeded = true;
-    if(confirmPasswordValue!=passwordValue){
-      isConfirmationSucceeded = false;
-     setErrorDisplay("Password confirmation failed. try again.");
+    if (!isObjectEmpty(errorDisplay)) return; 
+    if (errorDisplay.confirmPassword != errorDisplay.password) {
+      setGlobalError("Password confirmation failed. try again.");
+      return;
     }
-    if(passwordError==""&&confirmPasswordError=="" && userNameError==""&& errorDisplay=="" && isConfirmationSucceeded==true){
-      isUsernameExist(usernameValue);}
+    isUsernameExist(userDetails.username);
   };
- 
-  return(<>
+
+  const isValidUsername = (inputString) => {
+    const regex = /^[a-zA-Z0-9]+$/;
+    return regex.test(inputString);
+  };
+
+  const isValidPassword = (inputString) => {
+    const regex = /^[a-z]*[a-z]\.[a-z]+$/;
+    return regex.test(inputString);
+  };
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setUserDetails((prevData) => ({ ...prevData, [name]: value }));
+    switch (name) {
+      case "username":
+        setErrorDisplay((prevData) => ({ ...prevData, [name]: !isValidUsername(value) ? "User name may contain only english letters or numbers":""}));
+        break;
+      case "password":  
+        setErrorDisplay((prevData) => ({ ...prevData, [name]: !isValidPassword(value) ? "Password must contain at least 3 characters, including dot." :""}));
+        break;
+       default: break;
+    }
+  };
+
+  return (<>
     {continueRegistation ? (
-       <ContinueRegistration username={usernameRef.current.value} password= {passwordRef.current.value} />
+      <ContinueRegistration username={userDetails.username} password={userDetails.password} />
     ) : (
-    <>
-    <h1>Register</h1>
-    <form onSubmit={handleSubmit}>
-      <div>
-        <label htmlFor="username">Username:</label>
-        <input type="text" id="username" ref={usernameRef} required onChange={handleUsernameChange} noValidate/>
-        {userNameError && <p className='commentArea'>{userNameError}</p>}
-      </div>
-      <div>
-        <label htmlFor="password">Password:</label>
-        <input type="password" id="password" ref={passwordRef} required onChange={handlePasswordChange} noValidate/>
-        {passwordError && <p className='commentArea'>{passwordError}</p>}
-      </div>
-      <div>
-        <label htmlFor="confirmPassword">Confirm Password:</label>
-        <input type="password" id="confirmPassword" ref={confirmPasswordRef} required onChange={handleConfirmPasswordChange} noValidate/>
-        {confirmPasswordError && <p className='commentArea'>{confirmPasswordError}</p>}
-      </div>
-      <button type="submit">Submit</button>
-    </form>
-     <Link to="/login">login</Link>
-     {errorDisplay && <p className='commentArea'>{errorDisplay}</p>}
-    </>
+      <>
+        <h1 className="title">Register</h1>
+        <form onSubmit={handleSubmit}>
+          <label>
+          Username:
+            <input type="text" name="username" value={userDetails.username} onChange={handleChange} required noValidate />
+          </label><br/>
+          <span className='commentArea'>{errorDisplay.username}</span><br/>
+
+           <label>
+           Password:
+            <input type="password" name="password" value={userDetails.password} onChange={handleChange} required noValidate />
+          </label><br/>
+         <span className='commentArea'>{errorDisplay.password}</span><br/>
+
+            <label>
+            Confirm Password:
+            <input type="password" name="confirmPassword" value={userDetails.confirmPassword} onChange={handleChange} required noValidate />
+          </label><br/>
+          <span className='commentArea'>{errorDisplay.confirmPassword}</span><br/>
+
+          <button className="addButton" type="submit">Continue registration</button>
+        </form>
+        <Link className="link" to="/login">login</Link>
+        {globalError && <p className='commentArea'>{globalError}</p>}
+      </>
     )}
-</>
+  </>
   )
- }
+}
 export default Register;

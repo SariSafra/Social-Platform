@@ -36,9 +36,9 @@ const Todos = () => {
     
     return (<>
         <h2 className="title">Todos</h2>
-        <TodoAdd setTodos={setTodos} todos={todos} setCommentArea={setCommentArea} />
-        <p className='commentArea'>{commentArea}</p>
+        <TodoAdd setTodos={setTodos} todos={todos} setCommentArea={setCommentArea} /><br/>
         <TodosDisplay todos={todos} setTodos={setTodos}/>
+        <p className='commentArea'>{commentArea}</p>
     </>)
 }
 export default Todos;
