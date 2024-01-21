@@ -37,29 +37,10 @@ const Photos = () => {
 
     }, [])
     useEffect(() => {
-        //getMaxPhotoId();
         requestPostsPhotos();
     }, [hasMore]);
 
 
-    // const getMaxPhotoId=()=>{
-    //      fetch(`http://localhost:3000/photos?albumId=${albumId}&_sort=id&_order=desc&_limit=1`)
-    //         .then(response => {
-    //             if (!response.ok) {
-    //                 throw new Error(`Request failed with status: ${response.status}`);
-    //             }
-    //             return response.json();
-    //         })
-    //         .then(data => {
-    //             const maxPhoto = data[0];
-    //             setLastFetchedPhotoId(maxPhoto ? maxPhoto.id : null);  
-    //         })
-    //         .catch(error => {
-    //             console.error(error);
-    //             setCommentArea('Error fetching max photo ID. Try again later.');
-    //         });
-
-    // }
     const requestPostsPhotos = async () => {
         try {
             const response = await fetch(`http://localhost:3000/photos?albumId=${albumId}&_start=${start}&_limit=${limit}`);
