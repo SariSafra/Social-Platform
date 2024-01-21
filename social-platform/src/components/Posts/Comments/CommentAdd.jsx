@@ -6,8 +6,8 @@ const CommentAdd=({ comments, setComments, postId,setCommentArea })=>{
     const [inAddition, setInAddition] = useState(false);
     const [newName, setNewName] = useState("");
     const [newBody, setNewBody] = useState("");
-    const userEmail = (JSON.parse(localStorage.getItem("currentUser"))).email;
-
+    const currentUser = (JSON.parse(localStorage.getItem("currentUser")));
+    const userEmail = currentUser ? currentUser.email : null;
      useEffect(() => {
         setNewBody("");
         setNewName("");
