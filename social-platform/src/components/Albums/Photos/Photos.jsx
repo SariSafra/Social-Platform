@@ -77,8 +77,8 @@ const Photos = () => {
     return (
         <div>
             <h2 className="title">Photos of Album number {albumId}</h2>
-            <p style={{ color: 'red' }}>{commentArea}</p>
             <PhotosAdd setCommentArea={setCommentArea} setPhotos={setPhotos} />
+            <p className='commentArea'>{commentArea}</p>
             <InfiniteScroll
                 dataLength={photos.length}
                 next={requestPostsPhotos}

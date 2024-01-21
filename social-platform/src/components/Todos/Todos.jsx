@@ -37,7 +37,7 @@ const Todos = () => {
     return (<>
         <h2 className="title">Todos</h2>
         <TodoAdd setTodos={setTodos} todos={todos} setCommentArea={setCommentArea} />
-        <p style={{ color: 'red' }}>{commentArea}</p>
+        <p className='commentArea'>{commentArea}</p>
         <TodosDisplay todos={todos} setTodos={setTodos}/>
     </>)
 }

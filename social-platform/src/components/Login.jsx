@@ -57,7 +57,7 @@ const isUserExist=(usernameValue, passwordValue)=>{
       <button type="submit">Submit</button>
     </form>
      <Link to="/register">registration</Link>
-     {errorDisplay && <p style={{ color: 'red' }}>{errorDisplay}</p>}
+     {errorDisplay && <p className='commentArea'>{errorDisplay}</p>}
       </>
     )
 }

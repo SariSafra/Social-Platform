@@ -100,22 +100,22 @@ const handleUsernameChange=()=>
       <div>
         <label htmlFor="username">Username:</label>
         <input type="text" id="username" ref={usernameRef} required onChange={handleUsernameChange} noValidate/>
-        {userNameError && <p style={{ color: 'red' }}>{userNameError}</p>}
+        {userNameError && <p className='commentArea'>{userNameError}</p>}
       </div>
       <div>
         <label htmlFor="password">Password:</label>
         <input type="password" id="password" ref={passwordRef} required onChange={handlePasswordChange} noValidate/>
-        {passwordError && <p style={{ color: 'red' }}>{passwordError}</p>}
+        {passwordError && <p className='commentArea'>{passwordError}</p>}
       </div>
       <div>
         <label htmlFor="confirmPassword">Confirm Password:</label>
         <input type="password" id="confirmPassword" ref={confirmPasswordRef} required onChange={handleConfirmPasswordChange} noValidate/>
-        {confirmPasswordError && <p style={{ color: 'red' }}>{confirmPasswordError}</p>}
+        {confirmPasswordError && <p className='commentArea'>{confirmPasswordError}</p>}
       </div>
       <button type="submit">Submit</button>
     </form>
      <Link to="/login">login</Link>
-     {errorDisplay && <p style={{ color: 'red' }}>{errorDisplay}</p>}
+     {errorDisplay && <p className='commentArea'>{errorDisplay}</p>}
     </>
     )}
 </>

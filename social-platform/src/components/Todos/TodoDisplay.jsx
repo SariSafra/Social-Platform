@@ -11,7 +11,7 @@ const TodoDisplay = ({ todo, todos, setTodos }) => {
         {displayObject(todo)}
         <TodoUpdate setTodos={setTodos} todos={todos} setCommentArea={setCommentArea} todoToUpdate={todo} />
         <TodoRemove setTodos={setTodos} todos={todos} setCommentArea={setCommentArea} todo={todo} />
-        {<p style={{ color: 'red' }}>{commentArea}</p>}
+        {<p className='commentArea'>{commentArea}</p>}
     </>)
 }
 export default TodoDisplay;

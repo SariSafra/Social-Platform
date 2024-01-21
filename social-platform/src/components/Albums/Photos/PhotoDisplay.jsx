@@ -27,7 +27,7 @@ const PhotoDisplay = ({ photo, photos, setPhotos }) => {
       <PhotoRemove photo={photo} setCommentArea={setCommentArea} setPhotos={setPhotos} photos={photos} />
       <CommentUpdate inUpdate={inUpdate} setInUpdate={setInUpdate} photoToUpdate={photo} setCommentArea={setCommentArea}
         photos={photos} setPhotos={setPhotos} updatedTitle={updatedTitle} />
-      <p style={{ color: 'red' }}>{commentArea}</p>
+      <p className="commentArea">{commentArea}</p>
     </>
   );
 };

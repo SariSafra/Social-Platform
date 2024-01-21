@@ -96,7 +96,7 @@ const Posts = () => {
          <h2 className="title">Posts</h2>
         <PostAdd setPosts={setPosts} posts={posts} setCommentArea={setCommentArea}/><br/>
         <PostsDisplay setPosts={setPosts} posts={posts} />
-        <p style={{ color: 'red' }}>{commentArea}</p>
+        <p className='commentArea'>{commentArea}</p>
     </>)
 }
 export default Posts;

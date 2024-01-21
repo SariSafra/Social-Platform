@@ -1,5 +1,5 @@
-import { useState,  useEffect } from "react";
-import {  useNavigate} from "react-router-dom";
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { runId } from "./Tools";
 const ContinueRegistration = ({ username, password }) => {
 
@@ -113,7 +113,7 @@ const ContinueRegistration = ({ username, password }) => {
     return true;
   };
 
-  
+
   const postRequest = () => {
     fetch('http://localhost:3000/users', {
       method: 'POST',
@@ -151,63 +151,63 @@ const ContinueRegistration = ({ username, password }) => {
         Name:
         <input type="text" name="name" value={userDetails.name} onChange={handleChange} required noValidate />
       </label>
-      {<p style={{ color: 'red' }}>{errorDisplay.name}</p>}<br />
+      {<p className='commentArea'>{errorDisplay.name}</p>}<br />
 
       <label>
         Email:
         <input type="email" name="email" value={userDetails.email} onChange={handleChange} required noValidate />
       </label>
-      {<p style={{ color: 'red' }}>{errorDisplay.email}</p>}<br />
+      {<p className='commentArea'>{errorDisplay.email}</p>}<br />
 
       <label>
         Street:
         <input type="text" name="address.street" value={userDetails.address.street} onChange={handleChange} required noValidate />
       </label>
-      {<p style={{ color: 'red' }}>{errorDisplay.address.street}</p>}<br />
+      {<p className='commentArea'>{errorDisplay.address.street}</p>}<br />
 
       <label>
         Suite:
         <input type="text" name="address.suite" value={userDetails.address.suite} onChange={handleChange} required noValidate />
       </label>
-      {<p style={{ color: 'red' }}>{errorDisplay.address.suite}</p>}<br />
+      {<p className='commentArea'>{errorDisplay.address.suite}</p>}<br />
 
       <label>
         City:
         <input type="text" name="address.city" value={userDetails.address.city} onChange={handleChange} required noValidate />
       </label>
-      {<p style={{ color: 'red' }}>{errorDisplay.address.city}</p>}<br />
+      {<p className='commentArea'>{errorDisplay.address.city}</p>}<br />
       <label>
         Zipcode:
         <input type="text" name="address.zipcode" value={userDetails.address.zipcode} onChange={handleChange} required noValidate />
       </label>
-      {<p style={{ color: 'red' }}>{errorDisplay.address.zipcode}</p>}<br />
+      {<p className='commentArea'>{errorDisplay.address.zipcode}</p>}<br />
 
       <label>
         Phone:
         <input type="text" name="phone" value={userDetails.phone} onChange={handleChange} required noValidate />
       </label>
-      {<p style={{ color: 'red' }}>{errorDisplay.phone}</p>}<br />
+      {<p className='commentArea'>{errorDisplay.phone}</p>}<br />
 
       <label>
         Company Name:
         <input type="text" name="company.name" value={userDetails.company.name} onChange={handleChange} required noValidate />
       </label>
-      {<p style={{ color: 'red' }}>{errorDisplay.company.name}</p>}<br />
+      {<p className='commentArea'>{errorDisplay.company.name}</p>}<br />
 
       <label>
         Catchphrase:
         <input type="text" name="company.catchPhrase" value={userDetails.company.catchPhrase} onChange={handleChange} required noValidate />
       </label>
-      {<p style={{ color: 'red' }}>{errorDisplay.company.catchPhrase}</p>}<br />
+      {<p className='commentArea'>{errorDisplay.company.catchPhrase}</p>}<br />
 
       <label>
         BS:
         <input type="text" name="company.bs" value={userDetails.company.bs} onChange={handleChange} required noValidate />
       </label>
-      {<p style={{ color: 'red' }}>{errorDisplay.company.bs}</p>}<br />
+      {<p className='commentArea'>{errorDisplay.company.bs}</p>}<br />
 
       <button type="submit">Submit</button>
-      {<p style={{ color: 'red' }}>{globalError}</p>}<br />
+      {<p className='commentArea'>{globalError}</p>}<br />
     </form>
 
   );

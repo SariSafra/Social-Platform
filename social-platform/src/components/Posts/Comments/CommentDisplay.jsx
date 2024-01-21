@@ -35,7 +35,7 @@ const CommentDisplay = ({ comment, comments, setComments }) => {
             comments={comments} setComments={setComments} updatedName={updatedName} updatedBody={updatedBody} />
         </>}
     </ul>
-    <p style={{ color: 'red' }}>{commentArea}</p>
+    <p className='commentArea'>{commentArea}</p>
   </>)
 }
 export default CommentDisplay;

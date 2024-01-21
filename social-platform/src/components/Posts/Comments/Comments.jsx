@@ -45,7 +45,7 @@ const Comments = ({postId}) => {
                 </li>
             ))}
       </ul>
-        <p style={{ color: 'red' }}>{commentArea}</p>
+        <p className='commentArea'>{commentArea}</p>
     </div>)
 }
 export default Comments;

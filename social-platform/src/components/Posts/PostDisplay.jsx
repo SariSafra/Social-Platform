@@ -44,7 +44,7 @@ const PostDisplay = ({ postToDisplay, setPosts, posts, filterOption }) => {
             {showMore && <button className="actionButton" onClick={() => setShowComments((prev) => !prev)}>{showComments ? 'Hide comments' : 'Show Comments'}</button>}
             {showComments && showMore && <Comments postId={postToDisplay.id} />}
         </div>
-        {<p style={{ color: 'red' }}>{commentArea}</p>}
+        {<p className='commentArea'>{commentArea}</p>}
     </>
     );
 };

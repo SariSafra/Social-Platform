@@ -37,7 +37,7 @@ const Albums=()=>{
         <h2 className="title">Albums</h2>
         <AlbumAdd albums={albums} setAlbums={setAlbums} setCommentArea={setCommentArea} /><br/>
         <AlbumsDisplay albums={albums} setAlbums={setAlbums}/>
-       <p style={{ color: 'red' }}>{commentArea}</p>
+       <p className='commentArea'>{commentArea}</p>
     </>  )
 }
 export default Albums;
