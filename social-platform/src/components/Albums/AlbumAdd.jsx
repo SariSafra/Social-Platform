@@ -41,7 +41,7 @@ const AlbumAdd=({setAlbums, albums, setCommentArea})=>{
             <form onSubmit={AddAlbum}>
                 <label htmlFor="title">title</label>
                 <input type="text" id="title" value={newTitle} onChange={(event) => { setNewTitle(event.target.value) }} required />
-                <button type="submit">Add</button>
+                <button className="addButton" type="submit">Add</button>
             </form>
         )}
     </>  )

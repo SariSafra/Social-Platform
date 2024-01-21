@@ -20,7 +20,7 @@ const PhotoRemove=({ photo, setCommentArea, setPhotos, photos })=>{
     }
 
     return( <>
-        <button onClick={() =>removePhoto() }>🗑️</button>
+        <button className="actionButton" onClick={() =>removePhoto() }>🗑️</button>
     </>)
 }
 export default PhotoRemove;

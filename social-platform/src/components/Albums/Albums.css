@@ -1,0 +1,49 @@
+.showAlbum{
+    background-color: rgb(249, 249, 250);
+    padding: 20px; 
+    box-sizing: border-box;
+    margin: 20px;
+    width: 270px;
+    height: 170px;
+    border-radius: 20px;
+    border-top: 3px solid rgb(115, 185, 197);
+    border-left: 3px solid rgb(115, 185, 197);
+}
+
+.showAllAlbums{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.showPhoto{
+    background-color: rgb(249, 249, 250);
+    padding: 15px; 
+    box-sizing: border-box;
+    margin: 20px;
+    width: 350px;
+    height: 370px;
+    border-radius: 15px; 
+}
+
+.showAllPhotos{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.linkStyle{
+    list-Style: none;
+    padding: 1px;
+    color: rgb(95, 94, 94);
+}
+  
+.linkContent{
+    align-Items: center;
+    text-Decoration: none;
+    color: rgb(86, 85, 85);
+    padding: 10px;
+    margin: 5px;
+}
+
+.linkContent:hover{
+    color: rgb(115, 185, 197);
+}

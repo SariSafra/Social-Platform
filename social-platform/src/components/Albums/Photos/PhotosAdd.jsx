@@ -40,7 +40,7 @@ const PhotoAdd=({ setCommentArea,setPhotos })=>{
     }
 
     return( <>
-        <button onClick={() => {setInAddition((prev)=>!prev)}}>New Photo</button>
+        <button className="addButton" onClick={() => {setInAddition((prev)=>!prev)}}>New Photo</button>
         {inAddition && (
             <form onSubmit={AddPhoto}>
                 <label htmlFor="title">Title:</label>
@@ -49,7 +49,7 @@ const PhotoAdd=({ setCommentArea,setPhotos })=>{
                 <input type="url" id="url" value={url} onChange={(event) => { setUrl(event.target.value) }} required />
                 <label htmlFor="thumbnailUrl">Thumbnail Url:</label>
                 <input type="url" id="thumbnailUrl" value={thumbnailUrl} onChange={(event) => { setThumbnailUrl(event.target.value) }} required />
-                <button type="submit">Add</button>
+                <button className="actionButton" type="submit">Add</button>
             </form>
         )}
     </>  )

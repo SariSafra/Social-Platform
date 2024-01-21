@@ -28,8 +28,8 @@ const PhotoUpdate = ({ setInUpdate, photoToUpdate, setCommentArea, setPhotos, ph
     }
 
     return (<>
-        <button onClick={() => setInUpdate(true)}>🖊️</button>
-        {inUpdate && <button onClick={() => updatePhoto()}>✔️</button>}
+        <button className="actionButton" onClick={() => setInUpdate(true)}>🖊️</button>
+        {inUpdate && <button className="actionButton" onClick={() => updatePhoto()}>✔️</button>}
     </>)
 }
 export default PhotoUpdate;

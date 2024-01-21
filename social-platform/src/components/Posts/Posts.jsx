@@ -65,7 +65,7 @@ const Posts = () => {
         <PostsDisplay setPosts={setPersonalPosts} posts={personalPosts} personalOrOtherPosts={personalOrOtherPosts}/>
         <p style={{ color: 'red' }}>{commentArea}</p></>
         :
-        <><button onClick={()=>{setPersonalOrOtherPosts("personal")}}>My Posts</button>
+        <><button onClick={()=>{setPersonalOrOtherPosts("personal")}}>My Posts</button><br/><br/>
         <PostsDisplay setPosts={setOthersPosts} posts={othersPosts} personalOrOtherPosts={personalOrOtherPosts}/>
         <p style={{ color: 'red' }}>{commentArea}</p></>
         }

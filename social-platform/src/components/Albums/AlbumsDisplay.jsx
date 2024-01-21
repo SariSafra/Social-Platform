@@ -1,6 +1,7 @@
 import { useState, useEffect} from "react";
 import {  Route} from "react-router-dom";
 import AlbumDisplay from "./AlbumDisplay";
+import "./Albums.css"
 
 const AlbumsDisplay=({albums})=>{
 const [selectedId, setSelectedId] = useState("");
@@ -39,10 +40,10 @@ const isFiltered = (album) => {
                 <input type="text" id="titleInput" value={selectedTitle} onChange={(event)=>{setSelectedTitle(event.target.value)}} /></>
         )}
         <div>
-          <ul className="showAllItems">
+          <ul className="showAllAlbums">
             {albums.map((album) => (
                 <li key={album.id} className="list">
-                    {isFiltered(album) && <div className="showItem"><AlbumDisplay album={album}/></div>}
+                    {isFiltered(album) && <div className="showAlbum"><AlbumDisplay album={album}/></div>}
                 </li>
             ))}
     </ul>
