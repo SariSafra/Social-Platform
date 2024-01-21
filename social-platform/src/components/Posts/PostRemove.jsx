@@ -1,7 +1,7 @@
 import { Route} from "react-router-dom";
-import {react } from "react";
+import {react, useState } from "react";
 
-const PostRemove=({postToRemove,setCommentArea,setPosts,posts})=>{
+const PostRemove=({postToRemove,setPosts,posts,setCommentArea})=>{
     const idToDelete = postToRemove.id;
 
     const removePostAndPostsComments=()=>{

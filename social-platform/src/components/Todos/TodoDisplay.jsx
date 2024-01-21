@@ -4,7 +4,7 @@ import { displayObject } from '../Tools'
 import TodoRemove from "./TodoRemove";
 import TodoUpdate from "./TodoUpdate";
 
-const TodoDisplay = ({ todo, todos, setTodos, index }) => {
+const TodoDisplay = ({ todo, todos, setTodos }) => {
     const [commentArea, setCommentArea] = useState("");
 
     return (<>

@@ -1,12 +1,12 @@
-import { useParams} from "react-router-dom";
-import { useState,  useEffect } from "react";
+import { useParams } from "react-router-dom";
+import { useState, useEffect } from "react";
 import { runId } from "../Tools";
 
-const TodoAdd=({todos,setTodos,setCommentArea})=>{
+const TodoAdd = ({ todos, setTodos, setCommentArea }) => {
     const [inAddition, setInAddition] = useState(false);
     const [newTitle, setNewTitle] = useState("");
     const { userId } = useParams();
-   
+
     useEffect(() => {
         setNewTitle("");
     }, [inAddition]);
@@ -35,8 +35,8 @@ const TodoAdd=({todos,setTodos,setCommentArea})=>{
         })
     }
 
-    return( <>
-        <button className="addButton" onClick={() => {setInAddition((prev)=>!prev)}}>New todo</button>
+    return (<>
+        <button className="addButton" onClick={() => { setInAddition((prev) => !prev) }}>New todo</button>
         {inAddition && (
             <form onSubmit={AddTodo}>
                 <label htmlFor="title">Title:</label>
@@ -44,6 +44,6 @@ const TodoAdd=({todos,setTodos,setCommentArea})=>{
                 <button className="actionButton" type="submit">Add</button>
             </form>
         )}
-    </>  )
+    </>)
 }
 export default TodoAdd;

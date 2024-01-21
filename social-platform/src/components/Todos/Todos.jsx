@@ -5,7 +5,6 @@ import TodosDisplay from "./TodosDisplay";
 
 const Todos = () => {
     const { userId } = useParams();
-    const navigate = useNavigate();
     const [todos, setTodos] = useState([]);
     const [commentArea, setCommentArea] = useState("")
 

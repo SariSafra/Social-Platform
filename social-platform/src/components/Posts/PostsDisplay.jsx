@@ -1,14 +1,15 @@
-import {  Route} from "react-router-dom";
-import { useState,useEffect } from "react";
+import { useParams } from "react-router-dom";
+import { useState, useEffect } from "react";
 import PostDisplay from "./PostDisplay";
 
-const PostsDisplay = ({ posts, setPosts, personalOrOtherPosts }) => {
+const PostsDisplay = ({ posts, setPosts }) => {
+    const { userId } = useParams();
+
     const [selectedUserId, setSelectedUserId] = useState("");
     const [selectedId, setSelectedId] = useState("");
     const [selectedTitle, setSelectedTitle] = useState("");
     const [selectedBody, setSelectedBody] = useState("");
-    const [filterOption, setFilterOption] = useState("All");
-    const [commentArea, setCommentArea] = useState("")
+    const [filterOption, setFilterOption] = useState("My Posts");
 
     useEffect(() => {
         setSelectedUserId("");
@@ -19,6 +20,8 @@ const PostsDisplay = ({ posts, setPosts, personalOrOtherPosts }) => {
 
     const isFiltered = (post) => {
         switch (filterOption) {
+            case "My Posts":
+                return post.userId === userId;
             case "All":
                 return true;
             case "User Id":
@@ -29,14 +32,17 @@ const PostsDisplay = ({ posts, setPosts, personalOrOtherPosts }) => {
                 return post.title.includes(selectedTitle);
             case "Body":
                 return post.body.includes(selectedBody);
+            default:
+                return false;
         }
     }
 
     return (<>
         <label className="selectorLabel" htmlFor="filterSelector">Choose a filter option: </label>
         <select className="selector" id="filterSelector" value={filterOption} onChange={(event) => { setFilterOption(event.target.value) }}>
+            <option value="My Posts">My Posts</option>
             <option value="All">All</option>
-            {personalOrOtherPosts === "other" && <option value="User Id">User Id</option>}
+            <option value="User Id">User Id</option>
             <option value="Id">Id</option>
             <option value="Title">Title</option>
             <option value="Body">Body</option>
@@ -57,11 +63,10 @@ const PostsDisplay = ({ posts, setPosts, personalOrOtherPosts }) => {
             <><label htmlFor="bodyInput">Enter Body:</label>
                 <input type="text" id="bodyInput" value={selectedBody} onChange={(event) => { setSelectedBody(event.target.value) }} /></>
         )}
-        <p style={{ color: 'red' }}>{commentArea}</p>
         <ul className="showAllItems">
             {posts.map((post) => (
                 <li key={post.id} className="list">
-                    {isFiltered(post) && <div className="showItem"><PostDisplay postToDisplay={post} setPosts={setPosts} posts={posts} setCommentArea={setCommentArea} personalOrOtherPosts={personalOrOtherPosts}/></div>}
+                    {isFiltered(post) && <div className="showItem"><PostDisplay postToDisplay={post} setPosts={setPosts} posts={posts} filterOption={filterOption}/></div>}
                 </li>
             ))}
         </ul>

@@ -5,10 +5,10 @@ import TodoDisplay from "./TodoDisplay";
 const TodosDisplay=({ todos, setTodos })=>{
 
     const [sortedOption, setSortedOption] = useState("Serial");
+    const [sortedTodos, setSortedTodos] = useState(todos);
     const [filterOption, setFilterOption] = useState("All");
     const [selectedId, setSelectedId] = useState("");
     const [selectedTitle, setSelectedTitle] = useState("");
-    
 
     useEffect(() => {
         setSelectedId("");
@@ -16,13 +16,12 @@ const TodosDisplay=({ todos, setTodos })=>{
     }, [filterOption]);
 
     useEffect(() => {
-        const temp = [...todos];
-        temp.sort(sortedOptions);
-        setTodos(temp);
-    }, [sortedOption]);
+        const tempList = [...todos];
+        tempList.sort(sortedOptions);
+        setSortedTodos(tempList);
+    }, [sortedOption, todos]);
 
-
-    const sortedOptions=(todo1, todo2)=> {
+    const sortedOptions = (todo1, todo2)=> {
         switch (sortedOption) {
             case "Alphabetical":
                 return todo1.title.localeCompare(todo2.title);
@@ -79,9 +78,9 @@ const TodosDisplay=({ todos, setTodos })=>{
                 <input type="text" id="titleInput" value={selectedTitle} onChange={(event)=>{setSelectedTitle(event.target.value)}} /></>
         )}
         <ul className="showAllItems">
-            {todos.map((todo,index) => (
+            {sortedTodos.map((todo,index) => (
                 <li key={index} className="list">
-                    {isFiltered(todo) && <div className="showItem"><TodoDisplay todo={todo} todos={todos} setTodos={setTodos} index={index}/></div>}
+                    {isFiltered(todo) && <div className="showItem"><TodoDisplay todo={todo} todos={todos} setTodos={setTodos}/></div>}
                 </li>
             ))}
         </ul>

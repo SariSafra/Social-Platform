@@ -1,7 +1,7 @@
 import {Route} from "react-router-dom";
-import { react} from "react";
+import { react, useState} from "react";
 
-const PostUpdate = ({postToUpdate,setCommentArea,setPosts,posts,updatedTitle,updatedBody,setInUpdate,inUpdate}) => {
+const PostUpdate = ({postToUpdate,setPosts,posts,updatedTitle,updatedBody,setInUpdate,inUpdate,setCommentArea}) => {
 
     const updatePost = () => {
         setInUpdate(false);
