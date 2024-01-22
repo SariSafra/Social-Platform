@@ -25,9 +25,6 @@ const Posts = () => {
                     setCommentArea("There is no posts.");
                 } else {
                     setPosts(data);
-                    if (!posts.find(post => post.userId === userId)) {
-                        setCommentArea("You have no posts.");
-                    }
                 }
             })
             .catch(error => {

@@ -36,11 +36,11 @@ const ContinueRegistration = ({ username, password }) => {
     getNewId();
   }, []);
 
-  const getNewId = async ()=>{
+  const getNewId = async () => {
     const newId = await runId("nextUserId");
     setUserDetails({ ...userDetails, "id": newId, "username": username, "website": password });
   }
-
+  
   useEffect(() => {
     setGlobalError("");
   }, [userDetails])
@@ -163,7 +163,7 @@ const ContinueRegistration = ({ username, password }) => {
         <input type="text" name="phone" value={userDetails.phone} onChange={handleChange} required noValidate />
       </label>
       {<p className='commentArea'>{errorDisplay.phone}</p>}
-      
+
       <h4>Address:</h4>
       <label>
         Street:
