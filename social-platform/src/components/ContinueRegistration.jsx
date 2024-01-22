@@ -33,13 +33,12 @@ const ContinueRegistration = ({ username, password }) => {
   const navigate = useNavigate();
 
   useEffect(() => {
+    const getNewId = async () => {
+      const newId = await runId("nextUserId");
+      setUserDetails({ ...userDetails, "id": newId, "username": username, "website": password });
+    }
     getNewId();
   }, []);
-
-  const getNewId = async () => {
-    const newId = await runId("nextUserId");
-    setUserDetails({ ...userDetails, "id": newId, "username": username, "website": password });
-  }
   
   useEffect(() => {
     setGlobalError("");
