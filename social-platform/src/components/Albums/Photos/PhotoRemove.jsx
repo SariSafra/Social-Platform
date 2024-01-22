@@ -1,7 +1,6 @@
-import react from "react";
 
-const PhotoRemove=({ photo, setCommentArea, setPhotos, photos })=>{
-    const removePhoto = ()=> {
+const PhotoRemove = ({ photo, setCommentArea, setPhotos, photos }) => {
+    const removePhoto = () => {
         const idToDelete = photo.id;
         fetch(`http://localhost:3000/photos/${idToDelete}`, {
             method: 'DELETE',
@@ -19,8 +18,8 @@ const PhotoRemove=({ photo, setCommentArea, setPhotos, photos })=>{
         });
     }
 
-    return( <>
-        <button className="actionButton" onClick={() =>removePhoto() }>🗑️</button>
+    return (<>
+        <button className="actionButton" onClick={() => removePhoto()}>🗑️</button>
     </>)
 }
 export default PhotoRemove;

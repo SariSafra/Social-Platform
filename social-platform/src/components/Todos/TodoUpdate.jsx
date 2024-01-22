@@ -46,7 +46,7 @@ const TodoUpdate = ({ todos, setTodos, setCommentArea, todoToUpdate }) => {
         {inUpdate && (
             <form onSubmit={updateTodo}>
                 <label htmlFor="title">Title:</label>
-                <input type="text" id="title" value={updatedTitle} onChange={(event) => { setUpdatedTitle(event.target.value) }} style={{width: "350px"}} required />
+                <input type="text" id="title" value={updatedTitle} onChange={(event) => { setUpdatedTitle(event.target.value) }} style={{ width: "350px" }} required />
                 <button className="actionButton" type="submit">✔️</button>
             </form>
         )}

@@ -1,8 +1,6 @@
-import { Route } from "react-router-dom";
 import { useState, useEffect } from "react";
 import CommentRemove from "./CommentRemove";
 import CommentUpdate from "./CommentUpdate";
-
 
 const CommentDisplay = ({ comment, comments, setComments }) => {
 

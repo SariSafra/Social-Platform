@@ -1,11 +1,9 @@
-import {Route} from "react-router-dom";
-import { react, useState} from "react";
 
-const PostUpdate = ({postToUpdate,setPosts,posts,updatedTitle,updatedBody,setInUpdate,inUpdate,setCommentArea}) => {
+const PostUpdate = ({ postToUpdate, setPosts, posts, updatedTitle, updatedBody, setInUpdate, inUpdate, setCommentArea }) => {
 
     const updatePost = () => {
         setInUpdate(false);
-        if (postToUpdate.title === updatedTitle && postToUpdate.body===updatedBody)
+        if (postToUpdate.title === updatedTitle && postToUpdate.body === updatedBody)
             return;
         const updatedFields = { title: updatedTitle, body: updatedBody };
         fetch(`http://localhost:3000/posts/${postToUpdate.id}`, {
@@ -19,7 +17,7 @@ const PostUpdate = ({postToUpdate,setPosts,posts,updatedTitle,updatedBody,setInU
                 if (!response.ok) {
                     throw new Error(`Request failed with status: ${response.status}`);
                 }
-                const updatedPost = { ...postToUpdate, ["title"]: updatedTitle, ["body"]: updatedBody};
+                const updatedPost = { ...postToUpdate, ["title"]: updatedTitle, ["body"]: updatedBody };
                 setPosts(posts.map(post => post.id === postToUpdate.id ? updatedPost : post));
                 setCommentArea("");
             }).catch(error => {
@@ -29,8 +27,8 @@ const PostUpdate = ({postToUpdate,setPosts,posts,updatedTitle,updatedBody,setInU
     }
 
     return (<>
-       <button className="actionButton" onClick={() => setInUpdate(true)}>🖊️</button>
-       {inUpdate && <button className="actionButton" onClick={() =>updatePost() }>✔️</button>}
+        <button className="actionButton" onClick={() => setInUpdate(true)}>🖊️</button>
+        {inUpdate && <button className="actionButton" onClick={() => updatePost()}>✔️</button>}
     </>)
 }
 export default PostUpdate;

@@ -1,10 +1,7 @@
-import {  Route} from "react-router-dom";
-import { react } from "react";
 
+const CommentRemove = ({ commentToRemove, setCommentArea, setComments, comments }) => {
 
-const CommentRemove=({commentToRemove,setCommentArea,setComments,comments})=>{
-
-    const removeComment = ()=> {
+    const removeComment = () => {
         const idToDelete = commentToRemove.id;
         fetch(`http://localhost:3000/comments/${idToDelete}`, {
             method: 'DELETE',
@@ -22,8 +19,8 @@ const CommentRemove=({commentToRemove,setCommentArea,setComments,comments})=>{
         });
     }
 
-    return( <>
-        <button className="actionButton" onClick={() =>removeComment() }>🗑️</button>
+    return (<>
+        <button className="actionButton" onClick={() => removeComment()}>🗑️</button>
     </>)
 }
 export default CommentRemove;

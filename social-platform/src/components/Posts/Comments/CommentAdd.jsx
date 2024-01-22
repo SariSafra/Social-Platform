@@ -1,14 +1,14 @@
-import { Route} from "react-router-dom";
-import { useState, useEffect} from "react";
+import { useState, useEffect } from "react";
 import { runId } from '../../Tools';
 
-const CommentAdd=({ comments, setComments, postId,setCommentArea })=>{
+const CommentAdd = ({ comments, setComments, postId, setCommentArea }) => {
     const [inAddition, setInAddition] = useState(false);
     const [newName, setNewName] = useState("");
     const [newBody, setNewBody] = useState("");
     const currentUser = (JSON.parse(localStorage.getItem("currentUser")));
     const userEmail = currentUser ? currentUser.email : null;
-     useEffect(() => {
+    
+    useEffect(() => {
         setNewBody("");
         setNewName("");
         setCommentArea("");
@@ -18,7 +18,7 @@ const CommentAdd=({ comments, setComments, postId,setCommentArea })=>{
         e.preventDefault();
         setInAddition(false);
         const newId = await runId("nextCommentId");
-        const newComment = { postId: postId, id: newId, name: newName, email: userEmail, body: newBody}
+        const newComment = { postId: postId, id: newId, name: newName, email: userEmail, body: newBody }
         fetch('http://localhost:3000/comments', {
             method: 'POST',
             headers: {
@@ -37,8 +37,8 @@ const CommentAdd=({ comments, setComments, postId,setCommentArea })=>{
         })
     }
 
-    return( <>
-        <button className="addButton" onClick={() => {setInAddition((prev)=>!prev)}}>New Comment</button>
+    return (<>
+        <button className="addButton" onClick={() => { setInAddition((prev) => !prev) }}>New Comment</button>
         {inAddition && (
             <form onSubmit={AddPost}>
                 <label htmlFor="name">Name:</label>
@@ -48,6 +48,6 @@ const CommentAdd=({ comments, setComments, postId,setCommentArea })=>{
                 <button className="actionButton" type="submit">Add</button>
             </form>
         )}
-    </>  )
+    </>)
 }
 export default CommentAdd;

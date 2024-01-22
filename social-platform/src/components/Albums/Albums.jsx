@@ -1,10 +1,9 @@
-import {useParams} from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import AlbumsDisplay from "./AlbumsDisplay";
 import AlbumAdd from "./AlbumAdd";
 
-
-const Albums=()=>{
+const Albums = () => {
     const { userId } = useParams();
     const [albums, setAlbums] = useState([]);
     const [commentArea, setCommentArea] = useState("")
@@ -33,11 +32,11 @@ const Albums=()=>{
                 setCommentArea("Server error. try again later.")
             });
     }
-    return( <>
+    return (<>
         <h2 className="title">Albums</h2>
-        <AlbumAdd albums={albums} setAlbums={setAlbums} setCommentArea={setCommentArea} /><br/>
-        <AlbumsDisplay albums={albums} setAlbums={setAlbums}/>
-       <p className='commentArea'>{commentArea}</p>
-    </>  )
+        <AlbumAdd albums={albums} setAlbums={setAlbums} setCommentArea={setCommentArea} /><br />
+        <AlbumsDisplay albums={albums} setAlbums={setAlbums} />
+        <p className='commentArea'>{commentArea}</p>
+    </>)
 }
 export default Albums;

@@ -39,7 +39,7 @@ const ContinueRegistration = ({ username, password }) => {
     }
     getNewId();
   }, []);
-  
+
   useEffect(() => {
     setGlobalError("");
   }, [userDetails])

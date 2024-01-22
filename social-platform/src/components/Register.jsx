@@ -39,7 +39,7 @@ const Register = () => {
 
   const isObjectEmpty = (obj) => {
     for (const key in obj) {
-       if (obj[key] !== '' && obj[key] !== 0 && obj[key] !== "0") {
+      if (obj[key] !== '' && obj[key] !== 0 && obj[key] !== "0") {
         return false;
       }
     }
@@ -48,7 +48,7 @@ const Register = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!isObjectEmpty(errorDisplay)) return; 
+    if (!isObjectEmpty(errorDisplay)) return;
     if (errorDisplay.confirmPassword != errorDisplay.password) {
       setGlobalError("Password confirmation failed. try again.");
       return;
@@ -71,12 +71,12 @@ const Register = () => {
     setUserDetails((prevData) => ({ ...prevData, [name]: value }));
     switch (name) {
       case "username":
-        setErrorDisplay((prevData) => ({ ...prevData, [name]: !isValidUsername(value) ? "User name may contain only english letters or numbers":""}));
+        setErrorDisplay((prevData) => ({ ...prevData, [name]: !isValidUsername(value) ? "User name may contain only english letters or numbers" : "" }));
         break;
-      case "password":  
-        setErrorDisplay((prevData) => ({ ...prevData, [name]: !isValidPassword(value) ? "Password must contain at least 3 characters, including dot." :""}));
+      case "password":
+        setErrorDisplay((prevData) => ({ ...prevData, [name]: !isValidPassword(value) ? "Password must contain at least 3 characters, including dot." : "" }));
         break;
-       default: break;
+      default: break;
     }
   };
 
@@ -88,22 +88,22 @@ const Register = () => {
         <h1 className="title">Register</h1>
         <form onSubmit={handleSubmit}>
           <label>
-          Username:
+            Username:
             <input type="text" name="username" value={userDetails.username} onChange={handleChange} required noValidate />
-          </label><br/>
-          <span className='commentArea'>{errorDisplay.username}</span><br/>
+          </label><br />
+          <span className='commentArea'>{errorDisplay.username}</span><br />
 
-           <label>
-           Password:
+          <label>
+            Password:
             <input type="password" name="password" value={userDetails.password} onChange={handleChange} required noValidate />
-          </label><br/>
-         <span className='commentArea'>{errorDisplay.password}</span><br/>
+          </label><br />
+          <span className='commentArea'>{errorDisplay.password}</span><br />
 
-            <label>
+          <label>
             Confirm Password:
             <input type="password" name="confirmPassword" value={userDetails.confirmPassword} onChange={handleChange} required noValidate />
-          </label><br/>
-          <span className='commentArea'>{errorDisplay.confirmPassword}</span><br/>
+          </label><br />
+          <span className='commentArea'>{errorDisplay.confirmPassword}</span><br />
 
           <button className="addButton" type="submit">Continue registration</button>
         </form>

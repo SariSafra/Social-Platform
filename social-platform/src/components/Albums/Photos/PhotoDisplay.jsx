@@ -15,13 +15,13 @@ const PhotoDisplay = ({ photo, photos, setPhotos }) => {
   return (
     <>
       <pre>ID: {photo.id}</pre>
-      <img src={photo.thumbnailUrl} alt={photo.title} style={{ maxWidth: '100%' }}/><br/>
+      <img src={photo.thumbnailUrl} alt={photo.title} style={{ maxWidth: '100%' }} /><br />
       <h4>{inUpdate ?
         <textarea type="text"
           value={updatedTitle}
           onChange={(event) => { setUpdatedTitle(event.target.value) }}
           required
-          style={{ width: "250px"}} /> :
+          style={{ width: "250px" }} /> :
         photo.title}</h4>
 
       <PhotoRemove photo={photo} setCommentArea={setCommentArea} setPhotos={setPhotos} photos={photos} />

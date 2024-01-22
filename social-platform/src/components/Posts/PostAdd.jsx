@@ -1,14 +1,14 @@
-import { useParams} from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { runId } from "../Tools";
 
-const PostAdd=({setPosts, posts, setCommentArea})=>{
+const PostAdd = ({ setPosts, posts, setCommentArea }) => {
     const [inAddition, setInAddition] = useState(false);
     const [newTitle, setNewTitle] = useState("");
     const [newBody, setNewBody] = useState("");
     const { userId } = useParams();
 
-     useEffect(() => {
+    useEffect(() => {
         setNewBody("");
         setNewTitle("");
         setCommentArea("");
@@ -18,7 +18,7 @@ const PostAdd=({setPosts, posts, setCommentArea})=>{
         e.preventDefault();
         setInAddition(false);
         const newId = await runId("nextPostId");
-        const newPost = { userId: userId, id: newId, title: newTitle, body: newBody}
+        const newPost = { userId: userId, id: newId, title: newTitle, body: newBody }
         fetch('http://localhost:3000/posts', {
             method: 'POST',
             headers: {
@@ -37,8 +37,8 @@ const PostAdd=({setPosts, posts, setCommentArea})=>{
         })
     }
 
-    return( <>
-        <button className="addButton" onClick={() => {setInAddition((prev)=>!prev)}}>New Post</button>
+    return (<>
+        <button className="addButton" onClick={() => { setInAddition((prev) => !prev) }}>New Post</button>
         {inAddition && (
             <form onSubmit={AddPost}>
                 <label htmlFor="title">Name:</label>
@@ -48,6 +48,6 @@ const PostAdd=({setPosts, posts, setCommentArea})=>{
                 <button className="actionButton" type="submit">Add</button>
             </form>
         )}
-    </>  )
+    </>)
 }
 export default PostAdd;

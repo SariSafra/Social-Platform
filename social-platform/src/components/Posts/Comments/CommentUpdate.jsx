@@ -1,5 +1,3 @@
-import { Route } from "react-router-dom";
-import { react } from "react";
 
 const CommentUpdate = ({ setInUpdate, commentToUpdate, setCommentArea, setComments, comments, updatedName, updatedBody, inUpdate }) => {
 
@@ -7,7 +5,7 @@ const CommentUpdate = ({ setInUpdate, commentToUpdate, setCommentArea, setCommen
         setInUpdate(false);
         if (commentToUpdate.name === updatedName && commentToUpdate.body === updatedBody)
             return;
-            const updatedFields = { name: updatedName, body: updatedBody };
+        const updatedFields = { name: updatedName, body: updatedBody };
         fetch(`http://localhost:3000/comments/${commentToUpdate.id}`, {
             method: 'PATCH',
             headers: {

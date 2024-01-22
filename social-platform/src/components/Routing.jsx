@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route, Navigate, Outlet } from "react-router-dom";
-import{ react, useState,useEffect } from "react";
+import { react, useState, useEffect } from "react";
 import Register from "./Register";
 import Home from "./Home/Home"
 import Login from "./Login"
@@ -11,15 +11,14 @@ import NotFound from "./NotFound";
 import Photos from "./Albums/Photos/Photos"
 
 const Routing = () => {
- const [currentUser,setCurrentUser] = useState(JSON.parse(localStorage.getItem("currentUser")));
-const [currentPage,setCurrentPage ]= useState(currentUser ? `/users/${currentUser.id}/home` : "/login");
+    const [currentUser, setCurrentUser] = useState(JSON.parse(localStorage.getItem("currentUser")));
+    const [currentPage, setCurrentPage] = useState(currentUser ? `/users/${currentUser.id}/home` : "/login");
 
     useEffect(() => {
-        setCurrentUser(JSON.parse(localStorage.getItem("currentUser"))); 
+        setCurrentUser(JSON.parse(localStorage.getItem("currentUser")));
         setCurrentPage(currentUser ? `/users/${currentUser.id}/home` : "/login");
+    }, []);
 
-      }, []); 
-    
     return (<>
         <BrowserRouter>
             <Routes>

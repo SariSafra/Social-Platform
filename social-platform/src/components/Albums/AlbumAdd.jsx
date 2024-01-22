@@ -1,13 +1,13 @@
-import {useParams} from "react-router-dom";
-import { useState, useEffect} from "react";
+import { useParams } from "react-router-dom";
+import { useState, useEffect } from "react";
 import { runId } from "../Tools";
 
-const AlbumAdd=({setAlbums, albums, setCommentArea})=>{
+const AlbumAdd = ({ setAlbums, albums, setCommentArea }) => {
     const [inAddition, setInAddition] = useState(false);
     const [newTitle, setNewTitle] = useState("");
     const { userId } = useParams();
 
-     useEffect(() => {
+    useEffect(() => {
         setNewTitle("");
         setCommentArea("");
     }, [inAddition]);
@@ -16,7 +16,7 @@ const AlbumAdd=({setAlbums, albums, setCommentArea})=>{
         e.preventDefault();
         setInAddition(false);
         const newId = await runId("nextAlbumId");
-        const newAlbum = { userId: userId, id: newId, title: newTitle}
+        const newAlbum = { userId: userId, id: newId, title: newTitle }
         fetch('http://localhost:3000/albums', {
             method: 'POST',
             headers: {
@@ -35,8 +35,8 @@ const AlbumAdd=({setAlbums, albums, setCommentArea})=>{
         })
     }
 
-    return( <>
-        <button className="addButton" onClick={() => {setInAddition((prev)=>!prev)}}>New Album</button>
+    return (<>
+        <button className="addButton" onClick={() => { setInAddition((prev) => !prev) }}>New Album</button>
         {inAddition && (
             <form onSubmit={AddAlbum}>
                 <label htmlFor="title">title</label>
@@ -44,6 +44,6 @@ const AlbumAdd=({setAlbums, albums, setCommentArea})=>{
                 <button className="addButton" type="submit">Add</button>
             </form>
         )}
-    </>  )
+    </>)
 }
 export default AlbumAdd;

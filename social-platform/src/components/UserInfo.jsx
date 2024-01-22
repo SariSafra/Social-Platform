@@ -1,5 +1,3 @@
-import { react } from "react";
-import { Route } from "react-router-dom";
 import { displayObject } from "./Tools"
 
 const UserInfo = () => {

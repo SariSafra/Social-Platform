@@ -1,4 +1,4 @@
-import {useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import TodoAdd from "./TodoAdd";
 import TodosDisplay from "./TodosDisplay";
@@ -33,11 +33,11 @@ const Todos = () => {
                 setCommentArea("Server error. try again later.")
             });
     }
-    
+
     return (<>
         <h2 className="title">Todos</h2>
-        <TodoAdd setTodos={setTodos} todos={todos} setCommentArea={setCommentArea} /><br/>
-        <TodosDisplay todos={todos} setTodos={setTodos}/>
+        <TodoAdd setTodos={setTodos} todos={todos} setCommentArea={setCommentArea} /><br />
+        <TodosDisplay todos={todos} setTodos={setTodos} />
         <p className='commentArea'>{commentArea}</p>
     </>)
 }

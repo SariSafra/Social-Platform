@@ -1,35 +1,33 @@
-import { Route} from "react-router-dom";
-import {react, useState } from "react";
 
-const PostRemove=({postToRemove,setPosts,posts,setCommentArea})=>{
+const PostRemove = ({ postToRemove, setPosts, posts, setCommentArea }) => {
     const idToDelete = postToRemove.id;
 
-    const removePostAndPostsComments=()=>{
+    const removePostAndPostsComments = () => {
         getPostsCommentsIds();
     }
 
-    const getPostsCommentsIds=()=>{
+    const getPostsCommentsIds = () => {
         fetch(`http://localhost:3000/comments/?postId=${Number(idToDelete)}`)
-        .then(response => {
-            if (!response.ok) {
-                throw new Error(`Request failed with status: ${response.status}`);
-            }
-            return response.json();
-        })
-        .then(data => {
-            if (Object.keys(data).length === 0) {
-                removePost();
-            } else {
-                removePostsComments(data);
-            }
-        })
-        .catch(error => {
-            console.error(error);
-            setCommentArea("Server error. try again later.")
-        });
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`Request failed with status: ${response.status}`);
+                }
+                return response.json();
+            })
+            .then(data => {
+                if (Object.keys(data).length === 0) {
+                    removePost();
+                } else {
+                    removePostsComments(data);
+                }
+            })
+            .catch(error => {
+                console.error(error);
+                setCommentArea("Server error. try again later.")
+            });
     }
 
-     const removePostsComments= async(comments)=>{
+    const removePostsComments = async (comments) => {
         await comments.forEach(comment => {
             fetch(`http://localhost:3000/comments/${comment.id}`, {
                 method: 'DELETE',
@@ -48,7 +46,7 @@ const PostRemove=({postToRemove,setPosts,posts,setCommentArea})=>{
         removePost();
     }
 
-    const removePost = ()=> {
+    const removePost = () => {
         fetch(`http://localhost:3000/posts/${idToDelete}`, {
             method: 'DELETE',
             headers: {
@@ -65,8 +63,8 @@ const PostRemove=({postToRemove,setPosts,posts,setCommentArea})=>{
         });
     }
 
-    return( <>
-        <button className="actionButton" onClick={() =>removePostAndPostsComments() }>🗑️</button>
+    return (<>
+        <button className="actionButton" onClick={() => removePostAndPostsComments()}>🗑️</button>
     </>)
 }
 export default PostRemove;

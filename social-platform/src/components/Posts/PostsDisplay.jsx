@@ -66,7 +66,7 @@ const PostsDisplay = ({ posts, setPosts }) => {
         <ul className="showAllItems">
             {posts.map((post) => (
                 <li key={post.id} className="list">
-                    {isFiltered(post) && <div className="showItem"><PostDisplay postToDisplay={post} setPosts={setPosts} posts={posts} filterOption={filterOption}/></div>}
+                    {isFiltered(post) && <div className="showItem"><PostDisplay postToDisplay={post} setPosts={setPosts} posts={posts} filterOption={filterOption} /></div>}
                 </li>
             ))}
         </ul>

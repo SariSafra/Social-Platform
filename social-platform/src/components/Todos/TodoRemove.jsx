@@ -1,6 +1,6 @@
 
 const TodoRemove = ({ todos, setTodos, setCommentArea, todo }) => {
-    
+
     const removeTodo = (e) => {
         e.preventDefault();
         const idToDelete = todo.id;

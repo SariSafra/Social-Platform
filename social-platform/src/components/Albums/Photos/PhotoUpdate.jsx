@@ -1,5 +1,3 @@
-import { Route } from "react-router-dom";
-import { react} from "react";
 
 const PhotoUpdate = ({ setInUpdate, photoToUpdate, setCommentArea, setPhotos, photos, updatedTitle, inUpdate }) => {
 
@@ -14,17 +12,17 @@ const PhotoUpdate = ({ setInUpdate, photoToUpdate, setCommentArea, setPhotos, ph
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify(updatedField),
-        }) .then(response => {
-                if (!response.ok) {
-                    throw new Error(`Request failed with status: ${response.status}`);
-                }
-                const updatedPhoto = { ...photoToUpdate, ["title"]: updatedTitle };
-                setPhotos(photos.map(photo => photo.id === photoToUpdate.id ? updatedPhoto : photo));
-                setCommentArea("");
-            }).catch(error => {
-                console.error(error);
-                setCommentArea("Server error. try again later.")
-            });
+        }).then(response => {
+            if (!response.ok) {
+                throw new Error(`Request failed with status: ${response.status}`);
+            }
+            const updatedPhoto = { ...photoToUpdate, ["title"]: updatedTitle };
+            setPhotos(photos.map(photo => photo.id === photoToUpdate.id ? updatedPhoto : photo));
+            setCommentArea("");
+        }).catch(error => {
+            console.error(error);
+            setCommentArea("Server error. try again later.")
+        });
     }
 
     return (<>

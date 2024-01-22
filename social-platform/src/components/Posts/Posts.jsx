@@ -1,10 +1,8 @@
-import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import PostAdd from "./PostAdd";
 import PostsDisplay from "./PostsDisplay";
 
 const Posts = () => {
-    const { userId } = useParams();
     const [posts, setPosts] = useState([]);
     const [commentArea, setCommentArea] = useState("")
 

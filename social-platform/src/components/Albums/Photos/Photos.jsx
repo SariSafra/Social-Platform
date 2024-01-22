@@ -51,17 +51,17 @@ const Photos = () => {
             const newPhotos = await response.json();
             console.log(newPhotos);
             console.log(start);
-            console.log(start+limit);
-                if (newPhotos.length === 0) {
-                    setHasMore(false);
-                    setCommentArea('All photos loaded.');
-                }
-                else {
-                    const uniquePhotos = Array.from([...photos, ...newPhotos]);
-                    setPhotos(uniquePhotos);
-                    setStart(start + limit);
-                }
-            
+            console.log(start + limit);
+            if (newPhotos.length === 0) {
+                setHasMore(false);
+                setCommentArea('All photos loaded.');
+            }
+            else {
+                const uniquePhotos = Array.from([...photos, ...newPhotos]);
+                setPhotos(uniquePhotos);
+                setStart(start + limit);
+            }
+
         } catch (error) {
             console.error(error);
             setCommentArea('Server error. Try again later.');

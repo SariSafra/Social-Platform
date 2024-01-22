@@ -1,10 +1,9 @@
-import { Route } from "react-router-dom";
 import { useState, useEffect } from "react";
 import CommentDisplay from './CommentDisplay';
 import CommentAdd from "./CommentAdd";
 
-const Comments = ({postId}) => {
-    
+const Comments = ({ postId }) => {
+
     const [comments, setComments] = useState([]);
     const [commentArea, setCommentArea] = useState("")
 
@@ -34,18 +33,18 @@ const Comments = ({postId}) => {
     }
 
     return (
-    <div>
-        <br/>
-        <h2 className="title">Comments</h2>
-        <CommentAdd comments={comments} setComments={setComments} postId={postId} setCommentArea={setCommentArea}/>
-        <ul>
-            {comments.map((comment) => (
-                <li key={comment.id} className="list">
-                     <CommentDisplay comment={comment} comments={comments} setComments={setComments}/> 
-                </li>
-            ))}
-      </ul>
-        <p className='commentArea'>{commentArea}</p>
-    </div>)
+        <div>
+            <br />
+            <h2 className="title">Comments</h2>
+            <CommentAdd comments={comments} setComments={setComments} postId={postId} setCommentArea={setCommentArea} />
+            <ul>
+                {comments.map((comment) => (
+                    <li key={comment.id} className="list">
+                        <CommentDisplay comment={comment} comments={comments} setComments={setComments} />
+                    </li>
+                ))}
+            </ul>
+            <p className='commentArea'>{commentArea}</p>
+        </div>)
 }
 export default Comments;
