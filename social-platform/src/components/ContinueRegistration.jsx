@@ -145,6 +145,7 @@ const ContinueRegistration = ({ username, password }) => {
 
   return (
     <form onSubmit={handleSubmit}>
+      <h4>Personal Information:</h4>
       <label>
         Name:
         <input type="text" name="name" value={userDetails.name} onChange={handleChange} required noValidate />
@@ -157,6 +158,13 @@ const ContinueRegistration = ({ username, password }) => {
       </label>
       {<p className='commentArea'>{errorDisplay.email}</p>}
 
+      <label>
+        Phone:
+        <input type="text" name="phone" value={userDetails.phone} onChange={handleChange} required noValidate />
+      </label>
+      {<p className='commentArea'>{errorDisplay.phone}</p>}
+      
+      <h4>Address:</h4>
       <label>
         Street:
         <input type="text" name="address.street" value={userDetails.address.street} onChange={handleChange} required noValidate />
@@ -180,12 +188,7 @@ const ContinueRegistration = ({ username, password }) => {
       </label>
       {<p className='commentArea'>{errorDisplay.address.zipcode}</p>}
 
-      <label>
-        Phone:
-        <input type="text" name="phone" value={userDetails.phone} onChange={handleChange} required noValidate />
-      </label>
-      {<p className='commentArea'>{errorDisplay.phone}</p>}
-
+      <h4>Company:</h4>
       <label>
         Company Name:
         <input type="text" name="company.name" value={userDetails.company.name} onChange={handleChange} required noValidate />
