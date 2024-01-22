@@ -10,13 +10,20 @@ const Photos = () => {
     const [hasMore, setHasMore] = useState(true);
     const [start, setStart] = useState(0);
     const [commentArea, setCommentArea] = useState('');
-    const limit = 8;
-    const [lastFetchedPhotoId, setLastFetchedPhotoId] = useState(null);
     const { albumId } = useParams();
     const { userId } = useParams();
     const navigate = useNavigate();
+    const limit = 8;
 
     useEffect(() => {
+        checkUserAlbum()
+
+    }, [])
+    useEffect(() => {
+        requestPostsPhotos();
+    }, [hasMore]);
+
+    const checkUserAlbum = () => {
         fetch(`http://localhost:3000/albums/${albumId}`)
             .then(response => {
                 if (!response.ok) {
@@ -25,7 +32,6 @@ const Photos = () => {
                 return response.json();
             })
             .then(data => {
-                console.log(data);
                 if (data.userId !== userId) {
                     navigate('/');
                 }
@@ -35,39 +41,27 @@ const Photos = () => {
                 setCommentArea('Error fetching max photo ID. Try again later.');
             });
 
-    }, [])
-    useEffect(() => {
-        requestPostsPhotos();
-    }, [hasMore]);
-
-
+    }
     const requestPostsPhotos = async () => {
         try {
-            const response = await fetch(`http://localhost:3000/photos?albumId=${albumId}&_start=${start}&_limit=${limit}`);
-
+            const response = await fetch(`http://localhost:3000/photos?albumId=${albumId}&_start=${start}&_end=${start + limit}`);
             if (!response.ok) {
                 throw new Error(`Request failed with status: ${response.status}`);
             }
-
             const newPhotos = await response.json();
-
-            if (newPhotos.length === 0) {
-                setHasMore(false);
-                setCommentArea('This Album has no Photos.');
-            } else {
-                const filteredNewPhotos = newPhotos.filter(photo => photo.id > lastFetchedPhotoId);
-
-                if (filteredNewPhotos.length === 0) {
+            console.log(newPhotos);
+            console.log(start);
+            console.log(start+limit);
+                if (newPhotos.length === 0) {
                     setHasMore(false);
                     setCommentArea('All photos loaded.');
-                } else {
-                    const uniquePhotos = Array.from([...photos, ...filteredNewPhotos]);
-                    const newMaxPhotoId = Math.max(...filteredNewPhotos.map(photo => photo.id));
-                    setLastFetchedPhotoId(newMaxPhotoId);
-                    setPhotos(uniquePhotos);
-                    setStart((prevStart) => prevStart + limit);
                 }
-            }
+                else {
+                    const uniquePhotos = Array.from([...photos, ...newPhotos]);
+                    setPhotos(uniquePhotos);
+                    setStart(start + limit);
+                }
+            
         } catch (error) {
             console.error(error);
             setCommentArea('Server error. Try again later.');
@@ -86,9 +80,9 @@ const Photos = () => {
                 loader={<h4>Loading...</h4>}
             >
                 <ul className="showAllPhotos">
-                {photos.map((photo) => (
-                    <div className="showPhoto"><PhotoDisplay key={photo.id} photo={photo} photos={photos} setPhotos={setPhotos} /></div>
-                ))}
+                    {photos.map((photo) => (
+                        <div className="showPhoto"><PhotoDisplay key={photo.id} photo={photo} photos={photos} setPhotos={setPhotos} /></div>
+                    ))}
                 </ul>
             </InfiniteScroll>
         </div>
