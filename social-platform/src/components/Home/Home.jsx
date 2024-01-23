@@ -22,10 +22,8 @@ export default function Home() {
   }, [currentUser]);
 
   const logout = () => {
-
     localStorage.clear();
     setCurrentUser(null);
-    //navigate("/");
   };
 
   return (

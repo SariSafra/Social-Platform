@@ -49,7 +49,7 @@ const Register = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!isObjectEmpty(errorDisplay)) return;
-    if (errorDisplay.confirmPassword != errorDisplay.password) {
+    if (userDetails.confirmPassword != userDetails.password) {
       setGlobalError("Password confirmation failed. try again.");
       return;
     }
