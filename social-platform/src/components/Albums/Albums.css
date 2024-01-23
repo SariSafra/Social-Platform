@@ -1,6 +1,6 @@
-.showAlbum{
+.showAlbum {
     background-color: rgb(249, 249, 250);
-    padding: 20px; 
+    padding: 20px;
     box-sizing: border-box;
     margin: 20px;
     width: 270px;
@@ -10,33 +10,33 @@
     border-left: 3px solid rgb(115, 185, 197);
 }
 
-.showAllAlbums{
+.showAllAlbums {
     display: flex;
     flex-wrap: wrap;
 }
 
-.showPhoto{
+.showPhoto {
     background-color: rgb(249, 249, 250);
-    padding: 15px; 
+    padding: 15px;
     box-sizing: border-box;
     margin: 20px;
     width: 350px;
     height: 370px;
-    border-radius: 15px; 
+    border-radius: 15px;
 }
 
-.showAllPhotos{
+.showAllPhotos {
     display: flex;
     flex-wrap: wrap;
 }
 
-.linkStyle{
+.linkStyle {
     list-Style: none;
     padding: 1px;
     color: rgb(95, 94, 94);
 }
-  
-.linkContent{
+
+.linkContent {
     align-Items: center;
     text-Decoration: none;
     color: rgb(86, 85, 85);
@@ -44,6 +44,6 @@
     margin: 5px;
 }
 
-.linkContent:hover{
+.linkContent:hover {
     color: rgb(115, 185, 197);
 }
