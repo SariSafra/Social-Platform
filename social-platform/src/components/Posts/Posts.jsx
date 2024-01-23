@@ -1,10 +1,12 @@
 import { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 import PostAdd from "./PostAdd";
 import PostsDisplay from "./PostsDisplay";
 
 const Posts = () => {
     const [posts, setPosts] = useState([]);
     const [commentArea, setCommentArea] = useState("")
+    const { userId } = useParams();
 
     useEffect(() => {
         requestPosts();
@@ -23,6 +25,9 @@ const Posts = () => {
                     setCommentArea("There is no posts.");
                 } else {
                     setPosts(data);
+                    if (!data.find(post => post.userId === userId)) {
+                        setCommentArea("You have no posts.");
+                    }
                 }
             })
             .catch(error => {
