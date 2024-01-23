@@ -19,7 +19,7 @@ const Photos = () => {
     }, [])
 
     useEffect(() => {
-        requestPostsPhotos();
+        requestPostPhotos();
     }, [hasMore]);
 
     const checkUserAlbum = () => {
@@ -40,7 +40,8 @@ const Photos = () => {
                 setCommentArea('Error fetching max photo ID. Try again later.');
             });
     }
-    const requestPostsPhotos = async () => {
+    
+    const requestPostPhotos = async () => {
         try {
             const response = await fetch(`http://localhost:3000/photos?albumId=${albumId}&_start=${start}&_end=${start + limit}`);
             if (!response.ok) {

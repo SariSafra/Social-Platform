@@ -18,7 +18,7 @@ export default function Home() {
   }, []);
 
   useEffect(() => {
-    if (currentUser === null || currentUser.id !=userId) {
+    if (currentUser === null || currentUser.id != userId) {
       navigate("/");
     }
   }, [currentUser]);
