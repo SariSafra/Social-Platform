@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import PhotoRemove from './PhotoRemove';
-import CommentUpdate from './PhotoUpdate'
+import PhotoUpdate from './PhotoUpdate'
 
 const PhotoDisplay = ({ photo, photos, setPhotos }) => {
 
@@ -25,7 +25,7 @@ const PhotoDisplay = ({ photo, photos, setPhotos }) => {
         photo.title}</h4>
 
       <PhotoRemove photo={photo} setCommentArea={setCommentArea} setPhotos={setPhotos} photos={photos} />
-      <CommentUpdate inUpdate={inUpdate} setInUpdate={setInUpdate} photoToUpdate={photo} setCommentArea={setCommentArea}
+      <PhotoUpdate inUpdate={inUpdate} setInUpdate={setInUpdate} photoToUpdate={photo} setCommentArea={setCommentArea}
         photos={photos} setPhotos={setPhotos} updatedTitle={updatedTitle} />
       <p className="commentArea">{commentArea}</p>
     </>
