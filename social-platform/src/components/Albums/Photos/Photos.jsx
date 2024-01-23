@@ -15,7 +15,7 @@ const Photos = () => {
     const limit = 8;
 
     useEffect(() => {
-        checkUserAlbum()
+        checkUserAlbum();
     }, [])
 
     useEffect(() => {
@@ -70,7 +70,7 @@ const Photos = () => {
             <PhotosAdd setCommentArea={setCommentArea} setPhotos={setPhotos} />
             <InfiniteScroll
                 dataLength={photos.length}
-                next={requestPostsPhotos}
+                next={requestPostPhotos}
                 hasMore={hasMore}
                 loader={<h4>Loading...</h4>}
             >
