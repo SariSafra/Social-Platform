@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate, Outlet, NavLink } from "react-router-dom";
+import { useNavigate, Outlet, NavLink, useParams } from "react-router-dom";
 import "./Home.css";
 
 export default function Home() {
   const [currentUser, setCurrentUser] = useState(JSON.parse(localStorage.getItem("currentUser")));
   const [linkClicked, setLinkClicked] = useState(false);
   const navigate = useNavigate();
+  const { userId } = useParams();
 
+  //for paragraph in home
   useEffect(() => {
     const pathSegments = window.location.pathname.split('/');
     const lastSegment = pathSegments[pathSegments.length - 1];
@@ -16,7 +18,7 @@ export default function Home() {
   }, []);
 
   useEffect(() => {
-    if (currentUser === null) {
+    if (currentUser === null || currentUser.id !=userId) {
       navigate("/");
     }
   }, [currentUser]);

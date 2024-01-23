@@ -39,7 +39,6 @@ const Photos = () => {
                 console.error(error);
                 setCommentArea('Error fetching max photo ID. Try again later.');
             });
-
     }
     const requestPostsPhotos = async () => {
         try {
