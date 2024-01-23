@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import InfiniteScroll from 'react-infinite-scroll-component';
-
 import PhotosAdd from './PhotosAdd';
 import PhotoDisplay from './PhotoDisplay';
 
@@ -17,8 +16,8 @@ const Photos = () => {
 
     useEffect(() => {
         checkUserAlbum()
-
     }, [])
+
     useEffect(() => {
         requestPostsPhotos();
     }, [hasMore]);
@@ -49,9 +48,6 @@ const Photos = () => {
                 throw new Error(`Request failed with status: ${response.status}`);
             }
             const newPhotos = await response.json();
-            console.log(newPhotos);
-            console.log(start);
-            console.log(start + limit);
             if (newPhotos.length === 0) {
                 setHasMore(false);
                 setCommentArea('All photos loaded.');
@@ -72,7 +68,6 @@ const Photos = () => {
         <div>
             <h2 className="title">Photos of Album number {albumId}</h2>
             <PhotosAdd setCommentArea={setCommentArea} setPhotos={setPhotos} />
-            <p className='commentArea'>{commentArea}</p>
             <InfiniteScroll
                 dataLength={photos.length}
                 next={requestPostsPhotos}
@@ -85,10 +80,9 @@ const Photos = () => {
                     ))}
                 </ul>
             </InfiniteScroll>
+            <p className='commentArea'>{commentArea}</p>
         </div>
     );
 };
 
 export default Photos;
-
-
