@@ -123,6 +123,9 @@ const ContinueRegistration = ({ username, password }) => {
         throw new Error(`Request failed with status: ${response.status}`);
       }
       else {
+        const updatedUser = { ...userDetails };
+        delete updatedUser["website"];
+        localStorage.setItem("currentUser", JSON.stringify(updatedUser));
         navigate(`/users/${userDetails.id}/home`);
       }
     }).catch(error => {
@@ -136,9 +139,6 @@ const ContinueRegistration = ({ username, password }) => {
     if (!isObjectEmpty(errorDisplay)) {
       return;
     }
-    const updatedUser = { ...userDetails };
-    delete updatedUser["website"];
-    localStorage.setItem("currentUser", JSON.stringify(updatedUser));
     postRequest();
   };
 

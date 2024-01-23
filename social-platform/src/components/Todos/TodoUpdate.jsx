@@ -12,7 +12,6 @@ const TodoUpdate = ({ todos, setTodos, setCommentArea, todoToUpdate }) => {
     const updateTodo = (e) => {
         e.preventDefault();
         setInUpdate(false);
-
         if (todoToUpdate.title === updatedTitle)
             return;
         updateTodoRequest("title", updatedTitle)

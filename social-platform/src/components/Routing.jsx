@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route, Navigate, Outlet } from "react-router-dom";
-import { react, useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import Register from "./Register";
 import Home from "./Home/Home"
 import Login from "./Login"
@@ -8,7 +8,7 @@ import Todos from "./Todos/Todos";
 import Posts from "./Posts/Posts";
 import Albums from "./Albums/Albums";
 import NotFound from "./NotFound";
-import Photos from "./Albums/Photos/Photos"
+import Photos from "./Albums/Photos/Photos";
 
 const Routing = () => {
     const [currentUser, setCurrentUser] = useState(JSON.parse(localStorage.getItem("currentUser")));

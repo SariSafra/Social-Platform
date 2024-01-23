@@ -19,7 +19,7 @@ const CommentDisplay = ({ comment, comments, setComments }) => {
   return (<>
     <ul>
       {Object.keys(rest).map(key => (
-        <li key={key} style={{ listStyle: 'none' }}>
+        <li key={key} className="list">
           <strong>{key}:</strong> {(key === 'name' && inUpdate) ?
             <textarea type="text" value={updatedName} onChange={(event) => { setUpdatedName(event.target.value) }} required style={{ width: "350px" }} /> :
             (key === 'body' && inUpdate) ?
