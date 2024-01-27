@@ -10,6 +10,7 @@ const AlbumAdd = ({ setAlbums, albums, setCommentArea }) => {
     useEffect(() => {
         setNewTitle("");
         setCommentArea("");
+        
     }, [inAddition]);
 
     const AddAlbum = async (e) => {
